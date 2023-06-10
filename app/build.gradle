@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+
+    android {
+        compileSdk 33
+        buildToolsVersion '33.0.0'
+        defaultConfig {
+            applicationId "com.panelplus.pnpmember"
+            minSdkVersion 26
+            targetSdkVersion 33
+            versionCode 1
+            versionName "1.0"
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        }
+
+        viewBinding {
+            enabled = true
+        }
+
+
+        sourceSets {
+            main {
+                jniLibs.srcDirs = ['libs']
+            }
+        }
+
+    packagingOptions {
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    implementation 'com.wrapp.floatlabelededittext:library:0.0.6'
+    implementation 'com.github.ganfra:material-spinner:2.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation files('libs/arcgis-android-10.2.9.aar')
+    implementation 'commons-logging:commons-logging:1.2'
+
+//    implementation files('libs/arcgis-android-100.0.0.aar')
+    implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+    implementation 'com.hanks.animatecheckbox:library:0.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'com.jakewharton:butterknife:10.2.3'
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

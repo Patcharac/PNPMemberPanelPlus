@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.panelplus.pnpmember.activity.EvaContractorActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ตารางการประเมินผู้รับเหมาทำไม้"
+                android:textSize="34sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorBlack"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+
+                    <EditText
+                        android:id="@+id/Con_Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="ชื่อผู้รับเหมา"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+
+                    <EditText
+                        android:id="@+id/Con_ID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="ID ผู้รับเหมา"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp">
+
+                    <EditText
+                        android:id="@+id/Farm_ID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="ID แปลงไม้"
+                        android:maxLength="9"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+            </LinearLayout>
+
+<!--            //ประเมิน-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+<!--                //1-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.8"
+                        android:text="1.เลื่อยโซ่ยนต์มีใบอนุญาต และตรงตามพื้นที่ที่ได้รับอนุญาต \r\n(ถ่ายสำเนาเก็บในแฟ้มผู้รับเหมา)"
+                        android:textColor="#000000"
+                        android:textSize="19sp" />
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO1"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //2-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2.มีการชำระภาษีรถประจำปี(ถ่ายสำเนาเก็บในแฟ้มผู้รับเหมา)"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2"
+                        />
+                </LinearLayout>
+
+<!--                //3-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3.มีการทำเครื่องหมายแนวแดนก่อนตัด"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO3"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //4-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4.มีความเสียหาย ความสกปรกกับถนนสาธารณะ"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO4"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //5-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5.ต้นไม้ที่ตัดได้รับความเสียหาย"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO5"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //6-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="6.มีไม้ท่อนที่ใช้ประโยชน์ได้เหลือในพื้นที่"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO6"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //7-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="7.มีการกำจัดขยะอย่างถูกวิธี"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO7"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //8-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="8.มีวิธีจัดการกับน้ำมันที่รั่วไหล"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO8"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //9-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="9.มีเศษไม้เศษวัสดุจากการทำไม้กีดขวางทางน้ำ"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO9"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //10-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="10.มีการจ่ายค่าจ้างขั้นต่ำตามอัตราที่กฎหมายกำหนด"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO10"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //11-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="11.มีอุปกรณ์ความปลอดภัยส่วนบุคคลให้ของคนงาน"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO11"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //12-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="12.มีการจัดหาน้ำดื่น และพื้นที่รับประทานอาหารให้คนงาน"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO12"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //13-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="13.มีห้องน้ำของคนงานในพื้นที่ หรือพื้นที่ที่สามารถไปได้สะดวก"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO13"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //14-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="14.มีอุปกรณ์ปฐมพยาบาลเบื้องต้น"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO14"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //15-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="15.เลื่อยโซ่ยนต์มีอุปกรณ์ความปลอดภัยครบ"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO15"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //16-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="16.มีการจ่ายเงินคนงานตรงเวลา"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO16"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //17-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="17.มีการจ้างแรงงานในท้องถิ่น"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO17"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+<!--                //18-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="18.มีเครื่องมือ เครื่องจักรทำไม้ที่พร้อมทำงาน"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:textSize="19sp"
+                        android:layout_weight="0.8"/>
+
+                    <CheckBox
+                        android:id="@+id/EvaCon_NO18"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="แนบรูปถ่าย"
+                    android:textColor="#000000"/>
+                <Button style="@style/Widget.AppCompat.Button.Colored"
+                    android:id="@+id/licenseSaw"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="ใบอนุญาตเลื่อยโซ่ยนต์"
+                    android:enabled="false"
+                    android:layout_gravity="center"/>
+                <Button style="@style/Widget.AppCompat.Button.Colored"
+                    android:id="@+id/licenseCar"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="ใบชำระภาษีรถ"
+                    android:layout_gravity="center"
+                    android:enabled="false"/>
+
+            </LinearLayout>
+
+            <Button style="@style/Widget.AppCompat.Button.Colored"
+                android:id="@+id/save"
+                android:layout_margin="20dp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="บันทึกแบบประเมิน"
+                android:background="@color/colorPrimary"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

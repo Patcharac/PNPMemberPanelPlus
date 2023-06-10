@@ -1,0 +1,1330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/page_bg_nocorners"
+    tools:context="com.panelplus.pnpmember.activity.RegisFarmConfirmActivity">
+
+<!--    <ScrollView-->
+<!--        android:id="@+id/scrollView1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1" >-->
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+
+                <TableRow
+                    android:id="@+id/TableRow01"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="     ลงทะเบียนแปลงใหม่"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="30dp" />
+
+                    <Button style="@style/Widget.AppCompat.Button.Colored"
+                        android:id="@+id/btnExit"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="5dp"
+                        android:text="ปิด"
+                        android:textSize="25dp" />
+                </TableRow>
+
+                <TextView
+                    android:id="@+id/TextView34"
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16dp" />
+
+<!--                //ข้อมูลแปลง-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/layout_bg_white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp">
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp">
+
+                            <EditText
+                                android:id="@+id/txtQT"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="6"
+                                android:hint="เลขโควต้า"
+                                android:singleLine="true"
+                                android:padding="18dp"/>
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp">
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp">
+
+                            <EditText
+                                android:id="@+id/txtYearOfPlant"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="4"
+                                android:hint="ปีที่ปลูก(พ.ศ.)"
+                                android:singleLine="true"
+                                android:padding="18dp"/>
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp">
+
+                            <EditText
+                                android:id="@+id/txtRubberPerRai"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:hint="จำนวนต้นต่อไร่"
+                                android:singleLine="true"
+                                android:padding="18dp"/>
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="40dp"
+                        android:paddingRight="40dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="พันธ์ยาง :" />
+
+                        <Spinner
+                            android:id="@+id/spnRubberBreed"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:contentDescription="Select a rubber breed from the list"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp">
+                        </Spinner>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="สถานะพร้อมตัด"
+                            android:textColor="#000000"
+                            android:layout_gravity="center"
+                            android:textSize="19sp"/>
+
+                        <CheckBox
+                            android:id="@+id/Farm_Status"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp">
+
+                        <Button
+                            android:id="@+id/btnLetCamera"
+                            android:layout_width="220dp"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="รูปแปลงยางพารา"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:drawableLeft="@android:drawable/ic_menu_camera"
+                            android:textSize="18sp"/>
+
+                        <ImageView
+                            android:id="@+id/imgFarm"
+                            android:layout_width="400dp"
+                            android:layout_height="300dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:visibility="gone"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+<!--                //ประเมิน-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/layout_bg_white">
+
+<!--                    //หัวข้อประเมิน-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ประเมินพื้นที่สมาชิก"
+                            android:textSize="24dp"
+                            android:textColor="@color/colorBlack"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+<!--                    //ประเมินพื้นที่สมาชิก-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+<!--                        //ทิศเหนือ-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginRight="60dp"
+                            android:paddingBottom="10dp"
+                            android:background="@drawable/layout_bg"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="ทิศเหนือ"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textSize="18sp"
+                                android:textColor="@color/colorBlack"
+                                android:textStyle="bold"/>
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirNorth_Use"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="การใช้ที่ดิน"
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirNorth_Owner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="เจ้าของ/ผู้มีอำนาจจัดการ"
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirNorth_Tel"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="เบอร์โทรศัพท์"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                        </LinearLayout>
+
+<!--                        //ทิศตะวันออก-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginRight="60dp"
+                            android:paddingBottom="10dp"
+                            android:background="@drawable/layout_bg"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="ทิศตะวันออก"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textSize="18sp"
+                                android:textColor="@color/colorBlack"
+                                android:textStyle="bold"/>
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirEast_Use"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="การใช้ที่ดิน"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirEast_Owner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="เจ้าของ/ผู้มีอำนาจจัดการ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirEast_Tel"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="เบอร์โทรศัพท์"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                        </LinearLayout>
+
+<!--                        //ทิศใต้-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginRight="60dp"
+                            android:paddingBottom="10dp"
+                            android:background="@drawable/layout_bg"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="ทิศใต้"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textSize="18sp"
+                                android:textColor="@color/colorBlack"
+                                android:textStyle="bold"/>
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirSouth_Use"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="การใช้ที่ดิน"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirSouth_Owner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="เจ้าของ/ผู้มีอำนาจจัดการ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirSouth_Tel"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="เบอร์โทรศัพท์"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                        </LinearLayout>
+
+<!--                        //ทิศตะวันตก-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginRight="60dp"
+                            android:paddingBottom="10dp"
+                            android:background="@drawable/layout_bg"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="ทิศตะวันตก"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:textSize="18sp"
+                                android:textColor="@color/colorBlack"
+                                android:textStyle="bold"/>
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirWest_Use"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="การใช้ที่ดิน"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirWest_Owner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="เจ้าของ/ผู้มีอำนาจจัดการ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/DirWest_Tel"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="เบอร์โทรศัพท์"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                        </LinearLayout>
+
+<!--                        //1-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            >
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="1.ความชันมากกว่า 35 เปอร์เซ็นต์"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp"
+                                />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no01"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+
+
+
+                                />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                >
+
+                                <EditText
+                                    android:id="@+id/evaFarm01"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //2-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            >
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="2.ความชันมากกว่า 15 แต่น้อยกว่า 35 เปอร์เซ็นต์"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp"
+                                />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no02"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right"
+                                />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                >
+
+                                <EditText
+                                    android:id="@+id/evaFarm02"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //3-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            >
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="3.พื้นที่มากกว่า 300 ไร่"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp"
+                                />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no03"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right"
+
+                                />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.5">
+
+                                <EditText
+                                    android:id="@+id/evaFarm03"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //4-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            >
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="4.ติดหรือใกล้กับพื้นทีอนุรักษ์"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp"
+                                />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no04"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right" />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.5">
+
+                                <EditText
+                                    android:id="@+id/evaFarm04"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //5-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            >
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="5.ติดกับลำธาร ลำรางสาธารณะ "
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp"
+                                />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no05"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right"
+
+                                />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.5">
+
+                                <EditText
+                                    android:id="@+id/evaFarm05"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //6-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="6.มีร่องรอยการพังทะลายของดิน"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no06"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right" />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.5">
+
+                                <EditText
+                                    android:id="@+id/evaFarm06"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+
+<!--                        //7-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="7.มีการใช้สารเคมี (ถ้าใช่ ระบุชนิด และปริมาณการใช้)"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no07"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right" />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                >
+
+                                <EditText
+                                    android:id="@+id/evaFarm07"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //8-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="8.พบขยะอันตรายในแปลง"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp"
+                                />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no08"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right"
+                                />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/evaFarm08"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //9-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="9.พบการระบาดของโรคและแมลง (ระบุระดับของความรุนแรง 1-5)"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no09"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right" />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/evaFarm09"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //10-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="10.มีต้นไม้อื่นในสวนป่า(ระบุชนิด)"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no10"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right" />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/evaFarm10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //11-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="11.ติดแนวสายไฟฟ้า"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no11"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right" />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/evaFarm11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //12-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="12.ติดกับสิ่งปลูกสร้าง (ระบุ)"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no12"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right" />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/evaFarm12"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //13-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="13.ติดถนนสาธารณะ"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no13"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right" />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/evaFarm13"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+<!--                        //14-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="260dp"
+                                android:layout_height="wrap_content"
+                                android:text="14.พบขยะทั่วไปในแปลง"
+                                android:textColor="@color/colorBlack"
+                                android:layout_gravity="center"
+                                android:textSize="16sp" />
+
+                            <CheckBox
+                                android:id="@+id/evaFarm_no14"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="right" />
+
+
+                            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/evaFarm14"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:hint="ข้อเสนอแนะ"
+                                    android:singleLine="true" />
+                            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                        </LinearLayout>
+
+
+
+<!--                        //สิ่งที่พบ-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:paddingBottom="10dp"
+                            android:background="@drawable/layout_bg"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:text="สิ่งที่พบ"
+                                android:textSize="23sp"
+                                android:layout_marginLeft="10dp"/>
+<!--                            //ปุ่มค้นหา-->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:orientation="horizontal">
+
+                                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                    android:layout_width="200dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="3dp"
+                                    android:paddingTop="10dp">
+
+                                    <EditText
+                                        android:id="@+id/ObjectLocalNameSearch"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="Local Name"
+                                        android:singleLine="true" />
+                                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                                <Button style="@style/Widget.AppCompat.Button.Colored"
+                                    android:id="@+id/findObject"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="บันทึก"
+                                    android:icon="@android:drawable/ic_menu_search"/>
+
+                            </LinearLayout>
+                            <!--
+                            //edit text ต่างๆ
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:orientation="horizontal">
+
+                                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+                                    <EditText
+                                        android:id="@+id/ObjectLocalName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="Local Name"
+                                        android:singleLine="true" />
+                                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+                                    <EditText
+                                        android:id="@+id/ObjectCommonName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="Common Name"
+                                        android:singleLine="true" />
+                                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+                                    <EditText
+                                        android:id="@+id/ObjectScitificName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="Scitific Name"
+                                        android:singleLine="true" />
+                                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            </LinearLayout>
+
+                            <Button style="@style/Widget.AppCompat.Button.Colored"
+                                android:id="@+id/saveObject"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_gravity="center"
+                                android:text="บันทึกสิ่งที่พบ"/>
+                            -->
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/TextView04"
+                    android:layout_width="10dp"
+                    android:layout_height="5dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text=" "
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16dp" />
+
+                <TableRow
+                    android:id="@+id/tableRow13"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <Button
+                            android:id="@+id/btnSaveRegis"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_width="60dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:text="บันทึก"
+                            android:textSize="25dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TextView
+                    android:id="@+id/TextView33"
+                    android:layout_width="10dp"
+                    android:layout_height="5dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text=" "
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16dp" />
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

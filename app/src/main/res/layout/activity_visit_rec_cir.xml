@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.panelplus.pnpmember.activity.VisitRecCirActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+<!--            //หัวข้อ-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ตารางบันทึกเส้นรอบวง"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="25sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+<!--            //ส่วนเริ่ม-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:gravity="center"
+                android:background="@drawable/layout_bg_white">
+
+<!--                //FARM ID-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/Farm_ID"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="9"
+                            android:hint="ID แปลง"
+                            android:singleLine="true"
+                            android:padding="18dp"/>
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                </LinearLayout>
+
+<!--                //จำนวนไร่-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp">
+
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/Farm_AreaRai"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="พื้นที่(ไร่)"
+                            android:singleLine="true"
+                            android:padding="18dp"/>
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp">
+
+                        <EditText
+                            android:id="@+id/Farm_AreaNgan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="พื้นที่(งาน)"
+                            android:singleLine="true"
+                            android:padding="18dp"/>
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp">
+
+                        <EditText
+                            android:id="@+id/Farm_AreaWa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="พื้นที่(วา)"
+                            android:singleLine="true"
+                            android:padding="18dp"/>
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="ระยะปลูก"/>
+<!--                //ระยะปลูก-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/Rec_PlantRows"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="แถว"
+                            android:singleLine="true"
+                            android:padding="18dp"/>
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/Rec_PlantTree"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="ต้น"
+                            android:singleLine="true"
+                            android:padding="18dp"/>
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="16dp"
+                        android:text="เป็นการตรวจเยี่ยมรายปี"/>
+
+                    <CheckBox
+                        android:id="@+id/Gir_CheckStatus"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"/>
+
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp">
+
+                        <EditText
+                            android:id="@+id/Gir_Status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="ระบุปี"
+                            android:enabled="false"
+                            android:singleLine="true"
+                            android:padding="18dp"/>
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                </LinearLayout>
+
+<!--                //Button-->
+                <Button style="@style/Widget.AppCompat.Button.Colored"
+                    android:id="@+id/readyCal"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="เริ่มวัดเส้นรอบวง"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+<!--            //จำนวนต้นmี่ต้องวัด-->
+            <LinearLayout
+                android:id="@+id/layoutRubberAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/idShow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ID แปลง : "/>
+                <TextView
+                    android:id="@+id/areaShow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="พื้นที่รวม : "
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/treeShow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="จำนวนต้นที่ต้องวัด : "
+                    android:layout_marginLeft="10dp"/>
+
+            </LinearLayout>
+
+<!--            //วัดเส้น-->
+            <LinearLayout
+                android:id="@+id/ready"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:orientation="vertical"
+                android:background="@drawable/layout_bg_white"
+                android:gravity="center"
+                android:visibility="invisible">
+
+<!--                //ต้นที่-->
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="19sp"
+                        android:textColor="@color/colorBlack"
+                        android:text="ต้นที่ :" />
+
+                    <TextView
+                        android:id="@+id/RubberNO"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="19sp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/colorBlack"
+                        android:text="..."/>
+                </LinearLayout>
+
+<!--                //editText girth-->
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/Rub_Girth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="ขนาดเส้นรอบวง"
+                        android:textColor="@color/colorBlack"
+                        android:inputType="number"
+                        android:singleLine="true" />
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+<!--                //buttonsave-->
+                <Button style="@style/Widget.AppCompat.Button.Colored"
+                    android:id="@+id/saveGirth"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="บันทึกเส้นรอบวง"/>
+
+
+            </LinearLayout>
+
+<!--            //result show-->
+            <LinearLayout
+                android:id="@+id/layoutResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:padding="7dp"
+                android:background="@drawable/layout_bg_white"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+
+<!--                //จำนวนต้นทั้งหมด-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2">
+<!--                    ///จำนวน-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="จำนวนต้นทั้งหมด:  "/>
+
+                        <TextView
+                            android:id="@+id/Rub_All"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+                    </LinearLayout>
+<!--                    //percent-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="คิดเป็นเปอร์เซ็นต์:  "/>
+
+                        <TextView
+                            android:id="@+id/Rub_AllPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+<!--                //ต้นเป็น-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2">
+<!--                    //ต้นเป็น-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="จำนวนต้นที่เป็น:  "/>
+
+                        <TextView
+                            android:id="@+id/Rub_Alive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+<!--                    //percent-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="คิดเป็นเปอร์เซ็นต์:  "/>
+
+                        <TextView
+                            android:id="@+id/Rub_AlivePercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+<!--                //ต้นตาย-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2">
+<!--                    //ต้นตาย-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="จำนวนต้นที่ตาย:  "/>
+
+                        <TextView
+                            android:id="@+id/Rub_Death"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+<!--                    //percent-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="คิดเป็นเปอร์เซ็นต์:  "/>
+
+                        <TextView
+                            android:id="@+id/Rub_DeathPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+<!--                //ต้น/ไร่-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2">
+<!--                    //ต้น/ไร่-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="ต้น/ไร่:  "/>
+
+                        <TextView
+                            android:id="@+id/RubPerRai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+<!--                    //คงเหลือต้น/ไร่-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="คงเหลือ ต้น/ไร่  "/>
+
+                        <TextView
+                            android:id="@+id/RubPerRaiAlive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+<!--                //เฉลี่ยต่อต้น ต่อไร่-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2">
+
+<!--                    //ผลผลิตที่ได้/ไร่-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="ผลผลิต/ไร่:  "/>
+
+                        <TextView
+                            android:id="@+id/AvgKgPerRai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+
+<!--                    //ผลผลิตที่ได้ทั้งหมด-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="ผลผลิตทั้งหมด:  "/>
+
+                        <TextView
+                            android:id="@+id/AvgKgPerPlot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+<!--                //ลำต้น กิ่ง-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2">
+
+<!--                    //ลำต้น-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="ลำต้น:  "/>
+
+                        <TextView
+                            android:id="@+id/AvgTrunk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+
+<!--                    //กิ่ง-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="กิ่ง:  "/>
+
+                        <TextView
+                            android:id="@+id/AvgBranch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+<!--                //ลำต้น กิ่ง (ตันต่อไร่)-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2">
+
+<!--                    //ลำต้น(ตัน)-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="ลำต้น(ตัน/ไร่):  "/>
+
+                        <TextView
+                            android:id="@+id/TrunkTon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+
+<!--                    //กิ่ง-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="กิ่ง(ตัน/ไร่):  "/>
+
+                        <TextView
+                            android:id="@+id/BranchTon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="19sp"
+                            android:text="..."/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+<!--            //edit text note-->
+            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center">
+
+                <EditText
+                    android:id="@+id/Rec_Note"
+                    android:layout_width="300dp"
+                    android:layout_height="100dp"
+                    android:gravity="left"
+                    android:hint="รายละเอียดการวัด"
+                    android:visibility="invisible" />
+            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+<!--            //Button save all-->
+            <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:id="@id/save"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:layout_gravity="center"
+                android:textSize="20dp"
+                android:text="บันทึกข้อมูลทั้งหมด"
+                android:visibility="invisible"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

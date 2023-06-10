@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/colorWhite" >
+
+    <TextView
+        android:id="@+id/Col_F_ID"
+        android:layout_width="130dp"
+        android:layout_height="35dp"
+        android:gravity="center_vertical|center"
+        android:text="เลขโควต้า"
+        android:textColor="@color/colorBlack"
+        android:textSize="16dp"
+        android:layout_weight="0.20"/>
+
+    <TextView
+        android:id="@+id/Col_Area"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:gravity="center_vertical|center"
+        android:text="ชื่อ-สกุล"
+        android:textColor="@color/colorBlack"
+        android:textSize="16dp"
+        android:layout_weight="0.60"/>
+
+
+    <TextView
+        android:id="@+id/Col_Sta"
+        android:layout_width="110dp"
+        android:layout_height="35dp"
+        android:layout_weight="0.20"
+        android:gravity="center_vertical|center"
+        android:text="โซน"
+        android:textColor="@color/colorBlack"
+        android:textSize="16dp" />
+
+
+
+</LinearLayout>

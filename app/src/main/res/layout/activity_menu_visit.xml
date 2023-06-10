@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/page_bg_nocorners"
+    tools:context="com.panelplus.pnpmember.activity.MenuVisitActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp">
+
+        <Button
+            android:id="@+id/visitMember"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="รายการตรวจเยี่ยมสมาชิก"
+            android:textSize="30sp"/>
+
+        <!--<Button-->
+            <!--android:id="@+id/visitFarm"-->
+            <!--style="@style/Widget.AppCompat.Button.Colored"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="รายการตรวจเยี่ยมแปลงสมาชิก"-->
+            <!--android:textSize="30sp"/>-->
+
+        <!--<Button-->
+            <!--android:id="@+id/RecCir"-->
+            <!--style="@style/Widget.AppCompat.Button.Colored"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="บันทึกเส้นรอบวง"-->
+            <!--android:textSize="30sp"/>-->
+
+    </LinearLayout>
+</LinearLayout>

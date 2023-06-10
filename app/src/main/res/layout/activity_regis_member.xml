@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.panelplus.pnpmember.activity.RegisMemberActivity"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+<!--            //หัวข้อ-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+
+                android:paddingBottom="20dp"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:text="ใบสมัครเข้าร่วมโครงการการจัดการส่วนป่าอย่างยั่งยืน"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+<!--            //ส่วนพิมรายละเอียดการสมัคร-->
+
+<!--            //ข้อมูลเบื้องต้น-->
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp">
+
+                        <EditText
+                            android:id="@+id/idcard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="เลขบัตรประชาชน"
+                            android:inputType="number"
+                            android:maxLength="13"
+                            android:singleLine="true"
+                            android:paddingBottom="18dp"/>
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="***กรุณาตรวจสอบเลขบัตรประชาชนก่อนการสมัคร***" />
+
+                    <Button
+                        android:id="@+id/verify"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="ตรวจสอบ" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="คำนำหน้าชื่อ :"
+                        android:textSize="9pt" />
+
+                    <Spinner
+                        android:id="@+id/gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="10pt"
+                        android:contentDescription="Select a rubber breed from the list"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"></Spinner>
+
+                </LinearLayout>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="ชื่อ"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <!-- password input -->
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/lastname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="นามสกุล"
+                        android:singleLine="true"
+                        android:paddingBottom="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/tel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="เบอร์โทรศัพท์"
+                        android:maxLength="10"
+                        android:singleLine="true"
+                        android:paddingBottom="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="วัน-เดือน-ปีเกิด (ตัวอย่าง 01-01-2536)"
+                        android:maxLength="10"
+                        android:singleLine="true"
+                        android:paddingBottom="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+<!--                S-->
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/houseNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="บ้านเลขที่"
+                        android:singleLine="true"
+                        android:paddingBottom="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/moobanNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="หมู่ที่"
+                        android:singleLine="true"
+                        android:paddingBottom="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/moobanName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="ชื่อหมู่บ้าน"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/tambol"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="ตำบล"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/aumpher"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="อำเภอ"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/province"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="จังหวัด"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/idpost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="รหัสไปรษณีย์"
+                        android:maxLength="5"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="E-mail (ถ้าไม่มีกรอก: - )"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="40dp">
+
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:text="การเป็นสมาชิกทางสถาบันการเกษตร :" />
+
+                    <Spinner
+                        android:id="@+id/memberFarm"
+                        android:layout_width="217dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:contentDescription="@string/accprime_description"
+                        android:minHeight="50dp"
+                        android:minWidth="100dp" />
+
+
+
+                </LinearLayout>
+
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/AccNum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="เลขบัญชีธนาคาร"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+
+
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-7dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ธนาคาร :"
+                        android:textSize="9pt" />
+
+                    <Spinner
+                        android:id="@+id/AccBank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="10pt"
+                        android:padding="18dp"
+                        android:contentDescription="@string/acc_bank_spinner_description"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"/>
+
+
+
+                </LinearLayout>
+
+                <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/AccBranc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="สาขา"
+                        android:singleLine="true"
+                        android:padding="18dp"/>
+                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
+            </LinearLayout>
+
+<!--            //อาชีพ layer Top-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp">
+
+<!--                //อาชีพหลัก-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="อาชีพหลัก :" />
+
+                    <Spinner
+                        android:id="@+id/accprime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minWidth="100dp"
+                        android:minHeight="50dp"
+                        android:contentDescription="@string/accprime_description" />
+
+
+
+                </LinearLayout>
+
+<!--                //อาชีพรอง-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="อาชีพรอง :" />
+
+                    <Spinner
+                        android:id="@+id/accsecond"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minWidth="100dp"
+                        android:minHeight="50dp"
+                        android:contentDescription="@string/accsecond_description" />
+
+
+                </LinearLayout>
+
+<!--                //ระดับการศึกษา-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ระดับการศึกษา :" />
+
+                    <Spinner
+                        android:id="@+id/graduate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:minWidth="100dp"
+                        android:minHeight="50dp"
+                        android:contentDescription="@string/graduate_description" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+<!--            //เอกสารแนบ-->
+
+            <LinearLayout
+                android:id="@+id/llayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:paddingLeft="70dp"
+                android:paddingRight="70dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="หลักฐานแนบ" />
+
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:background="@drawable/layout_bg_white"
+                    android:layout_margin="5dp"
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <ImageView
+                        android:id="@+id/imgIdCard"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="สำเนาบัตรประชาชน" />
+
+                    <Button
+                        android:id="@+id/picIdCard"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="สำเนาบัตรประชาชน"
+                        style="@style/Widget.AppCompat.Button.Colored"
+
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+
+<!--                //สำเนาทะเบียนบ้าน-->
+
+
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:background="@drawable/layout_bg_white"
+                    android:layout_margin="5dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <ImageView
+                        android:id="@+id/imgHouseregis"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="สำเนาทะเบียนบ้าน" />
+
+                    <Button
+                        android:id="@+id/picHouseregis"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="สำเนาทะเบียนบ้าน"
+                        style="@style/Widget.AppCompat.Button.Colored"
+
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:background="@drawable/layout_bg_white"
+                    android:layout_margin="5dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <ImageView
+                        android:id="@+id/imgAutorize"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="รูปผู้สมัคร" />
+
+                    <Button
+                        android:id="@+id/picAutorize"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="รูปผู้สมัคร"
+                        style="@style/Widget.AppCompat.Button.Colored"
+
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:background="@drawable/layout_bg_white"
+                    android:layout_margin="5dp"
+
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <ImageView
+                        android:id="@+id/imgAccountBank"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="Upload" />
+
+                    <Button
+                        android:id="@+id/picAccountBank"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="หน้าสมุดบัญชี"
+                        style="@style/Widget.AppCompat.Button.Colored"
+
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+
+
+
+
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_margin="5dp"-->
+<!--                    android:background="@drawable/layout_bg_white">-->
+
+<!--                <Button-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="สำเนาบัตรประชาชน"-->
+<!--                    android:id="@+id/picIdCard" style="@style/Widget.AppCompat.Button.Colored"-->
+<!--                    android:layout_marginLeft="70dp"-->
+<!--                    android:layout_marginRight="70dp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:layout_height="300dp"-->
+<!--                    android:layout_width="400dp"-->
+<!--                    android:id="@+id/imgIdCard"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:visibility="gone"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_margin="5dp"-->
+<!--                    android:background="@drawable/layout_bg_white">-->
+
+<!--                <Button-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="สำเนาทะเบียนบ้าน"-->
+<!--                    android:id="@+id/picHouseregis" style="@style/Widget.AppCompat.Button.Colored"-->
+<!--                    android:layout_marginLeft="70dp"-->
+<!--                    android:layout_marginRight="70dp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:layout_height="300dp"-->
+<!--                    android:layout_width="400dp"-->
+<!--                    android:id="@+id/imgHouseregis"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:visibility="gone"/>-->
+
+<!--            </LinearLayout>-->
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_margin="5dp"-->
+<!--                    android:background="@drawable/layout_bg_white">-->
+
+<!--                <Button-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="รูปผู้สมัคร"-->
+<!--                    android:id="@+id/picAutorize" style="@style/Widget.AppCompat.Button.Colored"-->
+<!--                    android:layout_marginLeft="70dp"-->
+<!--                    android:layout_marginRight="70dp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:layout_height="300dp"-->
+<!--                    android:layout_width="400dp"-->
+<!--                    android:id="@+id/imgAutorize"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:visibility="gone"/>-->
+
+<!--            </LinearLayout>-->
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_margin="5dp"-->
+<!--                    android:background="@drawable/layout_bg_white">-->
+
+<!--                <Button-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="หน้าสมุดบัญชี"-->
+<!--                    android:id="@+id/picAccountBank" style="@style/Widget.AppCompat.Button.Colored"-->
+<!--                    android:layout_marginLeft="70dp"-->
+<!--                    android:layout_marginRight="70dp"/>-->
+
+<!--                <ImageView android:layout_height="300dp"-->
+<!--                    android:layout_width="400dp"-->
+<!--                    android:id="@+id/imgAccountBank"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:visibility="gone"/>-->
+
+<!--            </LinearLayout>-->
+
+
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="แนบลายเซ็น" />
+<!--            //ลายเซ็น-->
+
+            <RelativeLayout
+                android:layout_width="500dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/layout_bg_white">
+
+                <RelativeLayout
+                    android:id="@+id/signature_pad_container"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_above="@+id/buttons_container"
+                    android:gravity="center">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_above="@+id/signature_pad_description"
+                        android:layout_marginBottom="8dp"
+                        android:background="@android:color/darker_gray" />
+
+                    <TextView
+                        android:id="@+id/signature_pad_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@android:color/darker_gray" />
+
+                    <com.panelplus.pnpmember.signature.SignaturePad
+                        android:id="@+id/signature_pad"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="5dp" />
+<!--                    </com.panelplus.pnpmember.signature.SignaturePad>-->
+
+
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/buttons_container"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp">
+
+                    <Button
+                        android:id="@+id/clear_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:text="@string/clear_pad" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+<!--            //ปุ่ม save-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="40dp"
+
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/save"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="บันทึกข้อมูล" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

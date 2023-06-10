@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="arr_mapsearch_qt">
+        <item>โควต้า</item>
+        <item>เลขแปลง</item>
+    </string-array>
+
+    <string-array name="arr_year">
+        <item>2557</item>
+        <item>2558</item>
+        <item>2559</item>
+        <item>2560</item>
+        <item>2561</item>
+    </string-array>
+</resources>

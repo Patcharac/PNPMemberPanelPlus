@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">PNP-SRD</string>
+    <string name="title_activity_regis2">Regis2Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="spinner_prompt">Select</string>
+
+    <string name="clear_pad">Clear Pad</string>
+    <string name="save_signature">Save Signature</string>
+    <string name="agreement">I agree the terms and conditions.</string>
+    <string name="acc_bank_spinner_description">เลือกธนาคารของบัญชี</string>
+    <string name="memberFarm_description">เลือกรายการ</string>
+    <string name="acc_second_spinner_description">เลือกบัญชีประจำที่สอง</string>
+    <string name="accprime_description">เลือกข้อมูล</string>
+    <string name="graduate_description">เลือกข้อมูล</string>
+    <string name="accsecond_description">เลือกข้อมูล</string>
+
+</resources>

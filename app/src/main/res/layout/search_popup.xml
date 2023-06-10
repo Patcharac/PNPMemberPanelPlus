@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/primary_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_bg_white" >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:paddingTop="15dp">
+
+                        <EditText
+                            android:id="@+id/txt_search_qt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="เลขโควต้า"
+                            android:singleLine="true"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:textColor="@color/colorBlack"
+                            android:padding="18dp"/>
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    <Button
+                        android:id="@+id/btn_map_search"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:text="ค้นหา"
+                        android:textSize="20dp"
+                        android:icon="@android:drawable/ic_menu_search"/>
+
+                </LinearLayout>
+
+
+
+
+            <TextView
+                android:id="@+id/TextView17"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:text="" />
+
+            <TableRow
+                android:id="@+id/tableRow8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_weight="1"
+                    android:background="#1874CD" />
+            </TableRow>
+
+            <TextView
+                android:id="@+id/TextView08"
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:text="" />
+
+            <TableRow
+                android:id="@+id/tableRow7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:id="@+id/TableRow01"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight="1"
+                    android:background="@drawable/layout_bg_white" >
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" >
+
+                        <TableRow
+                            android:id="@+id/tableRow10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" >
+
+                                <TextView
+                                    android:id="@+id/TextView09"
+                                    android:layout_width="180dp"
+                                    android:layout_height="35dp"
+                                    android:background="@drawable/listwhite"
+                                    android:gravity="center_vertical|center"
+                                    android:text="เลขแปลง"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="16dp" />
+
+                                <TextView
+                                    android:id="@+id/TextView16"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:background="@drawable/listwhite"
+                                    android:gravity="center_vertical|center"
+                                    android:text="พื้นที่"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="16dp" />
+
+                                <TextView
+                                    android:id="@+id/TextView15"
+                                    android:layout_width="110dp"
+                                    android:layout_height="35dp"
+                                    android:layout_weight="0.20"
+                                    android:background="@drawable/listwhite"
+                                    android:gravity="center_vertical|center"
+                                    android:text="สถานะ"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="16dp" />
+                            </LinearLayout>
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/tableRow11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" >
+
+                            <ListView
+                                android:id="@+id/lst_Map_Search"
+                                android:layout_width="match_parent"
+                                android:layout_height="280dp"
+                                android:layout_weight="1" >
+                            </ListView>
+                        </TableRow>
+                    </TableLayout>
+                </TableRow>
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/dismiss"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary"
+            android:text="ปิด เมนู"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+</LinearLayout>
