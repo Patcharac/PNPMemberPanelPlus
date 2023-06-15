@@ -16,7 +16,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Camera;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
@@ -40,6 +42,8 @@ import android.provider.MediaStore;
 //import android.support.v7.app.AlertDialog;
 //import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -127,6 +131,12 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
     private Button btnPicHouseregis;
     private Button btnPicAutorize;
     private Button btnPicAccountBank;
+
+    private Button btnPicAccountBankCamera;
+
+    private Button btnPicIdCardCamera;
+    private Button btnPicHouseregisCamera;
+    private Button btnPicAutorizeCamera;
     private Button btnVerify;
     private TextView txtStatus;
 
@@ -193,6 +203,8 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
     private byte[] picHouseregis = null;
     private byte[] picAutorize = null;
     private byte[] picAccountBank = null;
+
+    private byte[] picAccountBankCamera = null;
     private int numimage = 0;
     private int numCountIMG = 0;
     private String dateNow;
@@ -213,6 +225,14 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
     private static final int REQUEST_CODE_PICK_IMAGE = 101;
     GPSTracker gps;
     private Context context;
+    private Uri imageUri;
+
+    private final int CAMERA_PERMISSION_CODE = 1001;
+    private static final int CAMERA_REQUEST_CODE = 1;
+    private static final int REQUEST_CAMERA_PERMISSION = 200;
+    private static final int requestCode = 123;
+
+    private static final int pic_id = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -572,6 +592,27 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
                 captureImage();
                 break;
 
+            case R.id.picIdCardCamera:
+                numimage = 5;
+                captureImageCamera();
+                break;
+
+            case R.id.picHouseregisCamera:
+                numimage = 6;
+                captureImageCamera();
+                break;
+
+            case R.id.picAutorizeCamera:
+                numimage = 7;
+                captureImageCamera();
+                break;
+
+            case R.id.picAccountBankCamera:
+                numimage = 8;
+                captureImageCamera();
+                break;
+
+
             case R.id.clear_button:
                 mSignaturePad.clear();
                 break;
@@ -628,6 +669,7 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
 
         }
     }
+
 
     private String getUserZone(Context context) {
         ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(context, "CENTER_DB.sqlite");
@@ -803,6 +845,22 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
         btnPicAutorize = (Button) findViewById(R.id.picAutorize);
         btnPicAccountBank = (Button) findViewById(R.id.picAccountBank);
 
+
+        btnPicIdCardCamera = (Button) findViewById(R.id.picIdCardCamera);
+        imgIdCard = findViewById(R.id.imgIdCard);
+
+        btnPicHouseregisCamera = (Button) findViewById(R.id.picHouseregisCamera);
+        imgHouseregis = findViewById(R.id.imgHouseregis);
+
+
+        btnPicAutorizeCamera = (Button) findViewById(R.id.picAutorizeCamera);
+        imgAutorize = findViewById(R.id.imgAutorize);
+
+
+        btnPicAccountBankCamera = (Button) findViewById(R.id.picAccountBankCamera);
+        imgAccountBank = findViewById(R.id.imgAccountBank);
+
+
         btnVerify = (Button) findViewById(R.id.verify);
         txtStatus = (TextView) findViewById(R.id.status);
 
@@ -820,6 +878,13 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
         btnPicAutorize.setOnClickListener(this);
         btnPicAccountBank.setOnClickListener(this);
         btnVerify.setOnClickListener(this);
+
+        btnPicAccountBankCamera.setOnClickListener(this);
+        btnPicIdCardCamera.setOnClickListener(this);
+        btnPicHouseregisCamera.setOnClickListener(this);
+        btnPicAutorizeCamera.setOnClickListener(this);
+
+
 
         mClearButton.setOnClickListener(this);
         //mSaveButton.setOnClickListener(this);
@@ -897,6 +962,42 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
         Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, RESULT_LOAD_IMAGE);
 
+    }
+
+    private void captureImageCamera() {
+        if (checkCameraPermission()) {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        } else {
+            // ขออนุญาตการเข้าถึงกล้อง
+            requestCameraPermission();
+        }
+    }
+
+
+    private boolean checkCameraPermission() {
+        int cameraPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        return cameraPermission == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestCameraPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_IMAGE_CAPTURE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // ได้รับอนุญาตการเข้าถึงกล้อง
+                captureImageCamera();
+            } else {
+                // การอนุญาตถูกปฏิเสธ
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     /* access modifiers changed from: protected */
@@ -1014,7 +1115,199 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
                 Toast.makeText(getApplicationContext(), "Sorry! Failed to capture image", Toast.LENGTH_SHORT).show();
             }
         }
+
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            if (numimage == 5) {
+
+
+
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+                Bitmap textBitmap = Bitmap.createBitmap(imageBitmap.getWidth(), imageBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(textBitmap);
+
+                canvas.drawBitmap(imageBitmap, 0, 0, null);
+
+                float centerX = textBitmap.getWidth() / 2f;
+                float centerY = textBitmap.getHeight() / 2f;
+
+                String text = "ใช้ในการสมัครโครงการ FSC";
+                Paint textPaint = new Paint();
+                textPaint.setColor(Color.WHITE);
+                textPaint.setTextSize(12);
+                textPaint.setAntiAlias(true);
+
+                float textWidth = textPaint.measureText(text);
+                float textHeight = textPaint.getTextSize();
+
+// หากต้องการเอียงข้อความ 45 องศา
+                Matrix matrix = new Matrix();
+                matrix.postRotate(45, centerX, centerY);
+                canvas.setMatrix(matrix);
+
+                float textX = centerX - (textWidth / 2f);
+                float textY = centerY + (textHeight / 2f);
+
+                canvas.drawText(text, textX, textY, textPaint);
+
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                textBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                this.picIdcard = byteArray;
+
+                int newWidth = 720;
+                int newHeight = 1280;
+                Bitmap scaledBitmap = Bitmap.createScaledBitmap(textBitmap, newWidth, newHeight, true);
+
+                ImageView imageView = findViewById(R.id.imgIdCard);
+                imageView.setImageBitmap(scaledBitmap);
+
+
+
+
+            } else if (numimage == 6) {
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+// สร้าง Bitmap ที่มีพื้นหลังโปร่งแสง (ARGB_8888)
+                Bitmap textBitmap = Bitmap.createBitmap(imageBitmap.getWidth(), imageBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(textBitmap);
+
+// วาดรูปภาพบน Canvas
+                canvas.drawBitmap(imageBitmap, 0, 0, null);
+
+                float centerX = textBitmap.getWidth() / 2f;
+                float centerY = textBitmap.getHeight() / 2f;
+
+                String text = "ใช้ในการสมัครโครงการ FSC";
+                Paint textPaint = new Paint();
+                textPaint.setColor(Color.WHITE);
+                textPaint.setTextSize(12);
+                textPaint.setAntiAlias(true);
+
+                float textWidth = textPaint.measureText(text);
+                float textHeight = textPaint.getTextSize();
+
+// หากต้องการเอียงข้อความ 45 องศา
+                Matrix matrix = new Matrix();
+                matrix.postRotate(45, centerX, centerY);
+                canvas.setMatrix(matrix);
+
+                float textX = centerX - (textWidth / 2f);
+                float textY = centerY + (textHeight / 2f);
+
+                canvas.drawText(text, textX, textY, textPaint);
+
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                textBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                this.picHouseregis = byteArray;
+
+                int newWidth = 720;
+                int newHeight = 1280;
+                Bitmap scaledBitmap = Bitmap.createScaledBitmap(textBitmap, newWidth, newHeight, true);
+
+                ImageView imageView = findViewById(R.id.imgHouseregis);
+                imageView.setImageBitmap(scaledBitmap);
+
+            }else if (numimage == 7) {
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+// สร้าง Bitmap ที่มีพื้นหลังโปร่งแสง (ARGB_8888)
+                Bitmap textBitmap = Bitmap.createBitmap(imageBitmap.getWidth(), imageBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(textBitmap);
+
+// วาดรูปภาพบน Canvas
+                canvas.drawBitmap(imageBitmap, 0, 0, null);
+
+                float centerX = textBitmap.getWidth() / 2f;
+                float centerY = textBitmap.getHeight() / 2f;
+
+                String text = "ใช้ในการสมัครโครงการ FSC";
+                Paint textPaint = new Paint();
+                textPaint.setColor(Color.WHITE);
+                textPaint.setTextSize(12);
+                textPaint.setAntiAlias(true);
+
+                float textWidth = textPaint.measureText(text);
+                float textHeight = textPaint.getTextSize();
+
+// หากต้องการเอียงข้อความ 45 องศา
+                Matrix matrix = new Matrix();
+                matrix.postRotate(45, centerX, centerY);
+                canvas.setMatrix(matrix);
+
+                float textX = centerX - (textWidth / 2f);
+                float textY = centerY + (textHeight / 2f);
+
+                canvas.drawText(text, textX, textY, textPaint);
+
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                textBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                this.picAutorize = byteArray;
+
+                int newWidth = 720;
+                int newHeight = 1280;
+                Bitmap scaledBitmap = Bitmap.createScaledBitmap(textBitmap, newWidth, newHeight, true);
+
+                ImageView imageView = findViewById(R.id.imgAutorize);
+                imageView.setImageBitmap(scaledBitmap);
+
+            }else if (numimage == 8) {
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+// สร้าง Bitmap ที่มีพื้นหลังโปร่งแสง (ARGB_8888)
+                Bitmap textBitmap = Bitmap.createBitmap(imageBitmap.getWidth(), imageBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(textBitmap);
+
+// วาดรูปภาพบน Canvas
+                canvas.drawBitmap(imageBitmap, 0, 0, null);
+
+                float centerX = textBitmap.getWidth() / 2f;
+                float centerY = textBitmap.getHeight() / 2f;
+
+                String text = "ใช้ในการสมัครโครงการ FSC";
+                Paint textPaint = new Paint();
+                textPaint.setColor(Color.WHITE);
+                textPaint.setTextSize(12);
+                textPaint.setAntiAlias(true);
+
+                float textWidth = textPaint.measureText(text);
+                float textHeight = textPaint.getTextSize();
+
+// หากต้องการเอียงข้อความ 45 องศา
+                Matrix matrix = new Matrix();
+                matrix.postRotate(45, centerX, centerY);
+                canvas.setMatrix(matrix);
+
+                float textX = centerX - (textWidth / 2f);
+                float textY = centerY + (textHeight / 2f);
+
+                canvas.drawText(text, textX, textY, textPaint);
+
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                textBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                this.picAccountBank = byteArray;
+
+                int newWidth = 720;
+                int newHeight = 1280;
+                Bitmap scaledBitmap = Bitmap.createScaledBitmap(textBitmap, newWidth, newHeight, true);
+
+                ImageView imageView = findViewById(R.id.imgAccountBank);
+                imageView.setImageBitmap(scaledBitmap);
+
+            }
+        }
+
     }
+
+
 
     private void checkimage() {
         if (this.picIdcard != null && this.picAccountBank != null && this.picHouseregis != null && this.picAutorize != null) {
@@ -1131,5 +1424,6 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
         }
         return str.toString();
     }
+
 
 }

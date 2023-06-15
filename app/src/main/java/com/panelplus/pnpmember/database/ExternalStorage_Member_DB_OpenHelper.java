@@ -199,20 +199,26 @@ public class ExternalStorage_Member_DB_OpenHelper {
 
 
     public String[] SelectData(String _id, SQLiteDatabase db) throws SQLException {
-        String[] arrData = null;
-        Cursor cursor = db.query(true, TABLE_USER_MEMBER_DATA, new String[]{"*"}, (String) null, (String[]) null, (String) null, (String) null, (String) null, (String) null);
-        if (cursor != null && cursor.moveToFirst()) {
-            arrData = new String[cursor.getColumnCount()];
-            arrData[0] = cursor.getString(1);
-            arrData[1] = cursor.getString(2);
-            arrData[2] = cursor.getString(3);
-            arrData[3] = cursor.getString(4);
-            arrData[4] = cursor.getString(5);
-            arrData[5] = cursor.getString(7);
-            arrData[6] = cursor.getString(8);
+        String arrData[] = null;
+
+        Cursor cursor = db.query(true, TABLE_USER_MEMBER_DATA, new String[] {"*"},null,null,null,null,null,null);
+        if(cursor != null)
+        {
+            if (cursor != null && cursor.moveToFirst()) {
+                arrData = new String[cursor.getColumnCount()];
+                arrData[0] = cursor.getString(1);
+                arrData[1] = cursor.getString(2);
+                arrData[2] = cursor.getString(3);
+                arrData[3] = cursor.getString(4);
+                arrData[4] = cursor.getString(5);
+                arrData[5] = cursor.getString(6);
+                arrData[6] = cursor.getString(7);
+            }
         }
+
         cursor.close();
         return arrData;
+
 
 
     }

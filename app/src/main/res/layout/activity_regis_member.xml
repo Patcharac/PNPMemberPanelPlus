@@ -512,6 +512,15 @@
                         style="@style/Widget.AppCompat.Button.Colored"
 
                         android:layout_gravity="center" />
+
+                    <Button
+                        android:id="@+id/picIdCardCamera"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="เปิดกล้องสำเนาบัตรประชาชน"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_gravity="center" />
                 </LinearLayout>
 
 
@@ -542,6 +551,16 @@
                         style="@style/Widget.AppCompat.Button.Colored"
 
                         android:layout_gravity="center" />
+                    <Button
+                        android:id="@+id/picHouseregisCamera"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="เปิดกล้องสำเนาทะเบียนบ้าน"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_gravity="center" />
+
+
                 </LinearLayout>
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -567,6 +586,15 @@
                         style="@style/Widget.AppCompat.Button.Colored"
 
                         android:layout_gravity="center" />
+
+                    <Button
+                        android:id="@+id/picAutorizeCamera"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="เปิดกล้องรูปผู้สมัคร"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_gravity="center" />
                 </LinearLayout>
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -585,14 +613,23 @@
                         android:layout_weight="1"
                         android:contentDescription="Upload" />
 
+
                     <Button
                         android:id="@+id/picAccountBank"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="หน้าสมุดบัญชี"
+                        android:text="เลือกรูปหน้าสมุดบัญชี"
                         style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_gravity="center" />
 
+                    <Button
+                        android:id="@+id/picAccountBankCamera"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="เปิดกล้องหน้าสมุดบัญชี"
+                        style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_gravity="center" />
                 </LinearLayout>
 

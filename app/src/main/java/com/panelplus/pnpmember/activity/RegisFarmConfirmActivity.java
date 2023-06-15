@@ -48,8 +48,7 @@ import java.util.Locale;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RegisFarmConfirmActivity extends AppCompatActivity implements View.OnClickListener,CompoundButton.OnCheckedChangeListener {
-
+public class RegisFarmConfirmActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
 
     private int checkPicFarm = 0;
@@ -58,7 +57,8 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
 
     private Dialog Popup_dialog;
 
-    @SuppressLint("SdCardPath") String DATABASE_FILE_PATH="/mnt/sdcard/MAPDB";
+    @SuppressLint("SdCardPath")
+    String DATABASE_FILE_PATH = "/mnt/sdcard/MAPDB";
 
 
     // Database Name
@@ -71,7 +71,7 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
     //mark point
     private static final String DATABASE_backup_markpoint = "backup_markpoint";
 
-    SQLiteDatabase mydb=null;
+    SQLiteDatabase mydb = null;
 
     Button btnSaveRegis;
     Button btn_regis_exit;
@@ -84,9 +84,9 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
 
     ImageView imgFarm;
 
-    String Emp_ID ="";
-    String UserZone="";
-    String Polygon=null;
+    String Emp_ID = "";
+    String UserZone = "";
+    String Polygon = null;
     String Area = null;
 
     Spinner mRubberBreed;
@@ -96,25 +96,25 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
     CheckBox Farm_Status;
     String Farm_StatusString;
 
-    private EditText DirNorth_Use,DirNorth_Owner,DirNorth_Tel;
-    private EditText DirEast_Use,DirEast_Owner,DirEast_Tel;
+    private EditText DirNorth_Use, DirNorth_Owner, DirNorth_Tel;
+    private EditText DirEast_Use, DirEast_Owner, DirEast_Tel;
     private EditText DirSouth_Use, DirSouth_Owner, DirSouth_Tel;
-    private EditText DirWest_Use,DirWest_Owner,DirWest_Tel;
+    private EditText DirWest_Use, DirWest_Owner, DirWest_Tel;
 
-    CheckBox [] EvaFarm_NO = new CheckBox[14];
-    String [] EvaFarmString = new String[14];
+    CheckBox[] EvaFarm_NO = new CheckBox[14];
+    String[] EvaFarmString = new String[14];
 
-    EditText [] EvaFarmSuggest = new EditText[14];
-    String [] EvaFarmSuggestString = new String[14];
+    EditText[] EvaFarmSuggest = new EditText[14];
+    String[] EvaFarmSuggestString = new String[14];
 
     //find object
     private Button btnFindObject;
     private EditText ObjLocalNameSrc;
 
-    String X="";
-    String Y="";
-    int X1=0;
-    int Y1=0;
+    String X = "";
+    String Y = "";
+    int X1 = 0;
+    int Y1 = 0;
 
     String Farm_Date;
     String Link_ID;
@@ -137,10 +137,10 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
 
     //===========image=========//
     private String time_str;
-    private byte[] image ;
+    private byte[] image;
     private byte[] PicFarm;
 
-
+    File Path = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,7 +166,7 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
 //
 //        }
 
-        CreateFarmRegisDB();
+        CreateFarmRegisDB(this);
 
         Bundle b = getIntent().getExtras();
         Polygon = b.getString("POLYGON");
@@ -174,7 +174,7 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
         X = b.getString("Poly_X");
         Y = b.getString("Poly_Y");
 
-        Log.d("polygon = ",Polygon.toString());
+        Log.d("polygon = ", Polygon.toString());
     }
 
     private void spinner() {
@@ -187,76 +187,95 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
     }
 
 
-    private void CreateFarmRegisDB() {
-        try
-        {
-            mydb = this.openOrCreateDatabase(DATABASE_FILE_PATH + File.separator
-                    + DATABASE_FARMGEO_DB + "-" + UserZone + ".sqlite", Context.MODE_PRIVATE, null);
-            mydb.execSQL(" create table if not exists " + TABLE_FARM_GEO_DATA +
-                    "  (_id INTEGER PRIMARY KEY AUTOINCREMENT  ," +
-                    "  Link_ID TEXT ," +
-                    "  qouta_ID TEXT ," +
-                    "  Emp_ID TEXT ," +
-                    "  Farm_Date TEXT ,"+
-                    "  Farm_Area TEXT ,"+
-                    "  Farm_Polygon TEXT ," +
-                    "  Farm_GeoStatus TEXT ," +
-                    "  Farm_Pic BLOB ," +
-                    "  Farm_YearOfPlant TEXT ," +
-                    "  Farm_RubberBreed TEXT ," +
-                    "  Farm_RubberPerRai TEXT ," +
-                    "  Farm_Status TEXT ," +
-                    "   DirNorth_Use TEXT ," +
-                    "   DirNorth_Owner TEXT ," +
-                    "   DirNorth_Tel TEXT ," +
-                    "   DirEast_Use TEXT ," +
-                    "   DirEast_Owner TEXT ," +
-                    "   DirEast_Tel TEXT ," +
-                    "   DirSouth_Use TEXT ," +
-                    "   DirSouth_Owner TEXT ," +
-                    "   DirSouth_Tel TEXT ," +
-                    "   DirWest_Use TEXT ," +
-                    "   DirWest_Owner TEXT ," +
-                    "   DirWest_Tel TEXT ," +
-                    "   EvaFarm_NO1 TEXT ," +
-                    "   EvaFarmSuggest_NO1 TEXT ," +
-                    "   EvaFarm_NO2 TEXT ," +
-                    "   EvaFarmSuggest_NO2 TEXT ," +
-                    "   EvaFarm_NO3 TEXT ," +
-                    "   EvaFarmSuggest_NO3 TEXT ," +
-                    "   EvaFarm_NO4 TEXT ," +
-                    "   EvaFarmSuggest_NO4 TEXT ," +
-                    "   EvaFarm_NO5 TEXT ," +
-                    "   EvaFarmSuggest_NO5 TEXT ," +
-                    "   EvaFarm_NO6 TEXT ," +
-                    "   EvaFarmSuggest_NO6 TEXT ," +
-                    "   EvaFarm_NO7 TEXT ," +
-                    "   EvaFarmSuggest_NO7 TEXT ," +
-                    "   EvaFarm_NO8 TEXT ," +
-                    "   EvaFarmSuggest_NO8 TEXT ," +
-                    "   EvaFarm_NO9 TEXT ," +
-                    "   EvaFarmSuggest_NO9 TEXT ," +
-                    "   EvaFarm_NO10 TEXT ," +
-                    "   EvaFarmSuggest_NO10 TEXT ," +
-                    "   EvaFarm_NO11 TEXT ," +
-                    "   EvaFarmSuggest_NO11 TEXT ," +
-                    "   EvaFarm_NO12 TEXT ," +
-                    "   EvaFarmSuggest_NO12 TEXT ," +
-                    "   EvaFarm_NO13 TEXT ," +
-                    "   EvaFarmSuggest_NO13 TEXT ," +
-                    "   EvaFarm_NO14 TEXT ," +
-                    "   EvaFarmSuggest_NO14 TEXT);" );
+    private void CreateFarmRegisDB(Context context) {
 
-            mydb.execSQL(" create table if not exists " + TABLE_OBJECT_DATA +
-                    "  (_id INTEGER PRIMARY KEY AUTOINCREMENT ," +
-                    "   Link_ID TEXT ,"+
-                    "   Obj_LocalName TEXT ,"+
-                    "   Obj_Status TEXT);" );
+        if (context != null) {
+            String folderName = "MapDB"; // folder name
+            String folder = context.getApplicationContext().getFilesDir() + "/" + folderName; // folder path
+            File appDbDir = new File(folder); // create folder
+            if (!appDbDir.exists()) {
+                appDbDir.mkdirs(); // create folder if it doesn't exist
+            }
+            this.Path = new File(folder);
+        } else {
+            // handle null context case
         }
-        catch(Exception e)
-        {
 
+
+        mydb = context.openOrCreateDatabase(DATABASE_FARMGEO_DB + "-" + UserZone + ".sqlite", Context.MODE_PRIVATE, null);
+        String createTableQuery = "CREATE TABLE IF NOT EXISTS farm_geo_data (" +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "  Link_ID TEXT ," +
+                "  qouta_ID TEXT ," +
+                "  Emp_ID TEXT ," +
+                "  Farm_Date TEXT ," +
+                "  Farm_Area TEXT ," +
+                "  Farm_Polygon TEXT ," +
+                "  Farm_GeoStatus TEXT ," +
+                "  Farm_Pic BLOB ," +
+                "  Farm_YearOfPlant TEXT ," +
+                "  Farm_RubberBreed TEXT ," +
+                "  Farm_RubberPerRai TEXT ," +
+                "  Farm_Status TEXT ," +
+                "   DirNorth_Use TEXT ," +
+                "   DirNorth_Owner TEXT ," +
+                "   DirNorth_Tel TEXT ," +
+                "   DirEast_Use TEXT ," +
+                "   DirEast_Owner TEXT ," +
+                "   DirEast_Tel TEXT ," +
+                "   DirSouth_Use TEXT ," +
+                "   DirSouth_Owner TEXT ," +
+                "   DirSouth_Tel TEXT ," +
+                "   DirWest_Use TEXT ," +
+                "   DirWest_Owner TEXT ," +
+                "   DirWest_Tel TEXT ," +
+                "   EvaFarm_NO1 TEXT ," +
+                "   EvaFarmSuggest_NO1 TEXT ," +
+                "   EvaFarm_NO2 TEXT ," +
+                "   EvaFarmSuggest_NO2 TEXT ," +
+                "   EvaFarm_NO3 TEXT ," +
+                "   EvaFarmSuggest_NO3 TEXT ," +
+                "   EvaFarm_NO4 TEXT ," +
+                "   EvaFarmSuggest_NO4 TEXT ," +
+                "   EvaFarm_NO5 TEXT ," +
+                "   EvaFarmSuggest_NO5 TEXT ," +
+                "   EvaFarm_NO6 TEXT ," +
+                "   EvaFarmSuggest_NO6 TEXT ," +
+                "   EvaFarm_NO7 TEXT ," +
+                "   EvaFarmSuggest_NO7 TEXT ," +
+                "   EvaFarm_NO8 TEXT ," +
+                "   EvaFarmSuggest_NO8 TEXT ," +
+                "   EvaFarm_NO9 TEXT ," +
+                "   EvaFarmSuggest_NO9 TEXT ," +
+                "   EvaFarm_NO10 TEXT ," +
+                "   EvaFarmSuggest_NO10 TEXT ," +
+                "   EvaFarm_NO11 TEXT ," +
+                "   EvaFarmSuggest_NO11 TEXT ," +
+                "   EvaFarm_NO12 TEXT ," +
+                "   EvaFarmSuggest_NO12 TEXT ," +
+                "   EvaFarm_NO13 TEXT ," +
+                "   EvaFarmSuggest_NO13 TEXT ," +
+                "   EvaFarm_NO14 TEXT ," +
+                "   EvaFarmSuggest_NO14 TEXT);";
+
+        String createTableQuery2 = "CREATE TABLE IF NOT EXISTS object_see (" +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "   Link_ID TEXT ," +
+                "   Obj_LocalName TEXT ," +
+                "   Obj_Status TEXT);";
+
+        try {
+            this.mydb.execSQL(createTableQuery);
+            this.mydb.execSQL(createTableQuery2);
+            Log.e("Check", "Database created successfully");
+            Toast.makeText(context, "Database created successfully!", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e("Check", "Failed to create database: " + e.getMessage());
+            Toast.makeText(context, "Failed to create database: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         }
+
+
     }
 
     private void InitWidget() {
@@ -347,7 +366,7 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
 
 
         Calendar cal2 = Calendar.getInstance();
-        yearint = cal2.get(Calendar.YEAR)+543;
+        yearint = cal2.get(Calendar.YEAR) + 543;
         year = String.valueOf(yearint);
 
         SimpleDateFormat dateFormat3 = new SimpleDateFormat(
@@ -355,18 +374,18 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
         Calendar cal3 = Calendar.getInstance();
         String time = String.valueOf((dateFormat3.format(cal3.getTime())));
 
-        Farm_Date = date + "-" + year + " "+time;
-        Log.d("year",String.valueOf(Farm_Date));
+        Farm_Date = date + "-" + year + " " + time;
+        Log.d("year", String.valueOf(Farm_Date));
 
-        return  Farm_Date;
+        return Farm_Date;
     }
 
     //check enable button
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()){
+        switch (buttonView.getId()) {
             case R.id.evaFarm_no02:
-                if ( isChecked ) {
+                if (isChecked) {
                     EvaFarmSuggest[1].setText("");
                 } else {
                     EvaFarmSuggest[1].setText("พื้นที่ราบ");
@@ -379,14 +398,14 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
+        switch (v.getId()) {
             case R.id.btnSaveRegis:
 
-                for(int i=0; i<14 ;i++){
-                    EvaFarmString[i] = getValueCheckbox(EvaFarm_NO [i]);
+                for (int i = 0; i < 14; i++) {
+                    EvaFarmString[i] = getValueCheckbox(EvaFarm_NO[i]);
                     EvaFarmSuggestString[i] = EvaFarmSuggest[i].getText().toString().trim();
 
-                    if (EvaFarmSuggestString[i].isEmpty()){
+                    if (EvaFarmSuggestString[i].isEmpty()) {
                         EvaFarmSuggestString[i] = "";
                     }
                 }
@@ -433,36 +452,37 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
                 break;
 
             case R.id.findObject:
-                if(txtQT.getText().toString().isEmpty() ||
-                        ObjLocalNameSrc.getText().toString().isEmpty()){
+                if (txtQT.getText().toString().isEmpty() ||
+                        ObjLocalNameSrc.getText().toString().isEmpty()) {
 
-                    if(txtQT.getText().toString().isEmpty()) {
+                    if (txtQT.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(),
-                                "กรุรากรอกเลขโควต้าก่อนบันทึก", Toast.LENGTH_SHORT)
+                                        "กรุรากรอกเลขโควต้าก่อนบันทึก", Toast.LENGTH_SHORT)
                                 .show();
                     }
 
-                    if(ObjLocalNameSrc.getText().toString().isEmpty()){
+                    if (ObjLocalNameSrc.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(),
-                                "กรุรากรอกสิ่งที่พบก่อนการบันทึก", Toast.LENGTH_SHORT)
+                                        "กรุรากรอกสิ่งที่พบก่อนการบันทึก", Toast.LENGTH_SHORT)
                                 .show();
                     }
                 } else {
-                    beforeSaveObject();
+                    beforeSaveObject(this);
                 }
         }
 
 
     }
 
-    public void beforeSave(){
+    public void beforeSave() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(RegisFarmConfirmActivity.this);
         builder.setMessage("ต้องการจะบันทึกข้อมูลหรือไม่ ?");
         builder.setCancelable(true);
 
-        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener(){
+        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
             @Override
-            public  void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(DialogInterface dialogInterface, int i) {
+
                 saveFarmGeoToSQlite();
             }
         });
@@ -480,21 +500,20 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
     private void saveFarmGeoToSQlite() {
 
 
-        if(Farm_Status.isChecked()){
+        if (Farm_Status.isChecked()) {
             Farm_StatusString = "R";
         }
 
-        Link_ID = txtQT.getText().toString().trim()+"-"+Farm_Date;
+        Link_ID = txtQT.getText().toString().trim() + "-" + Farm_Date;
 
 
         SQLiteDatabase db;
-        String DBFile= DATABASE_FARMGEO_DB + "-" + UserZone +".sqlite";
-        long number=0;
-        ExternalStorage_FarmGeo_DB_OpenHelper obj= new ExternalStorage_FarmGeo_DB_OpenHelper(getApplicationContext(),DBFile);
-        if(obj.databaseFileExists())
-        {
-            db=obj.getReadableDatabase();
-            number=obj.InsertDataFarmGeoLocation(
+        String DBFile = DATABASE_FARMGEO_DB + "-" + UserZone + ".sqlite";
+        long number = 0;
+        ExternalStorage_FarmGeo_DB_OpenHelper obj = new ExternalStorage_FarmGeo_DB_OpenHelper(getApplicationContext(), DBFile);
+        if (obj.databaseFileExists()) {
+            db = obj.getReadableDatabase();
+            number = obj.InsertDataFarmGeoLocation(
                     txtQT.getText().toString().trim(),
                     Link_ID,
                     Emp_ID,
@@ -502,7 +521,7 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
                     Area,
                     Polygon,
                     "S",
-                    PicFarm ,
+                    PicFarm,
                     txtYearOfPlant.getText().toString().trim(),
                     spnRubberBreed.getSelectedItem().toString(),
                     txtRubberPerRai.getText().toString().trim(),
@@ -523,49 +542,48 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
                     DirWest_Owner.getText().toString().trim(),
                     DirWest_Tel.getText().toString().trim(),
 
-                    EvaFarmString,EvaFarmSuggestString,
+                    EvaFarmString, EvaFarmSuggestString,
                     db);
 
-            if(number<0){
+            if (number < 0) {
                 Toast.makeText(getApplicationContext(),
-                        "การบันทึกข้อมูลผิดพลาดกรุณาบันทึกข้อมูลอีกครั้ง", Toast.LENGTH_SHORT)
+                                "การบันทึกข้อมูลผิดพลาดกรุณาบันทึกข้อมูลอีกครั้ง", Toast.LENGTH_SHORT)
                         .show();
-            }else{
-                String DBFile2=DATABASE_backup_markpoint+".sqlite";
-                ExternalStorage_Backup_Point_DB_OpenHelper obj2= new ExternalStorage_Backup_Point_DB_OpenHelper(getApplicationContext(),DBFile2);
-                if(obj2.databaseFileExists())
-                {
-                    db=obj2.getReadableDatabase();
-                    obj2.DeleteAllData( db);
+            } else {
+                String DBFile2 = DATABASE_backup_markpoint + ".sqlite";
+                ExternalStorage_Backup_Point_DB_OpenHelper obj2 = new ExternalStorage_Backup_Point_DB_OpenHelper(getApplicationContext(), DBFile2);
+                if (obj2.databaseFileExists()) {
+                    db = obj2.getReadableDatabase();
+                    obj2.DeleteAllData(db);
                     obj2.close();
                 }
 
                 Toast.makeText(getApplicationContext(),
-                        "บันทึกข้อมูลเสร็จสิ้น", Toast.LENGTH_SHORT)
+                                "บันทึกข้อมูลเสร็จสิ้น", Toast.LENGTH_SHORT)
                         .show();
                 finish();
             }
 
             obj.close();
-        }else{
+        } else {
 
             Toast.makeText(getApplicationContext(),
-                    "การบันทึกข้อมูลผิดพลาดกรุณาบันทึกข้อมูลอีกครั้ง", Toast.LENGTH_SHORT)
+                            "การบันทึกข้อมูลผิดพลาดกรุณาบันทึกข้อมูลอีกครั้ง", Toast.LENGTH_SHORT)
                     .show();
         }
 
     }
 
-    public void beforeSaveObject(){
+    public void beforeSaveObject(Context context) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(RegisFarmConfirmActivity.this);
         builder.setMessage("ต้องการจะบันทึกสิ่งที่พบหรือไม่ ?");
         builder.setCancelable(true);
 
-        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener(){
+        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
             @Override
-            public  void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(DialogInterface dialogInterface, int i) {
 
-                saveObjectToSqlite();
+                saveObjectToSqlite(context);
                 txtQT.setEnabled(false);
                 ObjLocalNameSrc.setText("");
                 dialogInterface.cancel();
@@ -583,35 +601,55 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
         alertDialog.show();
     }
 
-    private void saveObjectToSqlite(){
+    private void saveObjectToSqlite(Context context) {
 
-        Link_ID = txtQT.getText().toString().trim()+"-"+Farm_Date;
+        Link_ID = txtQT.getText().toString().trim() + "-" + Farm_Date;
 
-        SQLiteDatabase db;
+//        SQLiteDatabase db;
         String DBFile = DATABASE_FARMGEO_DB + "-" + UserZone + ".sqlite";
-        ExternalStorage_FarmGeo_DB_OpenHelper obj2 = new ExternalStorage_FarmGeo_DB_OpenHelper(getApplicationContext(),DBFile);
-        db = obj2.getReadableDatabase();
-        obj2.insertDataObject(Link_ID,
-                ObjLocalNameSrc.getText().toString().trim(),
-                "EvaFarm",
-                db);
+        ExternalStorage_FarmGeo_DB_OpenHelper obj2 = new ExternalStorage_FarmGeo_DB_OpenHelper(context, DBFile);
+        if (obj2.databaseFileExists()) {
+            this.mydb = obj2.getWritableDatabase(); // เปิดฐานข้อมูลให้เป็นแบบเขียนได้
+            long check = -1;
+            try {
+                this.mydb.beginTransaction();
+                check = obj2.insertDataObject(Link_ID,
+                        ObjLocalNameSrc.getText().toString().trim(),
+                        "EvaFarm",
+                        mydb);
 
-        obj2.close();
+                mydb.setTransactionSuccessful();
+            } catch (Exception e) {
+                Log.e("Check", "Failed to insert data into database: " + e.getMessage());
+                Toast.makeText(context, "Failed to insert data into database: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            } finally {
+                mydb.endTransaction();
+                obj2.close();
+            }
+
+            if (check != -1) {
+                Toast.makeText(getApplicationContext(), "บันทึกข้อมูลเสร็จสิ้น", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(this, EvaMemberActivity.class));
+            } else {
+                Log.e("Check", "บันทึกข้อมูลล้มเหลว");
+            }
+        }
     }
 
 
-
-    private String getValueCheckbox(CheckBox EvaFarm_NO){
-        if(EvaFarm_NO.isChecked()){
+    private String getValueCheckbox(CheckBox EvaFarm_NO) {
+        if (EvaFarm_NO.isChecked()) {
             return "1";
         }
         return "0";
     }
 
-    private String getUserZone(){
+    private String getUserZone() {
         SQLiteDatabase db;
         String DBFile = DATABASE_CENTER_DB + ".sqlite";
-        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(),DBFile);
+        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(), DBFile);
         if (obj.databaseFileExists()) {
             db = obj.getReadableDatabase();
             UserZone = obj.LoginData("1", db);
@@ -622,10 +660,10 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
         return "NULL";
     }
 
-    private String getEmpID(){
+    private String getEmpID() {
         SQLiteDatabase db;
         String DBFile = DATABASE_CENTER_DB + ".sqlite";
-        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(),DBFile);
+        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(), DBFile);
         if (obj.databaseFileExists()) {
             db = obj.getReadableDatabase();
             Emp_ID = obj.GetEmpID("1", db);
@@ -635,8 +673,6 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
         }
         return "NULL";
     }
-
-
 
 
     @Override
@@ -658,15 +694,14 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("ออกจากการลงทะเบียนแปลง")
                 .setMessage("ออกจากการลงทะเบียนแปลงใช่หรือไม่?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Link_ID = txtQT.getText().toString().trim()+"-"+Farm_Date;
+                        Link_ID = txtQT.getText().toString().trim() + "-" + Farm_Date;
 
                         SQLiteDatabase db;
                         String DBFile = DATABASE_FARMGEO_DB + "-" + UserZone + ".sqlite";
-                        ExternalStorage_FarmGeo_DB_OpenHelper obj = new ExternalStorage_FarmGeo_DB_OpenHelper(getApplicationContext(),DBFile);
+                        ExternalStorage_FarmGeo_DB_OpenHelper obj = new ExternalStorage_FarmGeo_DB_OpenHelper(getApplicationContext(), DBFile);
                         db = obj.getReadableDatabase();
                         long a = obj.DeleteDataObject(Link_ID, db);
                         obj.close();
@@ -680,6 +715,7 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
     }
 
     ////////////////////Camera///////////////////////////////////////
+
     /**
      * Capturing Camera Image will lauch camera app requrest image capture
      */
@@ -717,7 +753,7 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
 
     /**
      * Receiving activity result method will be called after closing the camera
-     * */
+     */
     @Override
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -750,7 +786,6 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
     }
 
 
-
     /**
      * Display image from a path to ImageView
      */
@@ -770,7 +805,6 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
             Bitmap bm1 = null;
 
 
-
             try {
                 ExifInterface exif = new ExifInterface(fileUri.getPath());
                 int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
@@ -778,37 +812,36 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
                 Matrix matrix = new Matrix();
                 if (orientation == 6) {
                     matrix.postRotate(90);
-                    bitmap = Bitmap.createBitmap(bitmap, 0, 0,bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
+                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
 
                 } else if (orientation == 3) {
                     matrix.postRotate(180);
-                    bitmap = Bitmap.createBitmap(bitmap, 0, 0,bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
+                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
 
                 } else if (orientation == 8) {
                     matrix.postRotate(270);
-                    bitmap = Bitmap.createBitmap(bitmap, 0, 0,bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
+                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
 
                 } else if (orientation == 1) {
                     matrix.postRotate(0);
-                    bitmap = Bitmap.createBitmap(bitmap, 0, 0,bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
+                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
 
                 }
 
-                if(orientation == 1 || orientation == 3){
-                    bm1 = getResizedBitmap(bitmap,341,455);
+                if (orientation == 1 || orientation == 3) {
+                    bm1 = getResizedBitmap(bitmap, 341, 455);
                 } else {
-                    bm1 = getResizedBitmap(bitmap,455,341);
+                    bm1 = getResizedBitmap(bitmap, 455, 341);
 
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
 
             }
 
             Bitmap newBitmap = null;
 
             Bitmap.Config config = bm1.getConfig();
-            if(config == null){
+            if (config == null) {
                 config = Bitmap.Config.ARGB_8888;
             }
 
@@ -818,11 +851,9 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
             newCanvas.drawBitmap(bm1, 0, 0, null);
 
 
-
-
             //String captionString ="X=1011111_Y=17150000_2014-05-22";
-            String captionString =time_str;
-            if(captionString != null){
+            String captionString = time_str;
+            if (captionString != null) {
 
                 Paint paintText = new Paint(Paint.ANTI_ALIAS_FLAG);
                 paintText.setColor(Color.RED);
@@ -837,10 +868,9 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
                         0, rectText.height(), paintText);
 
 
-
             }
 
-            casheBitmap=newBitmap;
+            casheBitmap = newBitmap;
             //imgPreview.setImageBitmap(newBitmap);
 
             File fdelete = new File(fileUri.getPath());
@@ -851,7 +881,6 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
                     //System.out.println("file not Deleted :" + fileUri.getPath());
                 }
             }
-
 
 
             image = Utilities.getBytes(casheBitmap);
@@ -865,8 +894,6 @@ public class RegisFarmConfirmActivity extends AppCompatActivity implements View.
 			  b.putString("RG_KEY",regis_active_key);
 			  myIntentCheckCaneRegis_ABC.putExtras(b);
 	          startActivity(myIntentCheckCaneRegis_ABC);*/
-
-
 
 
         } catch (NullPointerException e) {

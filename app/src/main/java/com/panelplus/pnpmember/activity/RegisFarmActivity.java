@@ -948,64 +948,6 @@ public class RegisFarmActivity extends AppCompatActivity implements View.OnClick
 
 
 
-
-//    public class LoadMapAsync extends AsyncTask<Void, Void, Void>{
-//
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//            // TODO Auto-generated method stub
-//            Log.d("Get_Val_strSQL", "LoadMapAsync");
-//
-//
-//            cachedFARM_ID_KEY.clear();
-//            cachedPolygon.clear();
-//
-//            rExtent=new Envelope();
-//            map.getExtent().queryEnvelope(rExtent);
-//
-//            double Min_X=rExtent.getXMin();  //ด้านบน
-//            double Min_Y=rExtent.getYMin();  //ด้านบน
-//            double Max_X=rExtent.getXMax();  //ด้านล่าง
-//            double Max_Y=rExtent.getYMax();  //ด้านล่าง
-//
-//            SQLiteDatabase db;
-//            String DBFile= DATABASE_FSCGISDATANAME +".sqlite";
-//            Log.d("Get_Val_strSQL", DBFile);
-//            // ExternalStorageReadOnlyOpenHelper.open();
-//            List<sMemberDrawPolygons> Poly_MebmerList=null ;
-//
-//
-//            ExternalStorage_Farm_GIS_DB_OpenHelper obj= null;
-//            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-//                obj = new ExternalStorage_Farm_GIS_DB_OpenHelper(DBFile);
-//            }
-//            if(obj.databaseFileExists())
-//            {
-//                db=obj.getReadableDatabase();
-//                Poly_MebmerList = obj.SelectDataDrawPolygon(Max_X ,
-//                        Min_X ,
-//                        Max_Y ,
-//                        Min_Y ,db);
-//                for (sMemberDrawPolygons mem : Poly_MebmerList) {
-//
-//                    cachedFARM_ID_KEY.add(mem.gFARM_ID());
-//                    cachedPolygon.add(mem.gFARM_GEO());
-//                    CreatePolygon(mem.gFARM_GEO(),mem.gFARM_STATUS(),
-//                            mem.gEMP_ID());
-//
-//                }
-//
-//                obj.close();
-//
-//            }
-//
-//
-//
-//            return null;
-//        }
-//
-//    }
-
     public class LoadMapAsync extends AsyncTask<Void, Void, Void> {
         public LoadMapAsync() {
         }

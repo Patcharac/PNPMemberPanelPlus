@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -55,6 +56,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -116,6 +118,8 @@ public class UploadActivity extends AppCompatActivity {
     String[] tmp2 = null;
     String[] tmp3 = null;
     String[] tmp4 = null;
+
+    //    List<String> tmp4 = new ArrayList<>();
     String[] tmp5 = null;
     String[] tmp6 = null;
     String[] tmp7 = null;
@@ -142,6 +146,13 @@ public class UploadActivity extends AppCompatActivity {
     TextView tvTimer;
     List<String> uploadName = new ArrayList();
     public List<NameValuePair> uploadparams;
+    public List<NameValuePair> uploadparams2;
+    public List<NameValuePair> uploadparams3;
+    public List<NameValuePair> uploadparams4;
+    public List<NameValuePair> uploadparams5;
+    public List<NameValuePair> uploadparams6;
+    public List<NameValuePair> uploadparams7;
+    public List<NameValuePair> uploadparams8;
     public List<NameValuePair> uploadparamsFarm;
     public List<NameValuePair> uploadparamsMember;
 
@@ -296,24 +307,99 @@ public class UploadActivity extends AppCompatActivity {
     }
 
 
+//    private void initExternalStorage_Visit(Context context) {
+//        String DBFile4 = DATABASE_VISIT_DB + "-" + UserZone + ".sqlite";
+//        ExternalStorage_Visit_DB_OpenHelper obj4 = new ExternalStorage_Visit_DB_OpenHelper(context, DBFile4);
+//        if (obj4.databaseFileExists()) {
+//            db4 = obj4.getWritableDatabase(); // เปลี่ยนเป็น getWritableDatabase() เพื่อให้สามารถเขียนฐานข้อมูลได้ด้วย
+//            try {
+//                for (int i = 0; i < 3; i++) {
+//                    switch (i) {
+//                        case 0:
+//                            tmp4 = obj4.SelectDataVisitMember("1", db4);
+//                            break;
+//                        case 1:
+//
+//                            String query = "SELECT COUNT(*) FROM " + "visit_farm_data";
+//                            Cursor cursor = db4.rawQuery(query, null);
+//
+//                            int rowCount = 0;
+//                            if (cursor != null) {
+//                                if (cursor.moveToFirst()) {
+//                                    rowCount = cursor.getInt(0);
+//                                }
+//                                cursor.close();
+//                            }
+//
+//                            Log.e("Check","RowCout : "+ rowCount);
+//
+//                            for (int row = 1; row <= rowCount; row++) {
+//                                String rowNumber = String.valueOf(row);
+//                                tmp4 = obj4.SelectDataVisitFarm(rowNumber, db4);
+//
+//                                Log.e("tmp4", "Value: " + tmp4.toString().trim());
+//                            }
+//                            break;
+//                        //case 2: tmp4 = obj4.SelectDataRecCircum("1", db4); break;
+//                    }
+//
+//                    if (tmp4 != null) {
+//                        Log.e("Check","tmp4 : " + tmp4.length);
+//                        break;
+//                    }
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            } finally {
+//                obj4.close();
+//            }
+//        }
+//    }
+
     private void initExternalStorage_Visit(Context context) {
         String DBFile4 = DATABASE_VISIT_DB + "-" + UserZone + ".sqlite";
         ExternalStorage_Visit_DB_OpenHelper obj4 = new ExternalStorage_Visit_DB_OpenHelper(context, DBFile4);
         if (obj4.databaseFileExists()) {
             db4 = obj4.getWritableDatabase(); // เปลี่ยนเป็น getWritableDatabase() เพื่อให้สามารถเขียนฐานข้อมูลได้ด้วย
+            List<String> tmp4List = new ArrayList<>();
             try {
                 for (int i = 0; i < 3; i++) {
                     switch (i) {
                         case 0:
-                            tmp4 = obj4.SelectDataVisitMember("1", db4);
+                            String[] tmpData1 = obj4.SelectDataVisitMember("1", db4);
+                            if (tmpData1 != null) {
+                                tmp4List.addAll(Arrays.asList(tmpData1));
+                            }
                             break;
                         case 1:
-                            tmp4 = obj4.SelectDataVisitFarm("1", db4);
+                            String query = "SELECT COUNT(*) FROM visit_farm_data";
+                            Cursor cursor = db4.rawQuery(query, null);
+
+                            int rowCount = 0;
+                            if (cursor != null) {
+                                if (cursor.moveToFirst()) {
+                                    rowCount = cursor.getInt(0);
+                                }
+                                cursor.close();
+                            }
+
+                            Log.e("Check", "RowCount: " + rowCount);
+
+                            for (int row = 1; row <= rowCount; row++) {
+                                String rowNumber = String.valueOf(row);
+                                String[] tmpData2 = obj4.SelectDataVisitFarm(rowNumber, db4);
+                                if (tmpData2 != null) {
+                                    tmp4List.addAll(Arrays.asList(tmpData2));
+                                }
+
+                                Log.e("tmp4", "Value: " + Arrays.toString(tmpData2));
+                            }
                             break;
-                        //case 2: tmp4 = obj4.SelectDataRecCircum("1", db4); break;
+                        //case 2: String[] tmpData3 = obj4.SelectDataRecCircum("1", db4); break;
                     }
 
-                    if (tmp4 != null) {
+                    if (!tmp4List.isEmpty()) {
+                        Log.e("Check", "tmp4: " + tmp4List.size());
                         break;
                     }
                 }
@@ -322,8 +408,58 @@ public class UploadActivity extends AppCompatActivity {
             } finally {
                 obj4.close();
             }
+
+// แปลง List<String> เป็น String[] (ถ้าต้องการตัวแปร tmp4 เป็นอาร์เรย์)
+
+             tmp4 = tmp4List.toArray(new String[0]);
+            Log.e("Check", "Value tmp4: " + tmp4);
         }
     }
+
+//    private void initExternalStorage_Visit(Context context) {
+//        String DBFile4 = DATABASE_VISIT_DB + "-" + UserZone + ".sqlite";
+//        ExternalStorage_Visit_DB_OpenHelper obj4 = new ExternalStorage_Visit_DB_OpenHelper(context, DBFile4);
+//        if (obj4.databaseFileExists()) {
+//            db4 = obj4.getWritableDatabase();
+//            try {
+//                // สร้างอาเรย์เพื่อเก็บข้อมูลทั้งหมดที่พบ
+//                List<String[]> allData = new ArrayList<>();
+//
+//                for (int i = 0; i < 3; i++) {
+//                    switch (i) {
+//                        case 0:
+//                            tmp4 = obj4.SelectDataVisitMember("1", db4);
+//                            break;
+//                        case 1:
+//                            // เรียกใช้ SelectDataVisitFarm สำหรับหลาย id
+//                            String[] ids = {"1", "2", "3"};  // ตัวอย่างเช่น กำหนด id ที่ต้องการให้เรียก
+//                            for (String id : ids) {
+//                                String[] data = obj4.SelectDataVisitFarm(id, db4);
+//                                if (data != null) {
+//                                    allData.add(data);
+//                                }
+//                            }
+//                            break;
+//                        //case 2: tmp4 = obj4.SelectDataRecCircum("1", db4); break;
+//                    }
+//
+//                    if (tmp4 != null) {
+//                        break;
+//                    }
+//                }
+//
+//                // ใช้ข้อมูลที่ได้รับในอาเรย์ allData
+//                for (String[] data : allData) {
+//                    // ทำอย่างอื่นที่ต้องการกับข้อมูล
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            } finally {
+//                obj4.close();
+//            }
+//        }
+//    }
+
 
     private void initExternalStorage_FarmGeo(Context context) {
         String DBFile5 = DATABASE_FARMGEO_DB + "-" + UserZone + ".sqlite";
@@ -430,6 +566,7 @@ public class UploadActivity extends AppCompatActivity {
             File folder = new File(getFilesDir() + "/MapDB/");
             String DBFile = DATABASE_VISIT_DB + "-" + this.UserZone + ".sqlite";
             File directUpload1 = new File(folder, DBFile);
+            Log.e("Check", "directUpload1 size " + directUpload1.length());
             Log.e("Check", "directUpload1 tmp4 : " + directUpload1);
             if (directUpload1.exists()) {
                 it.add(directUpload1.getPath());
@@ -476,7 +613,7 @@ public class UploadActivity extends AppCompatActivity {
                 it.add(directUpload1.getPath());
             }
         }
-        Log.e("Check","it : " + it.toString());
+        Log.e("Check", "it : " + it.toString());
         return it;
     }
 
@@ -507,7 +644,7 @@ public class UploadActivity extends AppCompatActivity {
             TextView txtName = (TextView) convertView.findViewById(R.id.ColImgName);
             final String strPath = ImageList.get(position).toString();
             String fileName = strPath.substring(strPath.lastIndexOf(47) + 1, strPath.length());
-            Log.e("Check","String fileName : " + fileName);
+            Log.e("Check", "String fileName : " + fileName);
             long length = new File(strPath).length();
             txtName.setPadding(3, 0, 0, 0);
             String File1 = "REGIS_DB-" + UserZone + ".sqlite";
@@ -519,7 +656,7 @@ public class UploadActivity extends AppCompatActivity {
             String File7 = "COOR_HOUSE_DB-" + UserZone + ".sqlite";
             String File8 = "COOR_IMPORTANCE_DB-" + UserZone + ".sqlite";
             String FileNameResult = "";
-            if  (fileName.toString().trim().equals(File1)) {
+            if (fileName.toString().trim().equals(File1)) {
                 FileNameResult = "สมัคเข้าร่วมโครงการ";
                 uploadName.add(FileNameResult);
             } else if (fileName.toString().trim().equals(File2)) {
@@ -758,8 +895,6 @@ public class UploadActivity extends AppCompatActivity {
                 this.resServer = resMessage.toString();
 
 
-
-
 //                FileInputStream fileInputStream = new FileInputStream(new File(strSDPath));
 //                HttpURLConnection conn = (HttpURLConnection) new URL(strUrlServer).openConnection();
 //                conn.setConnectTimeout(3600000);
@@ -809,10 +944,10 @@ public class UploadActivity extends AppCompatActivity {
 //                outputStream.flush();
 //                outputStream.close();
 //                this.resServer = resMessage.toString();
-                Log.e("Check","Check resServer : "+ resServer );
+                Log.e("Check", "Check resServer : " + resServer);
                 return null;
             } catch (Exception e) {
-                Log.e("Check","Check catch : " + e.getMessage() );
+                Log.e("Check", "Check catch : " + e.getMessage());
                 return null;
             }
         }
@@ -826,8 +961,8 @@ public class UploadActivity extends AppCompatActivity {
         /* access modifiers changed from: protected */
         @Override
         public void onPostExecute(Void unused) {
-            Log.e("Check","this.resServer : " + this.resServer);
-            Log.e("Check","ImageList.get :  " +ImageList.get(this.position).toString());
+            Log.e("Check", "this.resServer : " + this.resServer);
+            Log.e("Check", "ImageList.get :  " + ImageList.get(this.position).toString());
             statusWhenFinish(this.position, this.resServer, ImageList.get(this.position).toString());
             try {
                 this.dialog.dismiss();
@@ -838,11 +973,11 @@ public class UploadActivity extends AppCompatActivity {
 
     /* access modifiers changed from: protected */
     public void statusWhenFinish(int position, String resServer, String DelPath) {
-        Log.e("Check","position : " + position);
-        Log.e("Check","resServer : " + resServer);
-        Log.e("Check","DelPath : " + DelPath);
+        Log.e("Check", "position : " + position);
+        Log.e("Check", "resServer : " + resServer);
+        Log.e("Check", "DelPath : " + DelPath);
         View v = this.lstView.getChildAt(position - lstView.getFirstVisiblePosition());
-        Log.e("Check","View v : " + v.toString());
+        Log.e("Check", "View v : " + v.toString());
         ((ProgressBar) v.findViewById(R.id.progressBar)).setVisibility(View.GONE);
         TextView status = (TextView) v.findViewById(R.id.ColStatus);
         String strStatusID = "0";
@@ -876,7 +1011,7 @@ public class UploadActivity extends AppCompatActivity {
         DeleteFileUploadAsync(DelPath);
     }
 
-//    public String CountRow(String countPath){
+    //    public String CountRow(String countPath){
 //
 //        SQLiteDatabase db;
 //        File file1 = new File(countPath);
@@ -940,13 +1075,13 @@ public class UploadActivity extends AppCompatActivity {
 
         try {
             if (file.equals(DelPathMemRegis)) {
-                String url = "http://103.80.129.192/fsc/app/uploadDB/updateMemberRegisDB.php?UserZone="+ UserZone + "&Emp_ID=" + this.UserEmpID;
+                String url = "http://103.80.129.192/fsc/app/uploadDB/updateMemberRegisDB.php?UserZone=" + UserZone + "&Emp_ID=" + this.UserEmpID;
                 Log.d("RegisURL", String.valueOf(url));
                 this.uploadparams = new ArrayList();
                 this.uploadparams.add(new BasicNameValuePair("UserZone", UserZone.trim()));
 
                 String resultServer = getHttpPost(url, uploadparams);
-                Log.d("Check", "resultServer ; " +resultServer);
+                Log.d("Check", "resultServer ; " + resultServer);
                 String StatusID = null;
                 String nowQoutaID = null;
                 String memName = null;
@@ -996,9 +1131,9 @@ public class UploadActivity extends AppCompatActivity {
                     alertDialog2.setCanceledOnTouchOutside(false);
                     alertDialog2.setCancelable(false);
                     alertDialog2.show();
-                    if(memName == null){
-                       return;
-                    }else{
+                    if (memName == null) {
+                        return;
+                    } else {
                         file.delete();
                     }
 
@@ -1065,20 +1200,46 @@ public class UploadActivity extends AppCompatActivity {
                 }
             }
             if (file.equals(DelPathVisit)) {
+                Log.e("Check", "DelPathVisit");
                 String url3 = "http://103.80.129.192/fsc/app/uploadDB/updateVisitDB.php?UserZone=" + this.UserZone;
-                this.uploadparams = new ArrayList();
-                this.uploadparams.add(new BasicNameValuePair("UserZone", this.UserZone.trim()));
-                String StatusID3 = null;
+                this.uploadparams3 = new ArrayList();
+                this.uploadparams3.add(new BasicNameValuePair("UserZone", UserZone.trim()));
+
+                String resultServer = getHttpPost(url3, uploadparams3);
+                Log.d("Check", "resultServer ; " + resultServer);
+                String StatusID = null;
+                String nowQoutaID = null;
+                String memName = null;
+                //String LoginData = resultServer ;
+
                 try {
-                    StatusID3 = new JSONObject(getHttpPost(url3, this.uploadparams)).getString("StatusID");
-                } catch (JSONException e3) {
-                    e3.printStackTrace();
+                    JSONObject c1 = new JSONObject(resultServer);
+                    nowQoutaID = c1.getString("nowQoutaID");
+                    StatusID = c1.getString("StatusID");
+                    memName = c1.getString("memName");
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 }
                 try {
-                    if (Objects.equals(StatusID3, "1")) {
-                        file.delete();
+                    if (Objects.equals(StatusID, "1")) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setMessage((CharSequence) memName + ": เลขโควต้าคือ " + nowQoutaID);
+                        builder.setCancelable(true);
+                        builder.setPositiveButton((CharSequence) "ตกลง", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                UploadActivity.this.finish();
+                            }
+                        });
+
+                        Log.d("urlLineMember", String.valueOf("http://app.loca.fun/NotifyMember.php"));
+                        Log.d("paramsMember", String.valueOf(this.uploadparamsMember));
+//                        file.delete();
                     }
                 } catch (Exception e4) {
+                    // การจัดการข้อผิดพลาดที่เกิดขึ้น
+                    Log.e("Check", "การจัดการข้อผิดพลาดที่เกิดขึ้น" + e4.getMessage());
                 }
             }
             if (file.equals(DelPathFarmGeo)) {

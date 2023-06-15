@@ -271,7 +271,7 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
                 "mem_OccuSecond TEXT, " +
                 "mem_Graduate TEXT, " +
                 "attach_IDcard BLOB, " +
-                "attach_HouseRegis BLOB, " +
+                "attach_HouseRegis BLOB, "  +
                 "attach_Authorise BLOB, " +
                 "attach_AccountBank BLOB, " +
                 "attech_Signature BLOB, " +

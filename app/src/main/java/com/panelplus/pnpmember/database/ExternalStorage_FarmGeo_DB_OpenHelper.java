@@ -41,6 +41,9 @@ public ExternalStorage_FarmGeo_DB_OpenHelper(Context context , String dbFileName
 
 	this.dbFile = new File(folder, dbFileName);
 }
+	public SQLiteDatabase getWritableDatabase() {
+		return getDatabase();
+	}
 
 public boolean databaseFileExists() {
    return dbFile.exists();
