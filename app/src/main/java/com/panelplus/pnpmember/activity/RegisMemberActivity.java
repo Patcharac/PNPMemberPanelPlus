@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -885,7 +886,6 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
         btnPicAutorizeCamera.setOnClickListener(this);
 
 
-
         mClearButton.setOnClickListener(this);
         //mSaveButton.setOnClickListener(this);
 
@@ -966,15 +966,15 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
 
     private void captureImageCamera() {
         if (checkCameraPermission()) {
-            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            }
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+
         } else {
-            // ขออนุญาตการเข้าถึงกล้อง
             requestCameraPermission();
         }
     }
+
+
 
 
     private boolean checkCameraPermission() {
@@ -992,7 +992,9 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // ได้รับอนุญาตการเข้าถึงกล้อง
+                Log.e("Check", "Permission Ok");
                 captureImageCamera();
+
             } else {
                 // การอนุญาตถูกปฏิเสธ
                 Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
@@ -1120,7 +1122,7 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             if (numimage == 5) {
 
-
+                Log.e("Check", "numimage == 5 : " + "ใช้ในการสมัครโครงการ FSC");
 
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
@@ -1163,8 +1165,6 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
 
                 ImageView imageView = findViewById(R.id.imgIdCard);
                 imageView.setImageBitmap(scaledBitmap);
-
-
 
 
             } else if (numimage == 6) {
@@ -1212,7 +1212,7 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
                 ImageView imageView = findViewById(R.id.imgHouseregis);
                 imageView.setImageBitmap(scaledBitmap);
 
-            }else if (numimage == 7) {
+            } else if (numimage == 7) {
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
 
@@ -1257,7 +1257,7 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
                 ImageView imageView = findViewById(R.id.imgAutorize);
                 imageView.setImageBitmap(scaledBitmap);
 
-            }else if (numimage == 8) {
+            } else if (numimage == 8) {
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
 
@@ -1306,7 +1306,6 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
         }
 
     }
-
 
 
     private void checkimage() {

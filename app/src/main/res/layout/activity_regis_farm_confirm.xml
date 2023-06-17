@@ -199,13 +199,20 @@
                             />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:orientation="vertical"
-                        android:layout_gravity="center"
+                        android:background="@drawable/layout_bg_white"
+                        android:layout_margin="5dp"
                         android:gravity="center"
-                        android:layout_marginTop="5dp">
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <ImageView
+                            android:id="@+id/imgFarm"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="รูปแปลงยางพารา" />
 
                         <Button
                             android:id="@+id/btnLetCamera"
@@ -217,16 +224,13 @@
                             android:drawableLeft="@android:drawable/ic_menu_camera"
                             android:textSize="18sp"/>
 
-                        <ImageView
-                            android:id="@+id/imgFarm"
-                            android:layout_width="400dp"
-                            android:layout_height="300dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:visibility="gone"
-                            />
+
+
+
 
                     </LinearLayout>
+
+
 
                 </LinearLayout>
 
@@ -336,7 +340,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="เบอร์โทรศัพท์"
-                                    android:singleLine="true" />
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                         </LinearLayout>
@@ -375,7 +380,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="การใช้ที่ดิน"
-                                    android:singleLine="true" />
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                             <com.wrapp.floatlabelededittext.FloatLabeledEditText
@@ -390,7 +396,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="เจ้าของ/ผู้มีอำนาจจัดการ"
-                                    android:singleLine="true" />
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                             <com.wrapp.floatlabelededittext.FloatLabeledEditText
@@ -405,7 +412,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="เบอร์โทรศัพท์"
-                                    android:singleLine="true" />
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
                         </LinearLayout>
 
@@ -443,7 +451,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="การใช้ที่ดิน"
-                                    android:singleLine="true" />
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                             <com.wrapp.floatlabelededittext.FloatLabeledEditText
@@ -458,7 +467,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="เจ้าของ/ผู้มีอำนาจจัดการ"
-                                    android:singleLine="true" />
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                             <com.wrapp.floatlabelededittext.FloatLabeledEditText
@@ -473,7 +483,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="เบอร์โทรศัพท์"
-                                    android:singleLine="true" />
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                         </LinearLayout>
@@ -512,7 +523,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="การใช้ที่ดิน"
-                                    android:singleLine="true" />
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                             <com.wrapp.floatlabelededittext.FloatLabeledEditText
@@ -527,7 +539,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="เจ้าของ/ผู้มีอำนาจจัดการ"
-                                    android:singleLine="true" />
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                             <com.wrapp.floatlabelededittext.FloatLabeledEditText
@@ -542,7 +555,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="เบอร์โทรศัพท์"
-                                    android:singleLine="true" />
+                                    android:singleLine="true"
+                                    android:padding="18dp"/>
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                         </LinearLayout>
@@ -1204,7 +1218,8 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="Local Name"
-                                        android:singleLine="true" />
+                                        android:singleLine="true"
+                                        android:padding="18dp"/>
                                 </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                                 <Button style="@style/Widget.AppCompat.Button.Colored"
@@ -1286,7 +1301,7 @@
                     android:layout_height="5dp"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text=" "
+                    android:text="นำเข้าข้อมูล"
                     android:textColor="@color/colorBlack"
                     android:textSize="16dp" />
 
@@ -1320,7 +1335,7 @@
                     android:layout_height="5dp"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text=" "
+                    android:text="นำเข้าข้อมูล"
                     android:textColor="@color/colorBlack"
                     android:textSize="16dp" />
             </TableLayout>
