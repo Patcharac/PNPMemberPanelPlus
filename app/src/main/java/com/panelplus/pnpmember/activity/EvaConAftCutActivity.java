@@ -1,6 +1,7 @@
 package com.panelplus.pnpmember.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 //import android.support.v7.app.AlertDialog;
@@ -28,7 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class EvaConAftCutActivity extends AppCompatActivity implements View.OnClickListener {
     private Button btnSave;
 
-    private EditText Con_Name,Con_ID,Farm_ID;
+    private EditText Con_Name, Con_ID, Farm_ID;
 
     private CheckBox[] EvaAftCut_NO = new CheckBox[10];
     private String[] EvaAftCutString = new String[10];
@@ -36,18 +37,19 @@ public class EvaConAftCutActivity extends AppCompatActivity implements View.OnCl
     private EditText[] EvaAftCutSuggest_NO = new EditText[10];
     private String[] EvaAftCutSuggestString = new String[10];
 
-    private String Emp_ID ="";
-    private String UserZone="";
+    private String Emp_ID = "";
+    private String UserZone = "";
 
     private String dateNow;
 
     //===============DB================//
-    SQLiteDatabase mydb=null;
+    SQLiteDatabase mydb = null;
 
     private String DBFile;
     SQLiteDatabase db;
 
-    @SuppressLint("SdCardPath") String DATABASE_FILE_PATH="/sdcard/MapDB/";
+    @SuppressLint("SdCardPath")
+    String DATABASE_FILE_PATH = "/sdcard/MapDB/";
     private static final String DATABASE_CENTER_DB = "CENTER_DB";
 
     private static final String DATABASE_EVACON_DB = "EVACON_DB";
@@ -65,13 +67,12 @@ public class EvaConAftCutActivity extends AppCompatActivity implements View.OnCl
         UserZone = getUserZone();
 
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR)+543;
+        int year = calendar.get(Calendar.YEAR) + 543;
 
-        dateNow = new SimpleDateFormat("dd-MM",
-                Locale.getDefault()).format(new Date());
+        dateNow = new SimpleDateFormat("dd-MM", Locale.getDefault()).format(new Date());
 
-        dateNow = dateNow+"-"+String.valueOf(year);
-        Log.d("date",String.valueOf(dateNow));
+        dateNow = dateNow + "-" + String.valueOf(year);
+        Log.d("date", String.valueOf(dateNow));
         //--------create DB-SQlite---------
         /*
         mydb = this.openOrCreateDatabase(DATABASE_FILE_PATH + File.separator
@@ -110,30 +111,27 @@ public class EvaConAftCutActivity extends AppCompatActivity implements View.OnCl
     }
 
 
-
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.save:
 
-                for(int i=0; i<10; i++){
+                for (int i = 0; i < 10; i++) {
                     EvaAftCutString[i] = getValueCheckbox(EvaAftCut_NO[i]);
 
                     EvaAftCutSuggestString[i] = EvaAftCutSuggest_NO[i].getText().toString().trim();
-                    if (EvaAftCutSuggestString[i].isEmpty()){
+                    if (EvaAftCutSuggestString[i].isEmpty()) {
                         EvaAftCutSuggestString[i] = "";
                     }
                 }
 
-                if (Con_Name.getText().toString().isEmpty()||
+                if (Con_Name.getText().toString().isEmpty() ||
                         Con_ID.getText().toString().isEmpty() ||
-                        Farm_ID.getText().toString().isEmpty()){
+                        Farm_ID.getText().toString().isEmpty()) {
 
-                    Toast.makeText(getApplicationContext(),
-                            "กรุณกรอกข้อมูลให้ครบถ้วนก่อนการบันทึก", Toast.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(getApplicationContext(), "กรุณกรอกข้อมูลให้ครบถ้วนก่อนการบันทึก", Toast.LENGTH_SHORT).show();
                 } else {
-                    beforeSave();
+                    beforeSave(this);
                 }
 
                 break;
@@ -174,15 +172,15 @@ public class EvaConAftCutActivity extends AppCompatActivity implements View.OnCl
     }
 
 
-    public void beforeSave(){
+    public void beforeSave(Context context) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(EvaConAftCutActivity.this);
         builder.setMessage("ต้องการจะบันทึกข้อมูลหรือไม่ ?");
         builder.setCancelable(true);
 
-        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener(){
+        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
             @Override
-            public  void onClick(DialogInterface dialogInterface, int i) {
-                savetoSQlite();
+            public void onClick(DialogInterface dialogInterface, int i) {
+                savetoSQlite(context);
 
 
             }
@@ -198,47 +196,52 @@ public class EvaConAftCutActivity extends AppCompatActivity implements View.OnCl
         alertDialog.show();
     }
 
-    private void savetoSQlite() {
-        DBFile = DATABASE_EVACON_DB + "-" + UserZone + ".sqlite";
-        ExternalStorage_EvaCon_DB_OpenHelper obj = new ExternalStorage_EvaCon_DB_OpenHelper(getApplicationContext(),DBFile);
-        db = obj.getReadableDatabase();
-        long check = obj.insertDataEvaConAftCut(dateNow,
-                Con_Name.getText().toString().trim(),
-                Con_ID.getText().toString().trim(),
-                Farm_ID.getText().toString().trim(),
-                Emp_ID,
-                EvaAftCutString,
-                EvaAftCutSuggestString,
-                db);
+    private void savetoSQlite(Context context) {
+        this.DBFile = DATABASE_EVACON_DB + "-" + UserZone + ".sqlite";
+        ExternalStorage_EvaCon_DB_OpenHelper obj = new ExternalStorage_EvaCon_DB_OpenHelper(context, DBFile);
+        if (obj.databaseFileExists()) {
+            this.mydb = obj.getWritableDatabase(); // เปิดฐานข้อมูลให้เป็นแบบเขียนได้
+            long check = -1;
+            try {
+                this.mydb.beginTransaction();
+                check = obj.insertDataEvaConAftCut(dateNow,
+                        Con_Name.getText().toString().trim(),
+                        Con_ID.getText().toString().trim(),
+                        Farm_ID.getText().toString().trim(),
+                        Emp_ID,
+                        EvaAftCutString,
+                        EvaAftCutSuggestString,
+                        mydb);
+                mydb.setTransactionSuccessful();
+            } catch (Exception e) {
+                Log.e("Check", "Failed to insert data into database: " + e.getMessage());
+                Toast.makeText(context, "Failed to insert data into database: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            } finally {
+                mydb.endTransaction();
+                obj.close();
+            }
 
-        obj.close();
-
-        if (check != -1){
-            Toast.makeText(getApplicationContext(),
-                    "บันทึกข้อมูลเสร็จสิ้น", Toast.LENGTH_SHORT)
-                    .show();
-            finish();
-
-        } else {
-            Toast.makeText(getApplicationContext(),
-                    "การบันทึกข้อมูลผิดพลาดกรุณาบันทึกข้อมูลอีกครั้ง", Toast.LENGTH_SHORT)
-                    .show();
+            if (check != -1) {
+                Toast.makeText(getApplicationContext(), "บันทึกข้อมูลเสร็จสิ้น", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                Log.e("Check", "บันทึกข้อมูลล้มเหลว");
+            }
         }
-
-
     }
 
     private String getValueCheckbox(CheckBox EvaAftCut_NO) {
-        if(EvaAftCut_NO.isChecked()){
+        if (EvaAftCut_NO.isChecked()) {
             return "1";
         }
         return "0";
     }
 
-    private String getEmpID(){
+    private String getEmpID() {
         SQLiteDatabase db;
         String DBFile = DATABASE_CENTER_DB + ".sqlite";
-        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(),DBFile);
+        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(), DBFile);
         if (obj.databaseFileExists()) {
             db = obj.getReadableDatabase();
             Emp_ID = obj.GetEmpID("1", db);
@@ -249,10 +252,10 @@ public class EvaConAftCutActivity extends AppCompatActivity implements View.OnCl
         return "NULL";
     }
 
-    private String getUserZone(){
+    private String getUserZone() {
         SQLiteDatabase db;
         String DBFile = DATABASE_CENTER_DB + ".sqlite";
-        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(),DBFile);
+        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(), DBFile);
         if (obj.databaseFileExists()) {
             db = obj.getReadableDatabase();
             UserZone = obj.LoginData("1", db);
@@ -264,14 +267,14 @@ public class EvaConAftCutActivity extends AppCompatActivity implements View.OnCl
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(EvaConAftCutActivity.this);
         builder.setMessage("ต้องการจะออกจากการบันทึกข้อมูลหรือไม่ ?");
         builder.setCancelable(true);
 
-        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener(){
+        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
             @Override
-            public  void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(DialogInterface dialogInterface, int i) {
                 finish();
             }
         });

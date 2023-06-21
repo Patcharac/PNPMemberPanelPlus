@@ -267,29 +267,8 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
         dateNow = dateNow + "-" + String.valueOf(year);
         Log.d("date", String.valueOf(dateNow));
 
-
-        //get user
         UserZone = getUserZone(this);
-
-
         createPrimaryDB(this);
-        //create database
-
-
-//        Button buttonLoadImage = (Button) findViewById(R.id.picIdCard);
-//        buttonLoadImage.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View arg0) {
-//
-//                Intent i = new Intent(
-//                        Intent.ACTION_PICK,
-//                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//
-//                startActivityForResult(i, RESULT_LOAD_IMAGE);
-//            }
-//        });
-
 
         mSignaturePad = (SignaturePad) findViewById(R.id.signature_pad);
         mSignaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
@@ -312,13 +291,7 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
                 checkSignature = 0;
             }
         });
-//        try {
-//            Field f = TransactionTooLargeException.class.getDeclaredField("MAX_SIZE");
-//            f.setAccessible(true);
-//            f.set(null, 16 * 1024 * 1024); // 16 MB
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
     }
 
 
@@ -685,8 +658,8 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
 
 
     public static void verifyStoragePermissions(Activity activity) {
-        if (ActivityCompat.checkSelfPermission(activity, "android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
-            ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, 1);
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         }
     }
 
@@ -975,8 +948,6 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
     }
 
 
-
-
     private boolean checkCameraPermission() {
         int cameraPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         return cameraPermission == PackageManager.PERMISSION_GRANTED;
@@ -1144,7 +1115,7 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
                 float textWidth = textPaint.measureText(text);
                 float textHeight = textPaint.getTextSize();
 
-// หากต้องการเอียงข้อความ 45 องศา
+                // หากต้องการเอียงข้อความ 45 องศา
                 Matrix matrix = new Matrix();
                 matrix.postRotate(45, centerX, centerY);
                 canvas.setMatrix(matrix);
@@ -1155,7 +1126,7 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
                 canvas.drawText(text, textX, textY, textPaint);
 
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                textBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                textBitmap.compress(Bitmap.CompressFormat.JPEG, 1, stream);
                 byte[] byteArray = stream.toByteArray();
                 this.picIdcard = byteArray;
 
@@ -1201,7 +1172,7 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
                 canvas.drawText(text, textX, textY, textPaint);
 
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                textBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                textBitmap.compress(Bitmap.CompressFormat.JPEG, 1, stream);
                 byte[] byteArray = stream.toByteArray();
                 this.picHouseregis = byteArray;
 
@@ -1246,7 +1217,7 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
                 canvas.drawText(text, textX, textY, textPaint);
 
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                textBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                textBitmap.compress(Bitmap.CompressFormat.JPEG, 1, stream);
                 byte[] byteArray = stream.toByteArray();
                 this.picAutorize = byteArray;
 
@@ -1291,7 +1262,7 @@ public class RegisMemberActivity extends AppCompatActivity implements View.OnCli
                 canvas.drawText(text, textX, textY, textPaint);
 
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                textBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                textBitmap.compress(Bitmap.CompressFormat.JPEG, 1, stream);
                 byte[] byteArray = stream.toByteArray();
                 this.picAccountBank = byteArray;
 

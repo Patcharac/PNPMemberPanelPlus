@@ -43,7 +43,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CoordinateHouseConfirmActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @SuppressLint("SdCardPath") String DATABASE_FILE_PATH="/mnt/sdcard/MAPDB";
+    @SuppressLint("SdCardPath")
+    String DATABASE_FILE_PATH = "/mnt/sdcard/MAPDB";
 
 
     // Database Name
@@ -53,7 +54,7 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
     //get user
     private static final String DATABASE_CENTER_DB = "CENTER_DB";
 
-    SQLiteDatabase mydb=null;
+    SQLiteDatabase mydb = null;
 
     Button btnSave;
     String latitude, longitude;
@@ -64,8 +65,8 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
     EditText txtQT;
     ImageView imgHouse;
 
-    String Emp_ID ="";
-    String UserZone="";
+    String Emp_ID = "";
+    String UserZone = "";
 
     //----------------------- Camera  ---------------------
 
@@ -78,15 +79,15 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
     private static final String IMAGE_DIRECTORY_NAME = "Hello Camera";
 
     private Uri fileUri; // file url to store image/video
-
+    File Path = null;
     private Bitmap casheBitmap;
     byte[] default_byte = {0};
 
     //===========image=========//
     private String time_str;
-    private byte[] image ;
+    private byte[] image;
     private byte[] PicHouse;
-
+    private String DBFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,28 +108,43 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
         UserZone = getUserZone();
         dateStamp = getDateTime();
 
-        CreateCoorHouseDB();
+        CreateCoorHouseDB(this);
 
     }
 
-    private void CreateCoorHouseDB(){
-        try{
-            mydb = this.openOrCreateDatabase(DATABASE_FILE_PATH + File.separator
-                    + DATABASE_COOR_HOUSE_DB + "-" + UserZone + ".sqlite", Context.MODE_PRIVATE, null);
-            mydb.execSQL(" create table if not exists " + TABLE_COOR_HOUSE_DATA +
-                    "  (_id INTEGER PRIMARY KEY AUTOINCREMENT  ," +
-                    "  qouta_ID TEXT ," +
-                    "  Emp_ID TEXT ," +
-                    "  House_Date TEXT ,"+
-                    "  House_Geo TEXT ,"+
-                    "  House_GeoX TEXT ,"+
-                    "  House_GeoY TEXT ,"+
-                    "  House_Latitude TEXT ,"+
-                    "  House_Longitude TEXT );" );
+    private void CreateCoorHouseDB(Context context) {
+        if (context != null) {
+            String folderName = "MapDB";
+            String folderPath = context.getApplicationContext().getFilesDir() + "/" + folderName;
+            File appDbDir = new File(folderPath);
+            if (!appDbDir.exists()) {
+                appDbDir.mkdirs();
+            }
+            this.Path = appDbDir;
+            String databaseName = DATABASE_COOR_HOUSE_DB + "-" + UserZone + ".sqlite";
+            String databasePath = folderPath + "/" + databaseName;
 
+//            coor_house_data
 
-        } catch(Exception e) {
-            Log.d("errorCreateDB", String.valueOf(e));
+            try {
+                this.mydb = SQLiteDatabase.openDatabase(databasePath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+                String createTableQuery = "CREATE TABLE IF NOT EXISTS coor_house_data (" +
+                        "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "  qouta_ID TEXT ," +
+                        "  Emp_ID TEXT ," +
+                        "  House_Date TEXT ," +
+                        "  House_Geo TEXT ," +
+                        "  House_GeoX TEXT ," +
+                        "  House_GeoY TEXT ," +
+                        "  House_Latitude TEXT ," +
+                        "  House_Longitude TEXT);";
+
+                this.mydb.execSQL(createTableQuery);
+                Log.e("Check", "Database created  user_member_data successfully");
+                Toast.makeText(context, "Database created successfully!", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Log.d("errorCreateDB", String.valueOf(e));
+            }
         }
     }
 
@@ -146,32 +162,29 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
         int yearint;
         String year;
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "dd-MM");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM");
         Calendar cal = Calendar.getInstance();
         String date = dateFormat.format(cal.getTime());
 
 
         Calendar cal2 = Calendar.getInstance();
-        yearint = cal2.get(Calendar.YEAR)+543;
+        yearint = cal2.get(Calendar.YEAR) + 543;
         year = String.valueOf(yearint);
 
-        SimpleDateFormat dateFormat3 = new SimpleDateFormat(
-                "HH:mm:ss");
+        SimpleDateFormat dateFormat3 = new SimpleDateFormat("HH:mm:ss");
         Calendar cal3 = Calendar.getInstance();
         String time = String.valueOf((dateFormat3.format(cal3.getTime())));
 
-        dateStamp = date + "-" + year + " "+time;
-        Log.d("year",String.valueOf(dateStamp));
+        dateStamp = date + "-" + year + " " + time;
+        Log.d("year", String.valueOf(dateStamp));
 
-        return  dateStamp;
+        return dateStamp;
     }
-
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.imgHouse:
                 captureImage();
                 break;
@@ -179,7 +192,7 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
             case R.id.btnSave:
 
                 if (txtQT.getText().toString().trim().isEmpty()
-                    ||txtQT.getText().toString().length()<6 ){
+                        || txtQT.getText().toString().length() < 6) {
 
                     final AlertDialog.Builder builder = new AlertDialog.Builder(CoordinateHouseConfirmActivity.this);
                     builder.setMessage("กรุณาใส่ข้อมูลให้ครบถ้วน และแนบรูปถ่ายก่อนการบันทึก");
@@ -196,7 +209,7 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
 
                 } else {
 
-                    beforeSave();
+                    beforeSave(this);
 
                 }
                 break;
@@ -204,15 +217,15 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
         }
     }
 
-    public void beforeSave(){
+    public void beforeSave(Context context) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(CoordinateHouseConfirmActivity.this);
         builder.setMessage("ต้องการจะบันทึกข้อมูลหรือไม่ ?");
         builder.setCancelable(true);
 
-        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener(){
+        builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
             @Override
-            public  void onClick(DialogInterface dialogInterface, int i) {
-                saveCoorHouseToSQlite();
+            public void onClick(DialogInterface dialogInterface, int i) {
+                saveCoorHouseToSQlite(context);
             }
         });
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -226,48 +239,49 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
         alertDialog.show();
     }
 
-    private void saveCoorHouseToSQlite(){
-        SQLiteDatabase db;
+    private void saveCoorHouseToSQlite(Context context) {
 
-        String DBFile = DATABASE_COOR_HOUSE_DB + "-" + UserZone +".sqlite";
-        long number = 0;
-
-        ExternalStorage_Coor_House_OpenHelper obj = new ExternalStorage_Coor_House_OpenHelper(getApplicationContext(),DBFile);
+        this.DBFile  = DATABASE_COOR_HOUSE_DB + "-" + UserZone + ".sqlite";
+        ExternalStorage_Coor_House_OpenHelper obj = new ExternalStorage_Coor_House_OpenHelper(context, DBFile);
         if (obj.databaseFileExists()) {
-            db=obj.getReadableDatabase();
-            number = obj.InsertDataHouseGeoLocation(
-                    txtQT.getText().toString().trim(),
-                    Emp_ID,
-                    dateStamp,
-                    polygon,
-                    coordinateX,
-                    coordinateY,
-                    latitude,
-                    longitude,
-                    db);
+            this.mydb = obj.getWritableDatabase(); // เปิดฐานข้อมูลให้เป็นแบบเขียนได้
+            long check = -1;
+            try {
+                this.mydb.beginTransaction();
+                check = obj.InsertDataHouseGeoLocation(
+                        txtQT.getText().toString().trim(),
+                        Emp_ID,
+                        dateStamp,
+                        polygon,
+                        coordinateX,
+                        coordinateY,
+                        latitude,
+                        longitude,
+                        mydb);
+                mydb.setTransactionSuccessful();
 
-            if(number<0){
-                Toast.makeText(getApplicationContext(),
-                        "การบันทึกข้อมูลผิดพลาดกรุณาบันทึกข้อมูลอีกครั้ง", Toast.LENGTH_SHORT)
-                        .show();
-            } else {
-                Toast.makeText(getApplicationContext(),
-                        "บันทึกข้อมูลเสร็จสิ้น", Toast.LENGTH_SHORT)
-                        .show();
-                finish();
+            } catch (Exception e) {
+                Log.e("Check", "Failed to insert data into database: " + e.getMessage());
+                Toast.makeText(context, "Failed to insert data into database: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            } finally {
+                mydb.endTransaction();
+                obj.close();
             }
-            obj.close();
-        }else{
 
-            Toast.makeText(getApplicationContext(),
-                    "การบันทึกข้อมูลผิดพลาดกรุณาบันทึกข้อมูลอีกครั้ง", Toast.LENGTH_SHORT)
-                    .show();
+            if (check != -1) {
+                Toast.makeText(getApplicationContext(), "บันทึกข้อมูลเสร็จสิ้น", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                Log.e("Check", "บันทึกข้อมูลล้มเหลว");
+            }
         }
     }
-    private String getUserZone(){
+
+    private String getUserZone() {
         SQLiteDatabase db;
         String DBFile = DATABASE_CENTER_DB + ".sqlite";
-        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(),DBFile);
+        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(), DBFile);
         if (obj.databaseFileExists()) {
             db = obj.getReadableDatabase();
             UserZone = obj.LoginData("1", db);
@@ -278,10 +292,10 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
         return "NULL";
     }
 
-    private String getEmpID(){
+    private String getEmpID() {
         SQLiteDatabase db;
         String DBFile = DATABASE_CENTER_DB + ".sqlite";
-        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(),DBFile);
+        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(), DBFile);
         if (obj.databaseFileExists()) {
             db = obj.getReadableDatabase();
             Emp_ID = obj.GetEmpID("1", db);
@@ -291,8 +305,6 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
         }
         return "NULL";
     }
-
-
 
 
     @Override
@@ -313,8 +325,7 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setMessage("ออกจากการลงเก็บพิกัดจุดที่อยู่ใช่หรือไม่?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
 
@@ -327,6 +338,7 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
     }
 
     ////////////////////Camera///////////////////////////////////////
+
     /**
      * Capturing Camera Image will lauch camera app requrest image capture
      */
@@ -364,7 +376,7 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
 
     /**
      * Receiving activity result method will be called after closing the camera
-     * */
+     */
     @Override
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -397,7 +409,6 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
     }
 
 
-
     /**
      * Display image from a path to ImageView
      */
@@ -417,7 +428,6 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
             Bitmap bm1 = null;
 
 
-
             try {
                 ExifInterface exif = new ExifInterface(fileUri.getPath());
                 int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
@@ -425,37 +435,36 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
                 Matrix matrix = new Matrix();
                 if (orientation == 6) {
                     matrix.postRotate(90);
-                    bitmap = Bitmap.createBitmap(bitmap, 0, 0,bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
+                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
 
                 } else if (orientation == 3) {
                     matrix.postRotate(180);
-                    bitmap = Bitmap.createBitmap(bitmap, 0, 0,bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
+                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
 
                 } else if (orientation == 8) {
                     matrix.postRotate(270);
-                    bitmap = Bitmap.createBitmap(bitmap, 0, 0,bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
+                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
 
                 } else if (orientation == 1) {
                     matrix.postRotate(0);
-                    bitmap = Bitmap.createBitmap(bitmap, 0, 0,bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
+                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
 
                 }
 
-                if(orientation == 1 || orientation == 3){
-                    bm1 = getResizedBitmap(bitmap,341,455);
+                if (orientation == 1 || orientation == 3) {
+                    bm1 = getResizedBitmap(bitmap, 341, 455);
                 } else {
-                    bm1 = getResizedBitmap(bitmap,455,341);
+                    bm1 = getResizedBitmap(bitmap, 455, 341);
 
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
 
             }
 
             Bitmap newBitmap = null;
 
             Bitmap.Config config = bm1.getConfig();
-            if(config == null){
+            if (config == null) {
                 config = Bitmap.Config.ARGB_8888;
             }
 
@@ -465,11 +474,9 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
             newCanvas.drawBitmap(bm1, 0, 0, null);
 
 
-
-
             //String captionString ="X=1011111_Y=17150000_2014-05-22";
-            String captionString =time_str;
-            if(captionString != null){
+            String captionString = time_str;
+            if (captionString != null) {
 
                 Paint paintText = new Paint(Paint.ANTI_ALIAS_FLAG);
                 paintText.setColor(Color.RED);
@@ -484,10 +491,9 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
                         0, rectText.height(), paintText);
 
 
-
             }
 
-            casheBitmap=newBitmap;
+            casheBitmap = newBitmap;
             //imgPreview.setImageBitmap(newBitmap);
 
             File fdelete = new File(fileUri.getPath());
@@ -498,7 +504,6 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
                     //System.out.println("file not Deleted :" + fileUri.getPath());
                 }
             }
-
 
 
             image = Utilities.getBytes(casheBitmap);
@@ -512,8 +517,6 @@ public class CoordinateHouseConfirmActivity extends AppCompatActivity implements
 			  b.putString("RG_KEY",regis_active_key);
 			  myIntentCheckCaneRegis_ABC.putExtras(b);
 	          startActivity(myIntentCheckCaneRegis_ABC);*/
-
-
 
 
         } catch (NullPointerException e) {

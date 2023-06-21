@@ -8,7 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,572 +21,663 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="รายการตรวจเยี่ยมสมาชิก"
-                android:textSize="34sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:textColor="@color/colorBlack"/>
-<!--            //ชื่อ-->
-            <LinearLayout
+                android:gravity="center"
+                android:text="รายการตรวจเยี่ยมสมาชิก"
+                android:textColor="@color/colorBlack"
+                android:textSize="34sp" />
+            <!--            //ชื่อ-->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_margin="12dp"
+                app:cardCornerRadius="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
+                    android:orientation="vertical">
 
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
-                        android:layout_width="0dp"
+                    <!-- รหัสสมาชิก -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="3"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
 
-                        >
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3">
+
+                            <EditText
+                                android:id="@+id/qouta_ID"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="ID สมาชิก"
+                                android:inputType="number"
+                                android:maxLength="6"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                        <Button
+                            android:id="@+id/btnSearch"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="ค้นหา" />
+                    </LinearLayout>
+
+                    <!-- ชื่อ-สกุลสมาชิก -->
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <EditText
-                            android:id="@+id/qouta_ID"
+                            android:id="@+id/Member_Name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:maxLength="6"
-                            android:hint="ID สมาชิก"
-                            android:inputType="number"
-                            android:singleLine="true"
-                            android:padding="18dp"/>
+                            android:enabled="false"
+                            android:hint="ชื่อ-สกุล สมาชิก"
+                            android:padding="18dp"
+                            android:singleLine="true" />
                     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
-                    <Button style="@style/Widget.AppCompat.Button.Colored"
-                        android:id="@+id/btnSearch"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="ค้นหา"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
                 </LinearLayout>
 
-                <com.wrapp.floatlabelededittext.FloatLabeledEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            </androidx.cardview.widget.CardView>
 
-                    <EditText
-                        android:id="@+id/Member_Name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:hint="ชื่อ-สกุล สมาชิก"
-                        android:enabled="false"
-                        android:singleLine="true"
-                        android:padding="18dp"/>
-                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
-
-            </LinearLayout>
-
-<!--            //การประเมิน-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="8dp">
+            <!--            //การประเมิน-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-<!--                //1-->
+                <!--                //1-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="1.มีคู่มือจัดการสวนป่าอย่างยั่งยืน"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO1"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO1"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-<!--                //2-->
+
+                <!--                //2-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="300dp"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="2.มีแฟ้มสมาชิก"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
 
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO2"
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-<!--                //3-->
+
+                <!--                //3-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
 
                     <TextView
-                        android:layout_width="300dp"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+
                         android:text="3.มีการจดบันทึกกิจกรรมในสวนยางพารา"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO3"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO3"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO3"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-<!--                //4-->
+
+                <!--                //4-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="300dp"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+
                         android:text="4.มีการสนับสนุนให้คนงานสวมใส่อุปกรณ์ป้องกันภัย"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO4"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO4"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO4"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
 
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //5-->
+                <!--                //5-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+
                         android:text="5.มีหลักฐานการจ่าย/รับเงิน ของคนงาน"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO5"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO5"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO5"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
 
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //6-->
+                <!--                //6-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+
                         android:text="6.มีใบเสร็จรับเงินเสียภาษีบำรุงท้องที่"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO6"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
 
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO6"
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO6"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
 
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    </LinearLayout>
                 </LinearLayout>
-
-<!--                //7-->
+                <!--                //7-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+
                         android:text="7.มีการใช้สารเคมี (ระบุชื่อสารเคมีที่ใช้ และปริมาณการใช้)"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO7"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO7"
+
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO7"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:enabled="false"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:enabled="false"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    </LinearLayout>
 
                 </LinearLayout>
-
-<!--                //8-->
+                <!--                //8-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+
                         android:text="8.มีการใช้ปุ๋ยเคมี (ระบุสูตร ปริมาณใส่ และวันที่ใส่)"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO8"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO8"
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO8"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:enabled="false"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
 
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:enabled="false"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    </LinearLayout>
                 </LinearLayout>
-
-<!--                //9-->
+                <!--                //9-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+
                         android:text="9.มีความต้องการฝึกอบรม (ระบุเรื่องที่ต้องการอบรม)"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO9"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO9"
+
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO9"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:enabled="false"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
 
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:enabled="false"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    </LinearLayout>
                 </LinearLayout>
-
-<!--                //10-->
+                <!--                //10-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+
                         android:text="10.มีการกำจัดขยะอย่างถูกวิธี"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO10"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_gravity="center"
-                        />
 
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO10"
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO10"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center" />
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
 
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //11-->
+                <!--                //11-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+
                         android:text="11.มีอุบัติเหตุจากการทำกิจกรรมในสวนยางพารา"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO11"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_gravity="center"
-                        />
 
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO11"
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO11"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center" />
+
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO11"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
 
                 </LinearLayout>
-<!--                //เรื่องร้องเรียน 12-->
+                <!--                //เรื่องร้องเรียน 12-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp">
+                    android:orientation="vertical">
 
 
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+
                         android:text="คำแนะนำอื่นๆ"
                         android:textColor="#000000"
-                        android:layout_gravity="center"
-                        android:textSize="19sp"/>
+                        android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitMem_NO12"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
 
-                        <EditText
-                            android:id="@+id/VisitMemSuggest_NO12"
+                        <CheckBox
+                            android:id="@+id/VisitMem_NO12"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
+
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="ถ้ามี ระบุ"
-                            android:enabled="false"
-                            android:singleLine="true"
-                            android:padding="18sp"/>
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_height="wrap_content">
 
+                            <EditText
+                                android:id="@+id/VisitMemSuggest_NO12"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:enabled="false"
+                                android:hint="ถ้ามี ระบุ"
+                                android:padding="18sp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
             </LinearLayout>
-
-            <Button style="@style/Widget.AppCompat.Button.Colored"
-                android:id="@+id/save"
-                android:layout_margin="20dp"
-                android:layout_width="300dp"
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="บันทึกแบบประเมิน"
-                android:background="@color/colorPrimary"
-                android:layout_gravity="center"/>
+                android:layout_margin="12dp"
+                app:cardCornerRadius="8dp">
+
+                <Button
+                    android:id="@+id/save"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:background="@color/colorPrimary"
+                    android:text="บันทึกแบบประเมิน" />
+            </androidx.cardview.widget.CardView>
+
 
         </LinearLayout>
     </ScrollView>

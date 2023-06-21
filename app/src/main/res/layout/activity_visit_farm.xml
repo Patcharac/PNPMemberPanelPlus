@@ -20,34 +20,34 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="รายการตรวจเยี่ยมแปลงสมาชิก"
-                android:textSize="34sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:textColor="@color/colorBlack"/>
+                android:gravity="center"
+                android:text="รายการตรวจเยี่ยมแปลงสมาชิก"
+                android:textColor="@color/colorBlack"
+                android:textSize="34sp" />
 
-<!--            //ชื่อ-->
+            <!--            //ชื่อ-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <!--<com.wrapp.floatlabelededittext.FloatLabeledEditText-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
 
-                    <!--&gt;-->
+                <!--&gt;-->
 
-                    <!--<EditText-->
-                        <!--android:id="@+id/qouta_ID"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:maxLength="6"-->
-                        <!--android:hint="ID สมาชิก"-->
-                        <!--android:inputType="number"-->
-                        <!--android:singleLine="true" />-->
+                <!--<EditText-->
+                <!--android:id="@+id/qouta_ID"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:maxLength="6"-->
+                <!--android:hint="ID สมาชิก"-->
+                <!--android:inputType="number"-->
+                <!--android:singleLine="true" />-->
                 <!--</com.wrapp.floatlabelededittext.FloatLabeledEditText>-->
 
 
@@ -65,60 +65,61 @@
                         android:hint="ID สวนยางพารา"
                         android:inputType="number"
                         android:maxLength="9"
-                        android:singleLine="true"
                         android:padding="18dp"
-                        />
+                        android:singleLine="true" />
                 </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
 
             </LinearLayout>
 
-<!--            //ปลูกยางใหม่-->
-<!--            //close function-->
+            <!--            //ปลูกยางใหม่-->
+            <!--            //close function-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0px"
                 android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/layout_bg_white"
                 android:gravity="center"
-                android:visibility="invisible"
-                android:background="@drawable/layout_bg_white">
+                android:orientation="horizontal"
+                android:visibility="invisible">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:text="มีการปลูกยางใหม่"
                         android:textColor="#000000"
-                        android:layout_gravity="center"
                         android:textSize="19sp" />
 
                     <CheckBox
                         android:id="@+id/checkPlant"
-                        android:layout_marginLeft="5dp"
                         android:layout_width="40dp"
                         android:layout_height="50dp"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp" />
 
 
                     <com.wrapp.floatlabelededittext.FloatLabeledEditText
                         android:layout_width="90dp"
                         android:layout_height="wrap_content">
+
                         <EditText
                             android:id="@+id/rubberYearOfPlant"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
+                            android:enabled="false"
                             android:hint="ปีที่ปลูก"
                             android:inputType="number"
                             android:maxLength="4"
-                            android:enabled="false"
                             android:singleLine="true" />
                     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
@@ -127,483 +128,534 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp">
+
                         <EditText
                             android:id="@+id/rubberBreed"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:hint="พันธ์ยาง"
                             android:enabled="false"
+                            android:hint="พันธ์ยาง"
                             android:singleLine="true" />
                     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
                 </LinearLayout>
 
             </LinearLayout>
 
-<!--            //ประเมิน-->
+            <!--            //ประเมิน-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-<!--                //1-->
+                <!--                //1-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="1.มีขยะทั่วไปในแปลง"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitFarm_NO1"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitFarm_NO1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitFarmSuggest_NO1"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                            >
+
+                            <EditText
+                                android:id="@+id/VisitFarmSuggest_NO1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
 
                 </LinearLayout>
 
-<!--                //2-->
+                <!--                //2-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="2.มีขยะอันตรายในแปลง"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitFarm_NO2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitFarm_NO2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitFarmSuggest_NO2"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+                            >
+
+                            <EditText
+                                android:id="@+id/VisitFarmSuggest_NO2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //3-->
+                <!--                //3-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="3.มีการเปลี่ยนแปลงสภาพพื้นที่(ทำถนน ขุดสระฯ)"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitFarm_NO3"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
 
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
 
-                        <EditText
-                            android:id="@+id/VisitFarmSuggest_NO3"
+                        <CheckBox
+                            android:id="@+id/VisitFarm_NO3"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+                            >
+
+                            <EditText
+                                android:id="@+id/VisitFarmSuggest_NO3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //4-->
+                <!--                //4-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="4.มีการระบาดของโรคและแมลง(ให้คะแนนความรุนแรง 1-5)"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitFarm_NO4"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
 
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitFarm_NO4"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitFarmSuggest_NO4"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+                            >
+
+                            <EditText
+                                android:id="@+id/VisitFarmSuggest_NO4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //5-->
+                <!--                //5-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="5.มีร่องรอยของไฟไหม้สวนยางพารา"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitFarm_NO5"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
 
-                        <EditText
-                            android:id="@+id/VisitFarmSuggest_NO5"
+                        <CheckBox
+                            android:id="@+id/VisitFarm_NO5"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+                            >
+
+                            <EditText
+                                android:id="@+id/VisitFarmSuggest_NO5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //6-->
+                <!--                //6-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="6.มีการลักลอบตัดไม้"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitFarm_NO6"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitFarm_NO6"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitFarmSuggest_NO6"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+                            >
+
+
+                            <EditText
+                                android:id="@+id/VisitFarmSuggest_NO6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //7-->
+                <!--                //7-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="7.มีการลุกล้ำพื้นที่สวนป่า"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitFarm_NO7"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitFarm_NO7"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitFarmSuggest_NO7"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+                            >
+
+                            <EditText
+                                android:id="@+id/VisitFarmSuggest_NO7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //8-->
+                <!--                //8-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="8.มีร่องรอยการพังทะลายของดิน"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitFarm_NO8"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitFarm_NO8"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitFarmSuggest_NO8"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+                            >
+
+                            <EditText
+                                android:id="@+id/VisitFarmSuggest_NO8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--              /  //9-->
+                <!--              /  //9-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="9.ปลูกยางพาราในพื้นที่ Beffer zone"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitFarm_NO9"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitFarm_NO9"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitFarmSuggest_NO9"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+                            >
+
+                            <EditText
+                                android:id="@+id/VisitFarmSuggest_NO9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //10-->
+                <!--                //10-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="10.สภาพความสมบูรณ์ของต้นยางพารา(ให้คะแนนความสมบูรณ์ 1-5)"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitFarm_NO10"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitFarm_NO10"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitFarmSuggest_NO10"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+                            >
+
+                            <EditText
+                                android:id="@+id/VisitFarmSuggest_NO10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //11-->
+                <!--                //11-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:text="11.คุณภาพการกรีดยาง(ให้คะแนน 1-5)"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
-                    <CheckBox
-                        android:id="@+id/VisitFarm_NO11"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
-                        >
+                        <CheckBox
+                            android:id="@+id/VisitFarm_NO11"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center" />
 
-                        <EditText
-                            android:id="@+id/VisitFarmSuggest_NO11"
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:hint="คำแนะนำ"
-                            android:singleLine="true" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
+                            >
+
+                            <EditText
+                                android:id="@+id/VisitFarmSuggest_NO11"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:hint="คำแนะนำ"
+                                android:padding="18dp"
+                                android:singleLine="true" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                    </LinearLayout>
                 </LinearLayout>
 
-<!--                //เรื่องร้องเรียน 12-->
+                <!--                //เรื่องร้องเรียน 12-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp">
+                    android:orientation="vertical">
 
 
                     <TextView
@@ -611,15 +663,17 @@
                         android:layout_height="wrap_content"
                         android:text="คำแนะนำอื่นๆ"
                         android:textColor="#000000"
-                        android:layout_gravity="center"
-                        android:textSize="19sp"/>
+                        android:textSize="19sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
 
                     <CheckBox
                         android:id="@+id/VisitFarm_NO12"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        />
+                        android:layout_gravity="center" />
 
 
                     <com.wrapp.floatlabelededittext.FloatLabeledEditText
@@ -633,38 +687,38 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:hint="ถ้ามี ระบุ"
                             android:enabled="false"
-                            android:singleLine="true"
-                            android:padding="18sp"/>
+                            android:hint="ถ้ามี ระบุ"
+                            android:padding="18sp"
+                            android:singleLine="true" />
                     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
 
                 </LinearLayout>
-
+                </LinearLayout>
             </LinearLayout>
 
-<!--            //สิ่งที่พบ-->
+            <!--            //สิ่งที่พบ-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:paddingBottom="10dp"
-                android:background="@drawable/layout_bg"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/layout_bg"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="สิ่งที่พบ"
-                    android:textSize="23sp"
-                    android:layout_marginLeft="10dp"/>
-<!--                //ปุ่มค้นหา-->
+                    android:textSize="23sp" />
+                <!--                //ปุ่มค้นหา-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -687,13 +741,14 @@
                             android:singleLine="true" />
                     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
-                    <Button style="@style/Widget.AppCompat.Button.Colored"
+                    <Button
                         android:id="@+id/findObject"
+                        style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="บันทึก"
-                        android:icon="@android:drawable/ic_menu_search"/>
+                        android:icon="@android:drawable/ic_menu_search"
+                        android:text="บันทึก" />
 
                 </LinearLayout>
 
@@ -702,46 +757,47 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginTop="5dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/layout_bg_white">
+                android:background="@drawable/layout_bg_white"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/btnLetCamera"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@android:drawable/ic_menu_camera"
                     android:padding="16dp"
                     android:text="รูปแปลงยางพารา"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:drawableLeft="@android:drawable/ic_menu_camera"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:id="@+id/imgFarm"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-<!--                    android:layout_width="400dp"-->
-<!--                    android:layout_height="300dp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_margin="10dp"-->
-<!--                    android:visibility="gone"-->
-<!--                    />-->
+                    android:layout_weight="1" />
+                <!--                    android:layout_width="400dp"-->
+                <!--                    android:layout_height="300dp"-->
+                <!--                    android:layout_gravity="center"-->
+                <!--                    android:layout_margin="10dp"-->
+                <!--                    android:visibility="gone"-->
+                <!--                    />-->
 
             </LinearLayout>
 
-            <Button style="@style/Widget.AppCompat.Button.Colored"
+            <Button
                 android:id="@+id/save"
-                android:layout_margin="20dp"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="บันทึกแบบประเมิน"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
                 android:background="@color/colorPrimary"
-                android:layout_gravity="center"/>
+                android:text="บันทึกแบบประเมิน" />
 
 
         </LinearLayout>

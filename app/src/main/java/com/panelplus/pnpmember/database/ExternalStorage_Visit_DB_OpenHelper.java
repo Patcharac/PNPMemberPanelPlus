@@ -41,7 +41,7 @@ public class ExternalStorage_Visit_DB_OpenHelper {
         }
 
         this.dbFile = new File(folder, dbFileName);
-
+        Log.e("Check", "dbFile Check Data : " +dbFile);
     }
 
     public boolean databaseFileExists() {

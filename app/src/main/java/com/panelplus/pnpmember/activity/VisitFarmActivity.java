@@ -1,11 +1,13 @@
 package com.panelplus.pnpmember.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -49,6 +51,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import static androidx.media.MediaBrowserServiceCompat.RESULT_OK;
 
@@ -78,6 +82,7 @@ public class VisitFarmActivity extends AppCompatActivity implements View.OnClick
 
     private int checkSuggest = 0;
     private int checkTextSuggest = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private String Emp_ID = "";
     private String UserZone = "";
@@ -294,7 +299,7 @@ public class VisitFarmActivity extends AppCompatActivity implements View.OnClick
 
             case R.id.btnLetCamera:
                 numimage = 1;
-                captureImage();
+                captureImageCamera();
 
                 break;
 
@@ -491,15 +496,15 @@ public class VisitFarmActivity extends AppCompatActivity implements View.OnClick
 
     private void saveObjectToSqlite(Context context) {
         String DBFile = DATABASE_VISIT_DB + "-" + UserZone + ".sqlite";
-        Log.e("Check","Check Log DBFILE " +  DBFile);
+        Log.e("Check", "Check Log DBFILE " + DBFile);
         ExternalStorage_Visit_DB_OpenHelper obj = new ExternalStorage_Visit_DB_OpenHelper(context, DBFile);
         if (obj.databaseFileExists()) {
             db = obj.getWritableDatabase(); // เปิดฐานข้อมูลให้เป็นแบบเขียนได้
-            Log.e("Check","Check db : " + db.getPath());
+            Log.e("Check", "Check db : " + db.getPath());
             long check = -1;
             try {
                 db.beginTransaction();
-                Log.e("Check","Check edtFarm_ID : " + edtFarm_ID.getText().toString().trim());
+                Log.e("Check", "Check edtFarm_ID : " + edtFarm_ID.getText().toString().trim());
                 check = obj.insertDataObject(edtFarm_ID.getText().toString().trim(),
                         ObjLocalNameSrc.getText().toString().trim(), "VisitFarm"
                         , db);
@@ -664,12 +669,42 @@ public class VisitFarmActivity extends AppCompatActivity implements View.OnClick
 //        // start the image capture Intent
 //        startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
 //    }
-    private void captureImage() {
-        Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(i, RESULT_LOAD_IMAGE);
+    private void captureImageCamera() {
+        if (checkCameraPermission()) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
 
+        } else {
+            requestCameraPermission();
+        }
     }
 
+    private boolean checkCameraPermission() {
+        int cameraPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        return cameraPermission == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestCameraPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_IMAGE_CAPTURE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // ได้รับอนุญาตการเข้าถึงกล้อง
+                Log.e("Check", "Permission Ok");
+                captureImageCamera();
+
+            } else {
+                // การอนุญาตถูกปฏิเสธ
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    /* access modifiers changed from: protected */
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable("file_uri", fileUri);
@@ -682,301 +717,64 @@ public class VisitFarmActivity extends AppCompatActivity implements View.OnClick
         this.fileUri = (Uri) savedInstanceState.getParcelable("file_uri");
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
 
-            if (resultCode == -1) {
 
+            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
                 if (numimage == 1) {
 
-                    Uri selectedImageUri = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
-                    Cursor cursor = getContentResolver().query(selectedImageUri, filePathColumn, null, null, null);
-                    cursor.moveToFirst();
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String imagePath = cursor.getString(columnIndex);
-                    cursor.close();
+                    Log.e("Check", "numimage == 5 : " + "ใช้ในการโครงการ FSC");
 
-                    // อ่านและเก็บรูปภาพเป็นไบต์แอร์เรย์
-                    Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+                    Bitmap textBitmap = Bitmap.createBitmap(imageBitmap.getWidth(), imageBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(textBitmap);
+
+                    canvas.drawBitmap(imageBitmap, 0, 0, null);
+
+                    float centerX = textBitmap.getWidth() / 2f;
+                    float centerY = textBitmap.getHeight() / 2f;
+
+                    String text = "ใช้ในการสมัครโครงการ FSC";
+                    Paint textPaint = new Paint();
+                    textPaint.setColor(Color.WHITE);
+                    textPaint.setTextSize(12);
+                    textPaint.setAntiAlias(true);
+
+                    float textWidth = textPaint.measureText(text);
+                    float textHeight = textPaint.getTextSize();
+
+                    // การเอียงข้อความ 45 องศา
+                    Matrix matrix = new Matrix();
+                    matrix.postRotate(45, centerX, centerY);
+                    canvas.setMatrix(matrix);
+
+                    float textX = centerX - (textWidth / 2f);
+                    float textY = centerY + (textHeight / 2f);
+
+                    canvas.drawText(text, textX, textY, textPaint);
+
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                    this.PicFarm = stream.toByteArray();
+                    textBitmap.compress(Bitmap.CompressFormat.JPEG, 1, stream);
+                    byte[] byteArray = stream.toByteArray();
+                    this.PicFarm = byteArray;
 
+                    int newWidth = 720;
+                    int newHeight = 1280;
+                    Bitmap scaledBitmap = Bitmap.createScaledBitmap(textBitmap, newWidth, newHeight, true);
 
-                    Toast.makeText(getApplicationContext(), "ขนาด : " + PicFarm.length, Toast.LENGTH_SHORT).show();
-
-                    // แสดงรูปภาพที่เลือก
                     ImageView imageView = findViewById(R.id.imgFarm);
-                    imageView.setImageBitmap(bitmap);
+                    imageView.setImageBitmap(scaledBitmap);
 
 
                 }
-            } else if (resultCode != 0) {
-                Toast.makeText(getApplicationContext(), "Sorry! Failed to capture image", Toast.LENGTH_SHORT).show();
             }
         }
     }
-
-    /**
-     * Here we store the file url as it will be null after returning from camera
-     * app
-     */
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//
-//        // save file url in bundle as it will be null on scren orientation
-//        // changes
-//        outState.putParcelable("file_uri", fileUri);
-//    }
-//
-//    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//
-//        // get the file url
-//        fileUri = savedInstanceState.getParcelable("file_uri");
-//    }
-
-    /**
-     * Receiving activity result method will be called after closing the camera
-     */
-//    @Override
-
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        // if the result is capturing Image
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
-//            if (resultCode == RESULT_OK) {
-//                // successfully captured the image
-//                // display it in image view
-//
-//
-//                PicFarm = previewCapturedImage();
-//                imgFarm.setVisibility(View.VISIBLE);
-//                imgFarm.setImageBitmap(casheBitmap);
-//
-//            } else if (resultCode == RESULT_CANCELED) {
-//                // user cancelled Image capture
-//                //Toast.makeText(getApplicationContext(),
-//                //"User cancelled image capture", Toast.LENGTH_SHORT)
-//                //.show();
-//                //captureImage();
-//
-//            } else {
-//                // failed to capture image
-//                Toast.makeText(getApplicationContext(),
-//                                "Sorry! Failed to capture image", Toast.LENGTH_SHORT)
-//                        .show();
-//            }
-//        }
-//    }
-
-
-    /**
-     * Display image from a path to ImageView
-     */
-//    private byte[] previewCapturedImage() {
-//        try {
-//            // hide video preview
-//
-//            // bimatp factory
-//            BitmapFactory.Options options = new BitmapFactory.Options();
-//
-//            // downsizing image as it throws OutOfMemory Exception for larger
-//            // images
-//            options.inSampleSize = 1;
-//
-//            Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath(),
-//                    options);
-//            Bitmap bm1 = null;
-//
-//
-//            try {
-//                ExifInterface exif = new ExifInterface(fileUri.getPath());
-//                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-//                Log.d("EXIF", "Exif: " + orientation);
-//                Matrix matrix = new Matrix();
-//                if (orientation == 6) {
-//                    matrix.postRotate(90);
-//                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
-//
-//                } else if (orientation == 3) {
-//                    matrix.postRotate(180);
-//                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
-//
-//                } else if (orientation == 8) {
-//                    matrix.postRotate(270);
-//                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
-//
-//                } else if (orientation == 1) {
-//                    matrix.postRotate(0);
-//                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
-//
-//                }
-//
-//                if (orientation == 1 || orientation == 3) {
-//                    bm1 = getResizedBitmap(bitmap, 341, 455);
-//                } else {
-//                    bm1 = getResizedBitmap(bitmap, 455, 341);
-//
-//                }
-//            } catch (Exception e) {
-//
-//            }
-//
-//            Bitmap newBitmap = null;
-//
-//            Bitmap.Config config = bm1.getConfig();
-//            if (config == null) {
-//                config = Bitmap.Config.ARGB_8888;
-//            }
-//
-//            newBitmap = Bitmap.createBitmap(bm1.getWidth(), bm1.getHeight(), config);
-//            Canvas newCanvas = new Canvas(newBitmap);
-//
-//            newCanvas.drawBitmap(bm1, 0, 0, null);
-//
-//
-//            //String captionString ="X=1011111_Y=17150000_2014-05-22";
-//            String captionString = time_str;
-//            if (captionString != null) {
-//
-//                Paint paintText = new Paint(Paint.ANTI_ALIAS_FLAG);
-//                paintText.setColor(Color.RED);
-//                paintText.setTextSize(10);
-//                paintText.setStyle(Paint.Style.FILL);
-//                paintText.setShadowLayer(10f, 10f, 10f, Color.BLACK);
-//
-//                Rect rectText = new Rect();
-//                paintText.getTextBounds(captionString, 0, captionString.length(), rectText);
-//
-//                newCanvas.drawText(captionString,
-//                        0, rectText.height(), paintText);
-//
-//
-//            }
-//
-//            casheBitmap = newBitmap;
-//            //imgPreview.setImageBitmap(newBitmap);
-//
-//            File fdelete = new File(fileUri.getPath());
-//            if (fdelete.exists()) {
-//                if (fdelete.delete()) {
-//                    //System.out.println("file Deleted :" + fileUri.getPath());
-//                } else {
-//                    //System.out.println("file not Deleted :" + fileUri.getPath());
-//                }
-//            }
-//
-//
-//            image = Utilities.getBytes(casheBitmap);
-//
-//
-//
-//	          /*Intent myIntentCheckCaneRegis_ABC = new Intent(Regis_New_Cane.this, ABC_New_Cane.class);
-//			  Bundle b = new Bundle();
-//			  b.putString("ABC_Phase", ABC_Phase);
-//			  b.putString("PER_ID", UserZone);
-//			  b.putString("RG_KEY",regis_active_key);
-//			  myIntentCheckCaneRegis_ABC.putExtras(b);
-//	          startActivity(myIntentCheckCaneRegis_ABC);*/
-//
-//
-//        } catch (NullPointerException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return image;
-//    }
-
-    public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth) {
-        int width = bm.getWidth();
-        int height = bm.getHeight();
-        float scaleWidth = ((float) newWidth) / width;
-        float scaleHeight = ((float) newHeight) / height;
-        // CREATE A MATRIX FOR THE MANIPULATION
-        Matrix matrix = new Matrix();
-        // RESIZE THE BIT MAP
-        matrix.postScale(scaleWidth, scaleHeight);
-
-        // "RECREATE" THE NEW BITMAP
-        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
-        return resizedBitmap;
-    }
-
-    /**
-     * ------------ Helper Methods ----------------------
-     * */
-
-    /**
-     * Creating file uri to store image/video
-     */
-    public Uri getOutputMediaFileUri(int type) {
-        return Uri.fromFile(getOutputMediaFile(type));
-    }
-
-    /**
-     * returning image / video
-     */
-    private static File getOutputMediaFile(int type) {
-
-        // External sdcard location
-        File mediaStorageDir = new File(
-                Environment
-                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                IMAGE_DIRECTORY_NAME);
-
-        // Create the storage directory if it does not exist
-        if (!mediaStorageDir.exists()) {
-            if (!mediaStorageDir.mkdirs()) {
-                Log.d(IMAGE_DIRECTORY_NAME, "Oops! Failed create "
-                        + IMAGE_DIRECTORY_NAME + " directory");
-                return null;
-            }
-        }
-
-        // Create a media file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
-                Locale.getDefault()).format(new Date());
-        File mediaFile;
-        if (type == MEDIA_TYPE_IMAGE) {
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                    + "IMG_" + timeStamp + ".jpg");
-        } else if (type == MEDIA_TYPE_VIDEO) {
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                    + "VID_" + timeStamp + ".mp4");
-        } else {
-            return null;
-        }
-
-        return mediaFile;
-    }
-
-//    public void onStart() {
-//        super.onStart();
-//
-//        edtQouta_ID.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                edtFarm_ID.setText(edtQouta_ID.getText()+"001");
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
-//    }
-
-
 }

@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 //import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.panelplus.pnpmember.R;
 import com.panelplus.pnpmember.database.ExternalStorage_Center_DB_OpenHelper;
@@ -16,21 +18,22 @@ import java.io.File;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MenuVisitActivity extends AppCompatActivity implements View.OnClickListener{
+public class MenuVisitActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnVisitMember;
     Button btnVisitFarm;
     Button btnRecCir;
 
-    private String UserZone="";
+    private String UserZone = "";
 
     //===============DB================//
-    SQLiteDatabase mydb=null;
+    SQLiteDatabase mydb = null;
 
     private String DBFile;
     SQLiteDatabase db;
-
-    @SuppressLint("SdCardPath") String DATABASE_FILE_PATH="/sdcard/MapDB/";
+    File Path = null;
+    @SuppressLint("SdCardPath")
+    String DATABASE_FILE_PATH = "/sdcard/MapDB/";
     private static final String DATABASE_CENTER_DB = "CENTER_DB";
 
     private static final String DATABASE_VISIT_DB = "VISIT_DB";
@@ -49,14 +52,14 @@ public class MenuVisitActivity extends AppCompatActivity implements View.OnClick
         UserZone = getUserZone();
 
         //creat all table to use in this page
-        creatDB();
+        creatDB(this);
 
     }
 
-    private String getUserZone(){
+    private String getUserZone() {
         SQLiteDatabase db;
         String DBFile = DATABASE_CENTER_DB + ".sqlite";
-        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(),DBFile);
+        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(getApplicationContext(), DBFile);
         if (obj.databaseFileExists()) {
             db = obj.getReadableDatabase();
             UserZone = obj.LoginData("1", db);
@@ -67,38 +70,60 @@ public class MenuVisitActivity extends AppCompatActivity implements View.OnClick
         return "NULL";
     }
 
-    private void creatDB() {
-        mydb = this.openOrCreateDatabase(DATABASE_FILE_PATH + File.separator
-                + DATABASE_VISIT_DB + "-" + UserZone + ".sqlite", Context.MODE_PRIVATE, null);
+    private void creatDB(Context context) {
 
-        mydb.execSQL(" create table if not exists " + TABLE_VISIT_MEMBER_DATA +
-                "   (_id INTEGER PRIMARY KEY AUTOINCREMENT ," +
-                "   VisitMem_Date TEXT ,"+
-                "   mem_Name TEXT ," +
-                "   qouta_ID TEXT ," +
-                "   Emp_ID TEXT ," +
-                "   VisitMem_NO1 TEXT,"+
-                "   VisitMemSuggest_NO1 TEXT ,"+
-                "   VisitMem_NO2 TEXT ,"+
-                "   VisitMemSuggest_NO2  ,"+
-                "   VisitMem_NO3 TEXT ,"+
-                "   VisitMemSuggest_NO3 TEXT ,"+
-                "   VisitMem_NO4 TEXT ,"+
-                "   VisitMemSuggest_NO4 TEXT ,"+
-                "   VisitMem_NO5 TEXT ,"+
-                "   VisitMemSuggest_NO5 TEXT ,"+
-                "   VisitMem_NO6 TEXT ,"+
-                "   VisitMemSuggest_NO6 TEXT ,"+
-                "   VisitMem_NO7 TEXT ,"+
-                "   VisitMemSuggest_NO7 TEXT ,"+
-                "   VisitMem_NO8 TEXT ,"+
-                "   VisitMemSuggest_NO8 TEXT ,"+
-                "   VisitMem_NO9 TEXT ,"+
-                "   VisitMemSuggest_NO9 TEXT ,"+
-                "   VisitMem_NO10 TEXT ,"+
-                "   VisitMemSuggest_NO10 TEXT ,"+
-                "   VisitMem_NO11 TEXT ,"+
-                "   VisitMemSuggest_NO11 TEXT );" );
+        if (context != null) {
+            String folderName = "MapDB";
+            String folderPath = context.getApplicationContext().getFilesDir() + "/" + folderName;
+            File appDbDir = new File(folderPath);
+            if (!appDbDir.exists()) {
+                appDbDir.mkdirs();
+            }
+            this.Path = appDbDir;
+            String databaseName = DATABASE_VISIT_DB + "-" + UserZone + ".sqlite";
+            String databasePath = folderPath + "/" + databaseName;
+
+
+            try {
+                this.mydb = SQLiteDatabase.openDatabase(databasePath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+//                visit_member_data
+                String createTableQuery = "CREATE TABLE IF NOT EXISTS visit_member_data (" +
+                        "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "   VisitMem_Date TEXT ," +
+                        "   mem_Name TEXT ," +
+                        "   qouta_ID TEXT ," +
+                        "   Emp_ID TEXT ," +
+                        "   VisitMem_NO1 TEXT," +
+                        "   VisitMemSuggest_NO1 TEXT ," +
+                        "   VisitMem_NO2 TEXT ," +
+                        "   VisitMemSuggest_NO2  ," +
+                        "   VisitMem_NO3 TEXT ," +
+                        "   VisitMemSuggest_NO3 TEXT ," +
+                        "   VisitMem_NO4 TEXT ," +
+                        "   VisitMemSuggest_NO4 TEXT ," +
+                        "   VisitMem_NO5 TEXT ," +
+                        "   VisitMemSuggest_NO5 TEXT ," +
+                        "   VisitMem_NO6 TEXT ," +
+                        "   VisitMemSuggest_NO6 TEXT ," +
+                        "   VisitMem_NO7 TEXT ," +
+                        "   VisitMemSuggest_NO7 TEXT ," +
+                        "   VisitMem_NO8 TEXT ," +
+                        "   VisitMemSuggest_NO8 TEXT ," +
+                        "   VisitMem_NO9 TEXT ," +
+                        "   VisitMemSuggest_NO9 TEXT ," +
+                        "   VisitMem_NO10 TEXT ," +
+                        "   VisitMemSuggest_NO10 TEXT ," +
+                        "   VisitMem_NO11 TEXT ," +
+                        "   VisitMemSuggest_NO11 TEXT);";
+
+                this.mydb.execSQL(createTableQuery);
+                Log.e("Check", "Database created  visit_member_data successfully");
+                Toast.makeText(context, "Database created successfully!", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Log.d("errorCreateDB", String.valueOf(e));
+            }
+        }
+
 
 //        mydb.execSQL(" create table if not exists " + TABLE_VISIT_FARM_DATA +
 //                "   (_id INTEGER PRIMARY KEY AUTOINCREMENT ," +
@@ -173,10 +198,9 @@ public class MenuVisitActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.visitMember:
-                Intent visitMemberPage= new Intent(MenuVisitActivity.this,
-                       VisitMemberActivity.class);
+                Intent visitMemberPage = new Intent(MenuVisitActivity.this, VisitMemberActivity.class);
                 startActivity(visitMemberPage);
                 break;
 

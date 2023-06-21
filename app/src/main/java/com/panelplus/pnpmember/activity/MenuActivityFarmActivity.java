@@ -58,9 +58,7 @@ public class MenuActivityFarmActivity extends AppCompatActivity implements View.
                 break;
 
             case R.id.btnVisitFarm:
-                Intent visitFarmPage = new Intent(MenuActivityFarmActivity.this,
-                        VisitFarmActivity.class);
-
+                Intent visitFarmPage = new Intent(MenuActivityFarmActivity.this, VisitFarmActivity.class);
                 Bundle b2 = new Bundle();
                 b2.putString("Farm_ID",Farm_ID);
                 visitFarmPage.putExtras(b2);
@@ -69,9 +67,7 @@ public class MenuActivityFarmActivity extends AppCompatActivity implements View.
                 break;
 
             case  R.id.btnRecCir:
-                Intent recGirthPage = new Intent(MenuActivityFarmActivity.this,
-                        RecGirthActivity.class);
-
+                Intent recGirthPage = new Intent(MenuActivityFarmActivity.this, RecGirthActivity.class);
                 Bundle b3 = new Bundle();
                 b3.putString("Farm_ID",Farm_ID);
                 recGirthPage.putExtras(b3);

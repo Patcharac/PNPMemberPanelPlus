@@ -1,10 +1,13 @@
 package com.panelplus.pnpmember.activity;
 
+import static android.nfc.NfcAdapter.EXTRA_DATA;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -102,6 +105,8 @@ public class UploadActivity extends AppCompatActivity {
     public String UserZone;
     private String Username;
     private Button btnDelete;
+
+    private Button btnView;
     private Button btnExitUpload;
 
     /* renamed from: cd */
@@ -690,6 +695,7 @@ public class UploadActivity extends AppCompatActivity {
             progress.setPadding(0, 0, 0, 0);
             final Button btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
             final Button btnUpload = (Button) convertView.findViewById(R.id.btnUpload);
+            final Button btnView = (Button) convertView.findViewById(R.id.btnView);
             btnUpload.setTextColor(-16777216);
             final int i = position;
             btnUpload.setOnClickListener(new View.OnClickListener() {
@@ -757,6 +763,46 @@ public class UploadActivity extends AppCompatActivity {
                     builder.create().show();
                 }
             });
+
+
+
+
+
+
+            btnView.setTextColor(-16777216);
+            btnView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    viewData();
+                }
+
+                public void viewData() {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(UploadActivity.this);
+                    builder.setMessage("ต้องการจะลบข้อมูลหรือไม่ ?");
+                    builder.setCancelable(true);
+                    builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            String data = strPath;
+                            if (data != null) {
+                                Intent intent = new Intent(UploadActivity.this, DataTable.class);
+                                intent.putExtra(DataTable.EXTRA_DATA, data);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+                    builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
+                    builder.create().show();
+                }
+            });
+
+
+
+
+
+
             return convertView;
         }
     }

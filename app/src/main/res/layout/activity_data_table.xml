@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="รายการข้อมูลการเยี่ยมสมาชิก เเละ แปลงสมาชิก"
+                android:textColor="@color/colorBlack"
+                android:textSize="34sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="8dp"
+                tools:ignore="MissingConstraints">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- ตารางที่ 1 -->
+                    <TableLayout
+                        android:id="@+id/table1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="*"
+                        tools:ignore="MissingConstraints">
+
+                        <!-- หัวตาราง -->
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#FFC107">
+
+                            <TextView
+                                android:layout_span="3"
+                                android:padding="10dp"
+                                android:text="รายการ การเยี่ยมสมาชิก"
+                                android:textColor="#FFFFFF" />
+                        </TableRow>
+
+                        <!-- หัวคอลัมน์ -->
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#FFC107">
+
+                            <TextView
+                                android:padding="10dp"
+                                android:text="วันที่"
+                                android:textColor="#FFFFFF" />
+
+                            <TextView
+                                android:padding="10dp"
+                                android:text="รหัสสมาชิก"
+                                android:textColor="#FFFFFF" />
+
+                            <TextView
+                                android:padding="10dp"
+                                android:text="รหัสเจ้าหน้าที่"
+                                android:textColor="#FFFFFF" />
+                        </TableRow>
+
+                        <!-- ข้อมูล -->
+                        <TableRow
+                            android:id="@+id/dataRow"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#EEEEEE">
+
+                            <TextView
+                                android:id="@+id/dataText1"
+                                android:padding="10dp"
+                                android:text="" />
+
+                            <TextView
+                                android:id="@+id/dataText2"
+                                android:padding="10dp"
+                                android:text="" />
+
+                            <TextView
+                                android:id="@+id/dataText3"
+                                android:padding="10dp"
+                                android:text="" />
+                        </TableRow>
+
+
+                    </TableLayout>
+
+                    <!-- เพิ่มช่องว่างระหว่าง 2 ตาราง -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp" />
+
+                    <!-- ตารางที่ 2 -->
+                    <TableLayout
+                        android:id="@+id/table2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="*"
+                        tools:ignore="MissingConstraints">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#FFC107">
+
+                            <TextView
+                                android:layout_span="3"
+                                android:padding="10dp"
+                                android:text="รายการ การเยี่ยมแปลงสมาชิก"
+                                android:textColor="#FFFFFF" />
+                        </TableRow>
+
+                        <TableRow
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#FFC107">
+
+
+                            <TextView
+                                android:padding="10dp"
+                                android:text="วันที่"
+                                android:textColor="#FFFFFF" />
+
+                            <TextView
+                                android:padding="10dp"
+                                android:text="รหัสแปลงสมาชิก"
+                                android:textColor="#FFFFFF" />
+
+                            <TextView
+                                android:padding="10dp"
+                                android:text="รหัสเจ้าหน้าที่"
+                                android:textColor="#FFFFFF" />
+                        </TableRow>
+
+                        <!-- ตารางที่ 2 -->
+                        <TableRow
+                            android:id="@+id/dataRow2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#EEEEEE">
+
+                            <TextView
+                                android:id="@+id/dataText4"
+                                android:padding="10dp"
+                                android:text="" />
+
+                            <TextView
+                                android:id="@+id/dataText5"
+                                android:padding="10dp"
+                                android:text="" />
+
+                            <TextView
+                                android:id="@+id/dataText6"
+                                android:padding="10dp"
+                                android:text="" />
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

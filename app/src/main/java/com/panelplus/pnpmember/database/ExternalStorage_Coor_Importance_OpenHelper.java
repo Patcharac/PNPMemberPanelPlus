@@ -36,6 +36,11 @@ public class ExternalStorage_Coor_Importance_OpenHelper {
         this.dbFile = new File(folder, dbFileName);
     }
 
+    public SQLiteDatabase getWritableDatabase() {
+        return getDatabase();
+    }
+
+
     public boolean databaseFileExists() {
         return dbFile.exists();
     }

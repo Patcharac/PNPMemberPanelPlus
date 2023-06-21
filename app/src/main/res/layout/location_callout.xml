@@ -1,177 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/locationCallout"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#ffffff"
     android:clickable="true"
-    android:orientation="vertical"     
-    android:background="#ffffff">
+    android:orientation="vertical">
 
-    <TableRow
-        android:id="@+id/tableRow1"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/btncallout_edit"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="กิจกรรม"
-            android:textSize="25dp" />
-
-        <Button
-            android:id="@+id/btncallout_cancle"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="ยกเลิก"
-            android:textSize="25dp" />
-    </TableRow>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TableLayout
+            <TableRow
+                android:id="@+id/tableRow1"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" >
+                android:layout_height="wrap_content">
 
-                <TableRow
-                    android:id="@+id/tableRow2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                <Button
+                    android:id="@+id/btncallout_edit"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:text="กิจกรรม"
+                    android:textSize="25dp" />
 
-                    <TextView
-                        android:id="@+id/TextView20"
+                <Button
+                    android:id="@+id/btncallout_cancle"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:text="ยกเลิก"
+                    android:textSize="25dp" />
+            </TableRow>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TableLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="3dip"
-                        android:text=" " />
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
 
-                </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                <TableRow
-                    android:id="@+id/tableRow3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                            <TextView
+                                android:id="@+id/TextView20"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="3dip"
+                                android:text="ข้อมูลแปลงสมาชิก" />
 
-                    <TextView
-                        android:id="@+id/TextView16"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="3dip"
-                        android:text="โควต้า : "
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
+                        </TableRow>
 
-                    <TextView
-                        android:id="@+id/lblqoata_id"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="3dip"
-                        android:text="..."
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
-                </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                <TableRow
+                            <TextView
+                                android:id="@+id/TextView16"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:paddingLeft="3dip"
+                                android:text="โควต้า : "
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
 
-                    android:id="@+id/TableRowFarm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible">
+                            <TextView
+                                android:id="@+id/lblqoata_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingLeft="3dip"
+                                android:text="..."
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
+                        </TableRow>
 
-                    <TextView
-                        android:id="@+id/TextView17"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="3dip"
-                        android:text="เลขแปลง : "
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
+                        <TableRow
 
-                    <TextView
-                        android:id="@+id/lblfid"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="3dip"
-                        android:text="..."
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
-                </TableRow>
+                            android:id="@+id/TableRowFarm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible">
 
-                <TableRow
-                    android:id="@+id/TableRowYear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                            <TextView
+                                android:id="@+id/TextView17"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right|left"
+                                android:paddingLeft="3dip"
+                                android:text="เลขแปลง : "
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:id="@+id/TextView01"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="3dip"
-                        android:text="ปีที่ปลูก(พ.ศ.) : "
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
+                            <TextView
+                                android:id="@+id/lblfid"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingLeft="3dip"
+                                android:text="..."
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
+                        </TableRow>
 
-                    <TextView
-                        android:id="@+id/lblcyear"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="3dip"
-                        android:text="..."
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
-                </TableRow>
+                        <TableRow
+                            android:id="@+id/TableRowYear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                <TableRow
-                    android:id="@+id/TableRowYearOld"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                            <TextView
+                                android:id="@+id/TextView01"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right|left"
+                                android:paddingLeft="3dip"
+                                android:text="ปีที่ปลูก(พ.ศ.) : "
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:id="@+id/TextView06"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="3dip"
-                        android:text="อายุ : "
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
+                            <TextView
+                                android:id="@+id/lblcyear"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="3dip"
+                                android:text="..."
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
+                        </TableRow>
 
-                    <TextView
-                        android:id="@+id/lblcyearold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="3dip"
-                        android:text="..."
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
-                </TableRow>
-                <!--<TableRow-->
-                    <!--android:id="@+id/tableRow5"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" >-->
+                        <TableRow
+                            android:id="@+id/TableRowYearOld"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                    <!--<TextView-->
+                            <TextView
+                                android:id="@+id/TextView06"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right|left"
+                                android:paddingLeft="3dip"
+                                android:text="อายุ : "
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
+
+                            <TextView
+                                android:id="@+id/lblcyearold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="3dip"
+                                android:text="..."
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
+                        </TableRow>
+                        <!--<TableRow-->
+                        <!--android:id="@+id/tableRow5"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" >-->
+
+                        <!--<TextView-->
                         <!--android:id="@+id/TextView18"-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="wrap_content"-->
@@ -181,7 +193,7 @@
                         <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
                         <!--android:textColor="@color/colorBlack" />-->
 
-                    <!--<TextView-->
+                        <!--<TextView-->
                         <!--android:id="@+id/lblgis_mark"-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="wrap_content"-->
@@ -190,181 +202,181 @@
                         <!--android:text="..."-->
                         <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
                         <!--android:textColor="@color/colorBlack" />-->
-                <!--</TableRow>-->
+                        <!--</TableRow>-->
 
-                <TableRow
-                    android:id="@+id/TableRowStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                        <TableRow
+                            android:id="@+id/TableRowStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/TextView26"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="3dip"
-                        android:text="สถานะ : "
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
+                            <TextView
+                                android:id="@+id/TextView26"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right|left"
+                                android:paddingLeft="3dip"
+                                android:text="สถานะ : "
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:id="@+id/lblstatus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="3dip"
-                        android:text="..."
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
-                </TableRow>
+                            <TextView
+                                android:id="@+id/lblstatus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingLeft="3dip"
+                                android:text="..."
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
+                        </TableRow>
 
 
-                <TableRow
-                    android:id="@+id/TableRowArea"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                        <TableRow
+                            android:id="@+id/TableRowArea"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/TextView25"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="3dip"
-                        android:text="พื้นที่(ไร่) : "
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
+                            <TextView
+                                android:id="@+id/TextView25"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right|left"
+                                android:paddingLeft="3dip"
+                                android:text="พื้นที่(ไร่) : "
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:id="@+id/lblarea"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="3dip"
-                        android:text="..."
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
-                </TableRow>
+                            <TextView
+                                android:id="@+id/lblarea"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingLeft="3dip"
+                                android:text="..."
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
+                        </TableRow>
 
-                <TableRow
-                    android:id="@+id/TableRowRubberBreed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                        <TableRow
+                            android:id="@+id/TableRowRubberBreed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/TextView23"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="3dip"
-                        android:text="พันธุ์ : "
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
+                            <TextView
+                                android:id="@+id/TextView23"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right|left"
+                                android:paddingLeft="3dip"
+                                android:text="พันธุ์ : "
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:id="@+id/lblvality"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="3dip"
-                        android:text=".."
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
-                </TableRow>
+                            <TextView
+                                android:id="@+id/lblvality"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingLeft="3dip"
+                                android:text=".."
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
+                        </TableRow>
 
-                <TableRow
-                    android:id="@+id/tableRow7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                        <TableRow
+                            android:id="@+id/tableRow7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/TextView24"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="3dip"
-                        android:text="ชื่อ-สกุล(เจ้าของแปลง) : "
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
+                            <TextView
+                                android:id="@+id/TextView24"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right|left"
+                                android:paddingLeft="3dip"
+                                android:text="ชื่อ-สกุล(เจ้าของแปลง) : "
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:id="@+id/lblcancle_project"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="3dip"
-                        android:text="..."
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
-                </TableRow>
+                            <TextView
+                                android:id="@+id/lblcancle_project"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingLeft="3dip"
+                                android:text="..."
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
+                        </TableRow>
 
-                <TableRow
-                    android:id="@+id/tableRow9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                        <TableRow
+                            android:id="@+id/tableRow9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/TextView28"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="3dip"
-                        android:text="เบอร์โทรศัพท์ : "
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
+                            <TextView
+                                android:id="@+id/TextView28"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right|left"
+                                android:paddingLeft="3dip"
+                                android:text="เบอร์โทรศัพท์ : "
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:id="@+id/lblTel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="3dip"
-                        android:text="..."
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
-                </TableRow>
+                            <TextView
+                                android:id="@+id/lblTel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingLeft="3dip"
+                                android:text="..."
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
+                        </TableRow>
 
-                <TableRow
-                    android:id="@+id/tableRow12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                        <TableRow
+                            android:id="@+id/tableRow12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/TextView21"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:paddingLeft="3dip"
-                        android:text="ผู้ดูแลแปลง : "
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
+                            <TextView
+                                android:id="@+id/TextView21"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right|left"
+                                android:paddingLeft="3dip"
+                                android:text="ผู้ดูแลแปลง : "
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:id="@+id/lblssone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="3dip"
-                        android:text="..."
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorBlack" />
-                </TableRow>
+                            <TextView
+                                android:id="@+id/lblssone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingLeft="3dip"
+                                android:text="..."
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorBlack" />
+                        </TableRow>
 
-            </TableLayout>
+                    </TableLayout>
 
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnGotoMap"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:background="@color/colorPrimary"
+                android:text="เปิดระบบนำทาง"
+                android:textSize="25dp"
+                android:visibility="gone" />
         </LinearLayout>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnGotoMap"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
-        android:text="เปิดระบบนำทาง"
-        android:textSize="25dp"
-        android:visibility="gone"
-        />
-
+    </ScrollView>
 </LinearLayout>

@@ -119,7 +119,7 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
 
     //get user
     private static final String DATABASE_CENTER_DB = "CENTER_DB";
-    String nowEmp_ID ="";
+    String nowEmp_ID = "";
 
     String UserZone = null;
     String DataSplit = null;
@@ -163,7 +163,7 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
 
         InitWidget();
 
-        nowEmp_ID= getEmpID(this);
+        nowEmp_ID = getEmpID(this);
         btnsave.setEnabled(false);
 
         if (android.os.Build.VERSION.SDK_INT > 26) {
@@ -270,11 +270,11 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
 
         Poly_X = new ArrayList<Double>();
         Poly_Y = new ArrayList<Double>();
-        cachedFARM_ID_KEY =new ArrayList<String>();
-        cachedPolygon =new ArrayList<String>();
+        cachedFARM_ID_KEY = new ArrayList<String>();
+        cachedPolygon = new ArrayList<String>();
     }
 
-    private void InitWidget(){
+    private void InitWidget() {
 
         map = (MapView) findViewById(R.id.map);
         lbl_gps_accuracy = (TextView) findViewById(R.id.lbl_gps_accuracy);
@@ -294,15 +294,12 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
+        switch (v.getId()) {
             case R.id.btnautopan:
 
-                if(btnautopan.isChecked())
-                {
+                if (btnautopan.isChecked()) {
                     ckhAoutpan = true;
-                }
-                else
-                {
+                } else {
                     ckhAoutpan = false;
                 }
 
@@ -326,21 +323,21 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
                         int YMinusTen = (int) cachedLocationY - 10;
                         int YPlusTen = (int) cachedLocationY + 10;
                         //int YMinusFifteen = (int) cachedLocationY -15;
-                        int YPlusFifteen = (int) cachedLocationY +15;
+                        int YPlusFifteen = (int) cachedLocationY + 15;
 
 
                         PathPolygon = "POLYGON ((";
-                        PathPolygon += String.valueOf(XMinusTen) +" " +String.valueOf(YMinusTen)+", ";
-                        PathPolygon += String.valueOf(XPlusTen) +" " +String.valueOf(YMinusTen)+", ";
-                        PathPolygon += String.valueOf(XPlusTen) +" " +String.valueOf(YPlusTen )+", ";
-                        PathPolygon += String.valueOf(XPlusFifteen) +" " +String.valueOf(YPlusTen )+", ";
-                        PathPolygon += String.valueOf((int) cachedLocationX) +" " +String.valueOf(YPlusFifteen)+", ";
-                        PathPolygon += String.valueOf(XMinusFifteen) +" " +String.valueOf(YPlusTen)+", ";
-                        PathPolygon += String.valueOf(XMinusTen) +" " +String.valueOf(YPlusTen );
+                        PathPolygon += String.valueOf(XMinusTen) + " " + String.valueOf(YMinusTen) + ", ";
+                        PathPolygon += String.valueOf(XPlusTen) + " " + String.valueOf(YMinusTen) + ", ";
+                        PathPolygon += String.valueOf(XPlusTen) + " " + String.valueOf(YPlusTen) + ", ";
+                        PathPolygon += String.valueOf(XPlusFifteen) + " " + String.valueOf(YPlusTen) + ", ";
+                        PathPolygon += String.valueOf((int) cachedLocationX) + " " + String.valueOf(YPlusFifteen) + ", ";
+                        PathPolygon += String.valueOf(XMinusFifteen) + " " + String.valueOf(YPlusTen) + ", ";
+                        PathPolygon += String.valueOf(XMinusTen) + " " + String.valueOf(YPlusTen);
 
-                        PathPolygon = PathPolygon +"))";
+                        PathPolygon = PathPolygon + "))";
                         //PathPolygon = PathPolygon.replace(", ))", "))");
-                        Log.d("polygon",PathPolygon);
+                        Log.d("polygon", PathPolygon);
 
 
                         Intent saveCoHouse = new Intent(CoordinateHouseActivity.this,
@@ -361,9 +358,9 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
 
                         CoordinateHouseActivity.this.finish();
 
-                        if(lm != null){
+                        if (lm != null) {
                             lm.removeUpdates(locationListener);
-                            lm=null;
+                            lm = null;
                         }
                     }
                 });
@@ -382,36 +379,32 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
             cachedFARM_ID_KEY.clear();
             cachedPolygon.clear();
 
-            rExtent=new Envelope();
+            rExtent = new Envelope();
             map.getExtent().queryEnvelope(rExtent);
 
-            double Min_X=rExtent.getXMin();  //ด้านบน
-            double Min_Y=rExtent.getYMin();  //ด้านบน
-            double Max_X=rExtent.getXMax();  //ด้านล่าง
-            double Max_Y=rExtent.getYMax();  //ด้านล่าง
+            double Min_X = rExtent.getXMin();  //ด้านบน
+            double Min_Y = rExtent.getYMin();  //ด้านบน
+            double Max_X = rExtent.getXMax();  //ด้านล่าง
+            double Max_Y = rExtent.getYMax();  //ด้านล่าง
 
             SQLiteDatabase db;
-            String DBFile= DATABASE_FSCGISDATANAME +".sqlite";
+            String DBFile = DATABASE_FSCGISDATANAME + ".sqlite";
             Log.d("Get_Val_strSQL", DBFile);
             // ExternalStorageReadOnlyOpenHelper.open();
-            List<ExternalStorage_Farm_GIS_DB_OpenHelper.sMemberDrawPolygons> Poly_MebmerList=null ;
+            List<ExternalStorage_Farm_GIS_DB_OpenHelper.sMemberDrawPolygons> Poly_MebmerList = null;
 
-
-            ExternalStorage_Farm_GIS_DB_OpenHelper obj= new ExternalStorage_Farm_GIS_DB_OpenHelper(getApplicationContext(),DBFile);
-            if(obj.databaseFileExists())
-            {
-                db=obj.getReadableDatabase();
-                Poly_MebmerList = obj.SelectDataDrawPolygon(Max_X ,
-                        Min_X ,
-                        Max_Y ,
-                        Min_Y ,db);
+            ExternalStorage_Farm_GIS_DB_OpenHelper obj = new ExternalStorage_Farm_GIS_DB_OpenHelper(getApplicationContext(), DBFile);
+            if (obj.databaseFileExists()) {
+                db = obj.getReadableDatabase();
+                Poly_MebmerList = obj.SelectDataDrawPolygon(Max_X,
+                        Min_X,
+                        Max_Y,
+                        Min_Y,
+                        db);
                 for (ExternalStorage_Farm_GIS_DB_OpenHelper.sMemberDrawPolygons mem : Poly_MebmerList) {
-
                     cachedFARM_ID_KEY.add(mem.gFARM_ID());
                     cachedPolygon.add(mem.gFARM_GEO());
-                    CreatePolygon(mem.gFARM_GEO(),mem.gFARM_STATUS(),
-                            mem.gEMP_ID());
-
+                    CreatePolygon(mem.gFARM_GEO(), mem.gFARM_STATUS(), mem.gEMP_ID());
                 }
 
                 obj.close();
@@ -419,80 +412,79 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
             }
 
 
-
             return null;
         }
 
     }
 
-    public void CreatePolygon(String GeoPointData , String Farm_Status , String Emp_ID){
+    public void CreatePolygon(String GeoPointData, String Farm_Status, String Emp_ID) {
 
         String strtmp1;
         String strtmp2;
-        String [] tmp1;
-        String [] tmp2;
+        String[] tmp1;
+        String[] tmp2;
 
         strtmp1 = GeoPointData.replace("POLYGON ((", "");
         strtmp2 = strtmp1.replace("))", "");
 
-        tmp1=strtmp2.split(", ");
+        tmp1 = strtmp2.split(", ");
 
 
         MultiPath PLG = new Polygon();
-        for(int i=0; i<tmp1 .length;i++){
-            tmp2=tmp1[i].split(" ");
-            Point curPoint = new Point((float)(Float.parseFloat(tmp2 [0].toString())),
-                    (float)(Float.parseFloat(tmp2 [1].toString())));
+        for (int i = 0; i < tmp1.length; i++) {
+            tmp2 = tmp1[i].split(" ");
+            Point curPoint = new Point((float) (Float.parseFloat(tmp2[0].toString())),
+                    (float) (Float.parseFloat(tmp2[1].toString())));
 
 
-            if(i==0){
+            if (i == 0) {
                 PLG.startPath(curPoint);
-            }else{
+            } else {
                 PLG.lineTo(curPoint);
             }
         }
 
-        CreatePolygonColor(PLG,Farm_Status,Emp_ID);
+        CreatePolygonColor(PLG, Farm_Status, Emp_ID);
     }
 
-    private void CreatePolygonColor(MultiPath PLG , String Farm_Status, String Emp_ID ){
+    private void CreatePolygonColor(MultiPath PLG, String Farm_Status, String Emp_ID) {
 
         //แปลงทั่วไป
-        if(Farm_Status.toString().trim().equals("G")){
+        if (Farm_Status.toString().trim().equals("G")) {
             // Fill Color
-            sketchlayer.addGraphic(new Graphic(PLG,new SimpleFillSymbol(Color.rgb(107, 142, 35))));
+            sketchlayer.addGraphic(new Graphic(PLG, new SimpleFillSymbol(Color.rgb(107, 142, 35))));
 
-        }else if(Farm_Status.toString().trim().equals("R") ){
+        } else if (Farm_Status.toString().trim().equals("R")) {
             //แปลงพร้อมตัด
-            sketchlayer.addGraphic(new Graphic(PLG,new SimpleFillSymbol(Color.rgb(255, 255, 0))));
+            sketchlayer.addGraphic(new Graphic(PLG, new SimpleFillSymbol(Color.rgb(255, 255, 0))));
 
-        }else if(Farm_Status.toString().trim().equals("RH")){
+        } else if (Farm_Status.toString().trim().equals("RH")) {
             //แปลงกำลัง
-            sketchlayer.addGraphic(new Graphic(PLG,new SimpleFillSymbol(Color.rgb(255, 164, 96))));
+            sketchlayer.addGraphic(new Graphic(PLG, new SimpleFillSymbol(Color.rgb(255, 164, 96))));
 
-        }else if(Farm_Status.toString().trim().equals("H")) {
+        } else if (Farm_Status.toString().trim().equals("H")) {
             //แปลงตัดแล้ว
             sketchlayer.addGraphic(new Graphic(PLG, new SimpleFillSymbol(Color.rgb(255, 69, 0))));
-        }else if(Farm_Status.toString().trim().equals("C")) {
+        } else if (Farm_Status.toString().trim().equals("C")) {
             //แปลงยกเลิก
             sketchlayer.addGraphic(new Graphic(PLG, new SimpleFillSymbol(Color.rgb(164, 164, 164))));
         }
         //Log.d("nowEmp_ID",String.valueOf(nowEmp_ID));
-        if(nowEmp_ID.toString().equals(Emp_ID.toString())){
-            Log.d("hear","hear equal");
-            sketchlayer.addGraphic(new Graphic(PLG,new SimpleLineSymbol(Color.BLACK,1)));
-        } else{
-            Log.d("not equal",String.valueOf(Emp_ID));
-            sketchlayer.addGraphic(new Graphic(PLG,new SimpleLineSymbol(Color.WHITE,1)));
+        if (nowEmp_ID.toString().equals(Emp_ID.toString())) {
+            Log.d("hear", "hear equal");
+            sketchlayer.addGraphic(new Graphic(PLG, new SimpleLineSymbol(Color.BLACK, 1)));
+        } else {
+            Log.d("not equal", String.valueOf(Emp_ID));
+            sketchlayer.addGraphic(new Graphic(PLG, new SimpleLineSymbol(Color.WHITE, 1)));
 
         }
 
     }
 
-    private String getEmpID(Context context){
+    private String getEmpID(Context context) {
         SQLiteDatabase db;
         String DBFile = DATABASE_CENTER_DB + ".sqlite";
-        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(  context,DBFile);
+        ExternalStorage_Center_DB_OpenHelper obj = new ExternalStorage_Center_DB_OpenHelper(context, DBFile);
         if (obj.databaseFileExists()) {
             db = obj.getReadableDatabase();
             nowEmp_ID = obj.GetEmpID("1", db);
@@ -511,7 +503,7 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
             lDisplayManager = map.getLocationDisplayManager();
             lDisplayManager.start();
 
-            if(location != null){
+            if (location != null) {
 
 
                 location.setLatitude(location.getLatitude());
@@ -532,15 +524,15 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
                 }
 
 
-                cachedLocationX = mapPoint.getX() ;
-                cachedLocationY = mapPoint.getY() ;
+                cachedLocationX = mapPoint.getX();
+                cachedLocationY = mapPoint.getY();
 
                 cachedLatitude = location.getLatitude();
                 cachedLongitude = location.getLongitude();
 
                 // get XY LOCATION
-                lbl_gpsX.setText(String.valueOf(Integer.valueOf((int) mapPoint.getX()) ));
-                lbl_gpsY.setText(String.valueOf(Integer.valueOf((int) mapPoint.getY()) ));
+                lbl_gpsX.setText(String.valueOf(Integer.valueOf((int) mapPoint.getX())));
+                lbl_gpsY.setText(String.valueOf(Integer.valueOf((int) mapPoint.getY())));
                 btnsave.setEnabled(true);
 
                 Log.d("Get_Val_GPSX", String.valueOf(cachedLocationX));
@@ -554,8 +546,7 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
                 //map.centerAt(mapPoint,ckhAoutpan );
 
 
-                if(btnautopan.isChecked())
-                {
+                if (btnautopan.isChecked()) {
 
                     //map.centerAt(mapPoint,true );
                     //map.zoomToResolution(mapPoint, 6.0);
@@ -574,7 +565,7 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
                     map.setExtent(zoomExtent);
 
 
-                    if (map.getScale() > 30000){
+                    if (map.getScale() > 30000) {
                         sketchlayer.removeAll();
 
                     } else {
@@ -583,16 +574,14 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
                         btnautopan.setChecked(false);
 
                     }
-                }
-                else
-                {
+                } else {
                     ckhAoutpan = false;
                 }
 
-                if(location.getAccuracy()  > 8 ){
+                if (location.getAccuracy() > 8) {
                     //if(location.getAccuracy()  > 10 ){
                     gpslayer.removeAll();
-                }else{
+                } else {
                     gpslayer.removeAll();
 
                     //gpslayer.addGraphic(new Graphic(mapPoint,new SimpleMarkerSymbol(Color.rgb(0, 0, 255),25,STYLE.CIRCLE)));
@@ -635,7 +624,7 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
         public void postPointerMove(float arg0, float arg1, float arg2,
                                     float arg3) {
             // TODO Auto-generated method stub
-            if (Map_Scale > 30000){
+            if (Map_Scale > 30000) {
                 sketchlayer.removeAll();
 
             }
@@ -644,7 +633,7 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
 
         public void postPointerUp(float arg0, float arg1, float arg2, float arg3) {
             // TODO Auto-generated method stub
-            if (Map_Scale > 30000){
+            if (Map_Scale > 30000) {
                 sketchlayer.removeAll();
 
             }
@@ -653,7 +642,7 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
         public void prePointerMove(float arg0, float arg1, float arg2,
                                    float arg3) {
             // TODO Auto-generated method stub
-            if (Map_Scale > 30000){
+            if (Map_Scale > 30000) {
                 sketchlayer.removeAll();
 
             }
@@ -666,38 +655,38 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
             //callout.hide();
             //}
 
-            rExtent=new Envelope();
+            rExtent = new Envelope();
             map.getExtent().queryEnvelope(rExtent);
             double Map_Scale = map.getScale();
 
 
-            double Min_X=rExtent.getXMin();  //ด้านบน
+            double Min_X = rExtent.getXMin();  //ด้านบน
 
-            if (Temp_Min_X1 == 0){
-                Temp_Min_X1 = Min_X ;
-            }else if (Min_X > Temp_Min_X1){
+            if (Temp_Min_X1 == 0) {
+                Temp_Min_X1 = Min_X;
+            } else if (Min_X > Temp_Min_X1) {
 
 
                 Temp_Min_X2 = (Min_X - Temp_Min_X1);
-                Temp_Min_X1 = Min_X ;
+                Temp_Min_X1 = Min_X;
 
-            }else{
+            } else {
 
 
                 Temp_Min_X2 = (Temp_Min_X1 - Min_X);
-                Temp_Min_X1 = Min_X ;
+                Temp_Min_X1 = Min_X;
             }
 
 
-            if (Temp_Min_X2 > 70 && Temp_Min_X1 != 0){
+            if (Temp_Min_X2 > 70 && Temp_Min_X1 != 0) {
 
-                if (Map_Scale < 30000){
+                if (Map_Scale < 30000) {
 
                     sketchlayer.removeAll();
                     loadMapAsync = new LoadMapAsync();
                     loadMapAsync.execute();
 
-                }else{
+                } else {
                     sketchlayer.removeAll();
 
                 }
@@ -705,8 +694,8 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
             }
 
 
-
-        }}
+        }
+    }
 
     class MyZoomListener implements OnZoomListener {
 
@@ -725,8 +714,7 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
             Log.d("MapScale", String.valueOf(Map_Scale));
 
 
-
-            if (Map_Scale < 30000){
+            if (Map_Scale < 30000) {
 
                 //if (callout.isShowing()) {
                 //callout.hide();
@@ -737,11 +725,10 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
                 loadMapAsync.execute();
 
 
-            }else{
+            } else {
 
 
                 sketchlayer.removeAll();
-
 
 
             }
@@ -750,13 +737,14 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
         public void preAction(float arg0, float arg1, double arg2) {
             // TODO Auto-generated method stub
 
-            if (Map_Scale > 30000){
+            if (Map_Scale > 30000) {
                 sketchlayer.removeAll();
 
             }
 
 
-        }}
+        }
+    }
 
     class MyTouchListener extends MapOnTouchListener {
 
@@ -777,16 +765,15 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
             return this.type;
         }
 
-		/*
-		 * Invoked when user single taps on the map view. This event handler
-		 * draws a point at user-tapped location, only after "Draw Point" is
-		 * selected from Spinner.
-		 *
-		 * @see
-		 * com.esri.android.map.MapOnTouchListener#onSingleTap(android.view.
-		 * MotionEvent)
-		 */
-
+        /*
+         * Invoked when user single taps on the map view. This event handler
+         * draws a point at user-tapped location, only after "Draw Point" is
+         * selected from Spinner.
+         *
+         * @see
+         * com.esri.android.map.MapOnTouchListener#onSingleTap(android.view.
+         * MotionEvent)
+         */
 
 
         public boolean onSingleTap(MotionEvent e) {
@@ -794,26 +781,23 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
             double Map_Scale = map.getScale();
 
 
-
-            if (Map_Scale < 25000){
+            if (Map_Scale < 25000) {
                 Point PointClick = map.toMapPoint(e.getX(), e.getY());
 
                 cachedClickX = PointClick.getX();
                 cachedClickY = PointClick.getY();
 
 
-                double X1 = cachedLocationX ;
-                double Y1 = cachedLocationY ;
-                double X2 = cachedClickX ;
-                double Y2 = cachedClickY ;
+                double X1 = cachedLocationX;
+                double Y1 = cachedLocationY;
+                double X2 = cachedClickX;
+                double Y2 = cachedClickY;
 
-                Vecter = Math.sqrt(Math.pow((X2-X1), 2))+ Math.sqrt( Math.pow((Y2-Y1), 2));
+                Vecter = Math.sqrt(Math.pow((X2 - X1), 2)) + Math.sqrt(Math.pow((Y2 - Y1), 2));
 
-                if(Vecter < 0){
-                    Vecter = Vecter*-1;
+                if (Vecter < 0) {
+                    Vecter = Vecter * -1;
                 }
-
-
 
 
                 if (type.length() > 1 && type.equalsIgnoreCase("POINT")) {
@@ -821,10 +805,9 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
                     markpointlayer.removeAll();
 
 
-
                     Point mapPt = map.toMapPoint(e.getX(), e.getY());
 
-                    markpointlayer.addGraphic(new Graphic(mapPt,new SimpleMarkerSymbol(Color.RED,8, SimpleMarkerSymbol.STYLE.CIRCLE)));
+                    markpointlayer.addGraphic(new Graphic(mapPt, new SimpleMarkerSymbol(Color.RED, 8, SimpleMarkerSymbol.STYLE.CIRCLE)));
 
 
                     double PX = mapPt.getX();
@@ -834,37 +817,35 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
                     try {
 
 
-
                         for (int x = 0; x < cachedFARM_ID_KEY.size(); x++) {
 
-                            ArrayList<Float> verticesX ;
-                            ArrayList<Float> verticesY ;
+                            ArrayList<Float> verticesX;
+                            ArrayList<Float> verticesY;
 
-                            int vertices_count = 0 ;
+                            int vertices_count = 0;
                             int intersections = 0;
                             String strtmp1;
                             String strtmp2;
 
-                            String [] tmp1;
-                            String [] tmp2;
-
+                            String[] tmp1;
+                            String[] tmp2;
 
 
                             verticesX = new ArrayList<Float>();
-                            verticesY=new ArrayList<Float>();
+                            verticesY = new ArrayList<Float>();
 
 
                             strtmp1 = cachedPolygon.get(x).toString().replace("POLYGON ((", "");
                             strtmp2 = strtmp1.replace("))", "");
 
-                            tmp1=strtmp2.split(", ");
+                            tmp1 = strtmp2.split(", ");
 
                             ////////////////// Loop 2 //////////////////
-                            for(int y=0; y<tmp1 .length;y++){
-                                tmp2=tmp1[y].split(" ");
+                            for (int y = 0; y < tmp1.length; y++) {
+                                tmp2 = tmp1[y].split(" ");
 
-                                verticesX.add(Float.parseFloat(tmp2 [0].toString().trim()));
-                                verticesY.add(Float.parseFloat(tmp2 [1].toString().trim()));
+                                verticesX.add(Float.parseFloat(tmp2[0].toString().trim()));
+                                verticesY.add(Float.parseFloat(tmp2[1].toString().trim()));
 
                             }
 
@@ -872,11 +853,11 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
                             //Log.d("PointClick_vertices_count",String.valueOf(vertices_count));
 
 
-                            for (int i=1; i < vertices_count; i++) {
-                                float vertex1X=verticesX.get(i-1);
-                                float vertex1Y=verticesY.get(i-1);
-                                float vertex2X=verticesX.get(i);
-                                float vertex2Y=verticesY.get(i);
+                            for (int i = 1; i < vertices_count; i++) {
+                                float vertex1X = verticesX.get(i - 1);
+                                float vertex1Y = verticesY.get(i - 1);
+                                float vertex2X = verticesX.get(i);
+                                float vertex2Y = verticesY.get(i);
 
                                 if (vertex1Y == vertex2Y && vertex1Y == PY &&
                                         PX > getMinXY(vertex1X, vertex2X) &&
@@ -929,26 +910,25 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
                                 btncallout_edit.setVisibility(View.INVISIBLE);
 
                                 SQLiteDatabase db;
-                                String DBFile= DATABASE_FSCGISDATANAME +".sqlite";
+                                String DBFile = DATABASE_FSCGISDATANAME + ".sqlite";
                                 String tmpData1;
-                                List<ExternalStorage_Farm_GIS_DB_OpenHelper.sMemberCalloutDatas> CalloutData=null ;
+                                List<ExternalStorage_Farm_GIS_DB_OpenHelper.sMemberCalloutDatas> CalloutData = null;
 
-                                ExternalStorage_Farm_GIS_DB_OpenHelper obj= new ExternalStorage_Farm_GIS_DB_OpenHelper(getApplicationContext(),DBFile);
-                                if(obj.databaseFileExists())
-                                {
-                                    db=obj.getReadableDatabase();
+                                ExternalStorage_Farm_GIS_DB_OpenHelper obj = new ExternalStorage_Farm_GIS_DB_OpenHelper(getApplicationContext(), DBFile);
+                                if (obj.databaseFileExists()) {
+                                    db = obj.getReadableDatabase();
                                     CalloutData = obj.getCaneCallout(FARM_ID_KEY, db);
                                     for (ExternalStorage_Farm_GIS_DB_OpenHelper.sMemberCalloutDatas mem : CalloutData) {
                                         lblqoata_id.setText(mem.gQOUTA_ID().toString());
                                         lblfid.setText(mem.gFARM_ID().toString());
-                                        getFID=mem.gFARM_ID().toString();
+                                        getFID = mem.gFARM_ID().toString();
                                         getFARM_ID_KEY = FARM_ID_KEY;
 
                                         //lblgis_mark.setText(mem.gGIS_MARK().toString());
                                         //lblstatus.setText(Case_Cane(mem.gCASE_CANE().toString()));
                                         lblstatus.setText(mem.gFARM_STATUS().toString());
                                         lblcyear.setText(mem.gFARM_YEAROFPLANT().toString());
-                                        lblname.setText(mem.gMEM_GENDER()+mem.gMEM_NAME()+" "+" "+mem.gMEM_LASTNAME());
+                                        lblname.setText(mem.gMEM_GENDER() + mem.gMEM_NAME() + " " + " " + mem.gMEM_LASTNAME());
                                         lbltel.setText(mem.gMEM_TEL().toString());
                                         lblarea.setText(mem.gFARM_AREA().toString());
                                         lblvality.setText(mem.gFARM_RUBBERBREED().toString());
@@ -956,11 +936,10 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
 
                                         int yearPlant = Integer.parseInt(mem.gFARM_YEAROFPLANT());
                                         Calendar calendar = Calendar.getInstance();
-                                        int year = calendar.get(Calendar.YEAR)+543;
+                                        int year = calendar.get(Calendar.YEAR) + 543;
 
                                         int yearOld = year - yearPlant;
-                                        lblcyearold.setText(String.valueOf(yearOld)+" ปี");
-
+                                        lblcyearold.setText(String.valueOf(yearOld) + " ปี");
 
 
                                     }
@@ -985,7 +964,6 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
                                 callout.show();
 
 
-
                             } else {
                                 //inside = false;
                                 //return "outside";
@@ -1008,27 +986,27 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
 
     }
 
-    public float getMaxXY(float XY1, float XY2 ){
+    public float getMaxXY(float XY1, float XY2) {
 
-        float fPoint=0;
+        float fPoint = 0;
 
-        if (XY1 > XY2){
-            fPoint=XY1;
-        }else{
-            fPoint=XY2;
+        if (XY1 > XY2) {
+            fPoint = XY1;
+        } else {
+            fPoint = XY2;
         }
         return fPoint;
 
     }
 
-    public float getMinXY(float XY1, float XY2 ){
+    public float getMinXY(float XY1, float XY2) {
 
-        float fPoint=0;
+        float fPoint = 0;
 
-        if (XY1 < XY2){
-            fPoint=XY1;
-        }else{
-            fPoint=XY2;
+        if (XY1 < XY2) {
+            fPoint = XY1;
+        } else {
+            fPoint = XY2;
         }
         return fPoint;
 
@@ -1040,27 +1018,25 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
         new AlertDialog.Builder(this)
 
                 .setMessage("ออกจากการเก็บพิกัดบ้านสมาชิกหรือไม่?")
-                .setPositiveButton("ใช่", new DialogInterface.OnClickListener()
-                {
+                .setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         ClearCachedPolygon();
                         try {
-                            if(lm != null){
+                            if (lm != null) {
                                 lm.removeUpdates(locationListener);
-                                lm=null;
+                                lm = null;
                             }
                         } catch (Exception e) {
                             // TODO: handle exception
-                            Toast.makeText(getApplicationContext(), "onBackPressed Error : "+String.valueOf(e) , Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "onBackPressed Error : " + String.valueOf(e), Toast.LENGTH_LONG).show();
                         }
-
 
 
                         try {
                             CoordinateHouseActivity.this.finish();
                         } catch (Exception e) {
                             // TODO: handle exception
-                            Toast.makeText(getApplicationContext(), "Activity finish Error : "+String.valueOf(e) , Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Activity finish Error : " + String.valueOf(e), Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -1086,24 +1062,24 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
 //        Poly_Y.clear();
 //    }
 
-    private void ClearCachedPolygon(){
-        if(cachedFARM_ID_KEY != null) {
+    private void ClearCachedPolygon() {
+        if (cachedFARM_ID_KEY != null) {
             cachedFARM_ID_KEY.clear();
         }
 //        if(cachedQOUTA_ID_KEY != null) {
 //            cachedQOUTA_ID_KEY.clear();
 //        }
-        if(cachedPolygon != null) {
+        if (cachedPolygon != null) {
             cachedPolygon.clear();
         }
-        if(cachedFARM_ID_KEY != null) {
+        if (cachedFARM_ID_KEY != null) {
             cachedFARM_ID_KEY.clear();
         }
-        if(sketchlayer != null) {
+        if (sketchlayer != null) {
             sketchlayer.clearSelection();
             sketchlayer.removeAll();
         }
-        if(sketchlayer != null) {
+        if (sketchlayer != null) {
             sketchlayer.clearSelection();
             sketchlayer.removeAll();
         }
@@ -1111,15 +1087,15 @@ public class CoordinateHouseActivity extends AppCompatActivity implements View.O
 //            Symbollayer.clearSelection();
 //            Symbollayer.removeAll();
 //        }
-        if(markpointlayer != null) {
+        if (markpointlayer != null) {
             markpointlayer.clearSelection();
             markpointlayer.removeAll();
         }
-        if(gpslayer != null) {
+        if (gpslayer != null) {
             gpslayer.clearSelection();
             gpslayer.removeAll();
         }
-        if(map != null) {
+        if (map != null) {
             map.destroyDrawingCache();
         }
     }
